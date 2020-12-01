@@ -25,7 +25,7 @@ void process_print_f(uint32_t current_time_us){
 	//printf("%d\t%d\t%d\t%d\t%d\t%d\n", data[0], data[1], data[2], data[3], data[4], data[5]);
 
 	//printf("%d\t%d\t%d\t%lu\n",sys->sensors.gyro.mpu->gyro_raw[0], sys->sensors.gyro.mpu->gyro_raw[1], sys->sensors.gyro.mpu->gyro_raw[2], TASK_get_task(TASK_GYRO)->it_duration_us);
-	printf("%f\t%f\t%f\t%lu\n",sys->sensors.gyro.raw[0], sys->sensors.gyro.raw[1], sys->sensors.gyro.raw[2], TASK_get_task(TASK_GYRO)->duration_us);
+	printf("%f\t%f\t%f\t%lu\n",sys->sensors.acc.raw[0], sys->sensors.acc.raw[1], sys->sensors.acc.raw[2], TASK_get_task(TASK_GYRO)->duration_us);
 	//printf("%d\n", sys->sensors.gyro.mpu->gyro_raw[0]);
 }
 
@@ -37,7 +37,7 @@ void process_led(uint32_t current_time_us){
 }
 
 void process_gyro(uint32_t current_time_us){
-	GYRO_update(&sys->sensors.gyro);
+	ACC_update(&sys->sensors.acc);
 }
 
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param) { 	\

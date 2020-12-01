@@ -135,13 +135,16 @@ sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range){
 	temp[0] = MPU6050_GYRO_CONFIG | MPU6050_READ ;
 	MPU_cs_lock(mpu);
 	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, &temp[1], 1, 2);
-
+	MPU_cs_unlock(mpu);
 	if(mpu->hal_state == HAL_OK){
+		HAL_Delay(1);
+		MPU_cs_lock(mpu);
 		temp[0] = MPU6050_GYRO_CONFIG ;
 		temp[1] = (temp[1] & 0xE7) | (uint8_t)gyro_range << 3;
-		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  1, 2);
+		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  2, 2);
+		MPU_cs_unlock(mpu);
 	}
-	MPU_cs_unlock(mpu);
+
 
 	#endif
 #endif
@@ -192,13 +195,16 @@ sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range){
 	temp[0] = MPU6050_ACCEL_CONFIG | MPU6050_READ ;
 	MPU_cs_lock(mpu);
 	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, &temp[1], 1, 2);
-
+	MPU_cs_unlock(mpu);
 	if(mpu->hal_state == HAL_OK){
+		HAL_Delay(1);
+		MPU_cs_lock(mpu);
 		temp[0] = MPU6050_ACCEL_CONFIG ;
 		temp[1] = (temp[1] & 0xE7) | (uint8_t)acc_range << 3;
 		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  1, 2);
+		MPU_cs_unlock(mpu);
 	}
-	MPU_cs_unlock(mpu);
+
 	#endif
 #endif
 

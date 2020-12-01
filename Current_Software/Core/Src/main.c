@@ -105,7 +105,7 @@ int main(void)
 
 
   //Init du GYRO et de l ACC en utilisant un MPU
-  MPU_init(&sys.sensors.gyro.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
+  MPU_init(&sys.sensors.acc.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
   GYRO_init(&sys.sensors.gyro);
   ACC_init(&sys.sensors.acc);
 

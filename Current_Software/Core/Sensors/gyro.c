@@ -13,7 +13,7 @@ sensor_state_e GYRO_init(gyro_t * gyro){
 
 #ifdef GYRO_USE_MPU
 	gyro->raw = gyro->mpu.gyro ;
-	gyro->state = MPU_init_gyro(&gyro->mpu, MPU_GYRO_2000s);
+	gyro->state = MPU_init_gyro(&gyro->mpu, MPU_GYRO_250s);
 #else
 #warning gyro not defined
 	gyro->state = SENSOR_ERROR ;

@@ -4,8 +4,8 @@ mpu.c:50:6:MPU_cs_lock	16	static
 mpu.c:54:6:MPU_cs_unlock	16	static
 mpu.c:61:16:MPU_init	32	static
 mpu.c:117:16:MPU_init_gyro	32	static
-mpu.c:175:16:MPU_init_acc	32	static
-mpu.c:226:16:MPU_update_gyro	32	static
-mpu.c:258:16:MPU_update_acc	32	static
-mpu.c:289:16:MPU_update_gyro_dma	24	static
-mpu.c:306:6:MPU_dma_transmit_done	16	static
+mpu.c:178:16:MPU_init_acc	32	static
+mpu.c:232:16:MPU_update_gyro	32	static
+mpu.c:264:16:MPU_update_acc	32	static
+mpu.c:295:16:MPU_update_gyro_dma	24	static
+mpu.c:312:6:MPU_dma_transmit_done	16	static
