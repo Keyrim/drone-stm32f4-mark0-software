@@ -29,7 +29,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../OS/system_d.h"
+#include "../OS/scheduler/scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +50,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+system_t sys ;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,12 +103,22 @@ int main(void)
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
 
+  MPU_init(&sys.sensors.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
+  GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
+
+  LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_1, 200, 12, 1);
+  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_2, 200, 12, 1);
+  LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_3, 200, 12, 1);
+
+  SCHEDULER_init(&sys);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	SCHEDULER_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

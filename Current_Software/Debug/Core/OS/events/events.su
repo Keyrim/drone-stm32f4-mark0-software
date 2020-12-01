@@ -1,0 +1,10 @@
+events.c:37:13:gyro_dma_done_func	16	static
+events.c:42:13:gyro_data_ready_func	16	static
+events.c:55:6:EVENT_process_events_main	16	static
+events.c:80:6:EVENT_process_events_it	32	static
+events.c:104:8:EVENT_Set_flag	24	static,ignoring_inline_asm
+events.c:111:8:EVENT_Clean_flag	24	static,ignoring_inline_asm
+events.c:120:8:EVENT_set_flag_it	16	static
+events.c:124:8:EVENT_clean_flag_it	16	static
+events.c:129:6:EVENT_timmer_callback	16	static
+events.c:138:6:EVENT_init	16	static

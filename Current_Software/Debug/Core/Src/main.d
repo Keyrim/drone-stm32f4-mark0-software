@@ -34,7 +34,20 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/i2c.h \
  ../Core/Inc/spi.h ../Core/Inc/tim.h ../Core/Inc/usart.h \
- ../Core/Inc/gpio.h
+ ../Core/Inc/gpio.h ../Core/Src/../OS/system_d.h \
+ ../Core/Src/../OS/macro_types.h ../Core/Src/../OS/../Sensors/gyro.h \
+ ../Core/Src/../OS/../Sensors/sensors.h \
+ ../Core/Src/../OS/../Sensors/mpu.h \
+ ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
+ ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h \
+ ../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Src/../OS/scheduler/scheduler.h \
+ ../Core/Src/../OS/scheduler/../tasks/task.h \
+ ../Core/Src/../OS/scheduler/../tasks/../system_d.h \
+ ../Core/Src/../OS/scheduler/../macro_types.h \
+ ../Core/Src/../OS/scheduler/../debug/debug.h \
+ ../Core/Src/../OS/scheduler/../debug/retarget.h \
+ ../Core/Src/../OS/scheduler/../system_d.h
 
 ../Core/Inc/main.h:
 
@@ -119,3 +132,33 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/usart.h:
 
 ../Core/Inc/gpio.h:
+
+../Core/Src/../OS/system_d.h:
+
+../Core/Src/../OS/macro_types.h:
+
+../Core/Src/../OS/../Sensors/gyro.h:
+
+../Core/Src/../OS/../Sensors/sensors.h:
+
+../Core/Src/../OS/../Sensors/mpu.h:
+
+../Core/Src/../OS/../Sensors/../OS/macro_types.h:
+
+../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h:
+
+../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Src/../OS/scheduler/scheduler.h:
+
+../Core/Src/../OS/scheduler/../tasks/task.h:
+
+../Core/Src/../OS/scheduler/../tasks/../system_d.h:
+
+../Core/Src/../OS/scheduler/../macro_types.h:
+
+../Core/Src/../OS/scheduler/../debug/debug.h:
+
+../Core/Src/../OS/scheduler/../debug/retarget.h:
+
+../Core/Src/../OS/scheduler/../system_d.h:

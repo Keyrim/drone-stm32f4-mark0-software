@@ -1,0 +1,3 @@
+Sequence_led.c:12:6:LED_SEQUENCE_init	24	static
+Sequence_led.c:30:6:LED_SEQUENCE_set_sequence	16	static
+Sequence_led.c:39:6:LED_SEQUENCE_play	24	static
