@@ -33,5 +33,12 @@ typedef enum gyro_axe_e{
 	GYRO_AXE_Z
 }gyro_axe_e;
 
+typedef enum acc_axe_e{
+	ACC_AXE_X,
+	ACC_AXE_Y,
+	ACC_AXE_Z
+}acc_axe_e;
+
+
 
 #endif /* SENSORS_SENSORS_H_ */

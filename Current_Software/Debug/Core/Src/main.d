@@ -39,6 +39,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/../Sensors/sensors.h \
  ../Core/Src/../OS/../Sensors/mpu.h \
  ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
+ ../Core/Src/../OS/../Sensors/acc.h \
  ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h \
  ../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Src/../OS/scheduler/scheduler.h \
@@ -144,6 +145,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Src/../OS/../Sensors/mpu.h:
 
 ../Core/Src/../OS/../Sensors/../OS/macro_types.h:
+
+../Core/Src/../OS/../Sensors/acc.h:
 
 ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h:
 

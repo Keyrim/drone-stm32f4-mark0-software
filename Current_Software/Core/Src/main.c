@@ -103,8 +103,11 @@ int main(void)
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
 
-  MPU_init(&sys.sensors.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
-  GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
+
+  //Init du GYRO et de l ACC en utilisant un MPU
+  MPU_init(&sys.sensors.gyro.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
+  GYRO_init(&sys.sensors.gyro);
+  ACC_init(&sys.sensors.acc);
 
   LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_1, 200, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_2, 200, 12, 1);

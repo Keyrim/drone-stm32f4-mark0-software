@@ -1,5 +1,4 @@
-Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
- ../Core/OS/tasks/../system_d.h ../Core/OS/tasks/../macro_types.h \
+Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -33,25 +32,10 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/OS/tasks/../../Sensors/gyro.h \
- ../Core/OS/tasks/../../Sensors/sensors.h \
- ../Core/OS/tasks/../../Sensors/mpu.h \
- ../Core/OS/tasks/../../Sensors/../OS/macro_types.h \
- ../Core/OS/tasks/../../Sensors/acc.h \
- ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
- ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/OS/tasks/../scheduler/scheduler.h \
- ../Core/OS/tasks/../scheduler/../tasks/task.h \
- ../Core/OS/tasks/../scheduler/../macro_types.h \
- ../Core/OS/tasks/../scheduler/../debug/debug.h \
- ../Core/OS/tasks/../scheduler/../debug/retarget.h \
- ../Core/OS/tasks/../scheduler/../system_d.h
+ ../Core/Sensors/sensors.h ../Core/Sensors/mpu.h \
+ ../Core/Sensors/../OS/macro_types.h
 
-../Core/OS/tasks/task.h:
-
-../Core/OS/tasks/../system_d.h:
-
-../Core/OS/tasks/../macro_types.h:
+../Core/Sensors/acc.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -119,28 +103,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/OS/tasks/../../Sensors/gyro.h:
+../Core/Sensors/sensors.h:
 
-../Core/OS/tasks/../../Sensors/sensors.h:
+../Core/Sensors/mpu.h:
 
-../Core/OS/tasks/../../Sensors/mpu.h:
-
-../Core/OS/tasks/../../Sensors/../OS/macro_types.h:
-
-../Core/OS/tasks/../../Sensors/acc.h:
-
-../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
-
-../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/OS/tasks/../scheduler/scheduler.h:
-
-../Core/OS/tasks/../scheduler/../tasks/task.h:
-
-../Core/OS/tasks/../scheduler/../macro_types.h:
-
-../Core/OS/tasks/../scheduler/../debug/debug.h:
-
-../Core/OS/tasks/../scheduler/../debug/retarget.h:
-
-../Core/OS/tasks/../scheduler/../system_d.h:
+../Core/Sensors/../OS/macro_types.h:

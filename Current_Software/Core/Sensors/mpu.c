@@ -29,7 +29,22 @@ void convert_gyro(mpu_t * mpu){
 }
 
 void convert_acc(mpu_t * mpu){
+#ifdef MPU_USE_I2C
+	mpu->acc_raw[ACC_AXE_X] = (int16_t)(mpu->acc_data[0] << 8 | mpu->acc_data[1]);
+	mpu->acc_raw[ACC_AXE_Y] = (int16_t)(mpu->acc_data[2] << 8 | mpu->acc_data[3]);
+	mpu->acc_raw[ACC_AXE_Z] = (int16_t)(mpu->acc_data[4] << 8 | mpu->acc_data[5]);
 
+#else
+	#ifdef MPU_USE_SPI
+	mpu->acc_raw[ACC_AXE_X] = (int16_t)(mpu->acc_data[1] << 8 | mpu->acc_data[0]);
+	mpu->acc_raw[ACC_AXE_Y] = (int16_t)(mpu->acc_data[3] << 8 | mpu->acc_data[2]);
+	mpu->acc_raw[ACC_AXE_Z] = (int16_t)(mpu->acc_data[5] << 8 | mpu->acc_data[4]);
+	#endif
+#endif
+	//Convertion
+	mpu->acc[ACC_AXE_X] = (float)mpu->acc_raw[ACC_AXE_X] * mpu->acc_sensi ;
+	mpu->acc[ACC_AXE_Y] = (float)mpu->acc_raw[ACC_AXE_Y] * mpu->acc_sensi ;
+	mpu->acc[ACC_AXE_Z] = (float)mpu->acc_raw[ACC_AXE_Z] * mpu->acc_sensi ;
 }
 
 void MPU_cs_lock(mpu_t * mpu){
@@ -159,13 +174,33 @@ sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range){
  */
 sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range){
 	mpu->acc_range = acc_range ;
-	uint8_t temp ;
+
+	//Si mpu non utilisable
+	if(mpu->state != SENSOR_IDDLE)
+		return SENSOR_ERROR ;
+
 
 	//Configuration de la sensi de l'acc dans le mpu
+#ifdef MPU_USE_I2C
+	uint8_t temp ;
 	HAL_I2C_Mem_Read(mpu->hi2c, mpu->adresse, MPU6050_ACCEL_CONFIG, I2C_MEMADD_SIZE_8BIT, &temp, 1, 2);
 	temp = (temp & 0xE7) | (uint8_t)acc_range << 3;
 	HAL_I2C_Mem_Write(mpu->hi2c, mpu->adresse, MPU6050_ACCEL_CONFIG, I2C_MEMADD_SIZE_8BIT, &temp, 1, 2);
+#else
+	#ifdef MPU_USE_SPI
+	uint8_t temp[2] ;
+	temp[0] = MPU6050_ACCEL_CONFIG | MPU6050_READ ;
+	MPU_cs_lock(mpu);
+	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, &temp[1], 1, 2);
 
+	if(mpu->hal_state == HAL_OK){
+		temp[0] = MPU6050_ACCEL_CONFIG ;
+		temp[1] = (temp[1] & 0xE7) | (uint8_t)acc_range << 3;
+		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  1, 2);
+	}
+	MPU_cs_unlock(mpu);
+	#endif
+#endif
 
 	switch(acc_range){
 		case MPU_ACC_2G :
@@ -199,10 +234,10 @@ sensor_state_e MPU_update_gyro(mpu_t * mpu){
 #ifdef MPU_USE_I2C	//Lecture en i2C
 	mpu->hal_state = HAL_I2C_Mem_Read(mpu->hi2c, mpu->adresse, MPU6050_GYRO_XOUT_H, I2C_MEMADD_SIZE_8BIT, mpu->gyro_data, 6, 5);
 #else
-	#ifdef MPU_USE_SPI
+	#ifdef MPU_USE_SPI	//Lecture en SPI
 		uint8_t registers [] = {MPU6050_GYRO_XOUT_H | MPU6050_READ, 0, 0, 0, 0, 0};
 		MPU_cs_lock(mpu);
-		mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, registers, mpu->gyro_data, 6, 10);
+		mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, registers, mpu->gyro_data, 6, 2);
 		MPU_cs_unlock(mpu);
 	#else
 		return SENSOR_ERROR ;
@@ -220,6 +255,37 @@ sensor_state_e MPU_update_gyro(mpu_t * mpu){
 
 }
 
+sensor_state_e MPU_update_acc(mpu_t * mpu){
+
+	//On réserve le mpu
+	if(mpu->state != SENSOR_IDDLE){
+		return SENSOR_ERROR ;
+	}
+
+	//Update des valeurs
+#ifdef MPU_USE_I2C	//Lecture en i2C
+	mpu->hal_state = HAL_I2C_Mem_Read(mpu->hi2c, mpu->adresse, MPU6050_GYRO_XOUT_H, I2C_MEMADD_SIZE_8BIT, mpu->gyro_data, 6, 5);
+#else
+	#ifdef MPU_USE_SPI	//Lecture en SPI
+		uint8_t registers [] = {MPU6050_ACCEL_XOUT_H | MPU6050_READ, 0, 0, 0, 0, 0};
+		MPU_cs_lock(mpu);
+		mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, registers, mpu->acc_data, 6, 2);
+		MPU_cs_unlock(mpu);
+	#else
+		return SENSOR_ERROR ;
+	#endif
+#endif
+
+	if(mpu->hal_state != HAL_OK){
+		return SENSOR_ERROR ;
+	}
+
+	//Convertion des valeurs
+	convert_acc(mpu);
+	return SENSOR_IDDLE ;
+}
+
+//Gestion du gyro en dma uniquement en I2C pour le moment (dma inutile quand le spi tourne à 10MHz .. )
 sensor_state_e MPU_update_gyro_dma(mpu_t * mpu){
 
 	mpu->start_time_dma = TIME_us();
@@ -237,7 +303,6 @@ sensor_state_e MPU_update_gyro_dma(mpu_t * mpu){
 
 	return mpu->state ;
 }
-
 void MPU_dma_transmit_done(mpu_t * mpu){
 	if(!mpu->dma_state)
 		return ;	//Si pas de lecture dma en cour on ignore

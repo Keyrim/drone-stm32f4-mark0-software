@@ -1,5 +1,5 @@
 task.c:13:6:tasks_init	16	static
-task.c:24:6:task_main_print_f	72	static
-task.c:34:6:task_main_led	16	static
-task.c:40:6:task_it_gyro	16	static
-task.c:59:10:TASK_get_task	16	static
+task.c:24:6:process_print_f	64	static
+task.c:33:6:process_led	16	static
+task.c:39:6:process_gyro	16	static
+task.c:58:10:TASK_get_task	16	static

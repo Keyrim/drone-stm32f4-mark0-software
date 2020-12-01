@@ -6,6 +6,7 @@
 "Core/OS/scheduler/scheduler.o"
 "Core/OS/tasks/task.o"
 "Core/OS/time.o"
+"Core/Sensors/acc.o"
 "Core/Sensors/gyro.o"
 "Core/Sensors/mpu.o"
 "Core/Src/adc.o"

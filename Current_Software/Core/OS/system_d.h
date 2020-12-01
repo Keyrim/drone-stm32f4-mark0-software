@@ -11,14 +11,14 @@
 #include "macro_types.h"
 #include "stm32f4xx_hal.h"
 #include "../Sensors/gyro.h"
+#include "../Sensors/acc.h"
 #include "../../Drivers/Inc/Sequence_led.h"
 
 typedef struct sensors_t{
-	//Sensor type
-	gyro_t gyro ;
-
 	//Sensors
-	mpu_t mpu;
+	gyro_t gyro ;
+	acc_t acc ;
+
 }sensors_t;
 
 typedef struct ihm_t{
