@@ -8,15 +8,13 @@
 
 #include "acc.h"
 
-float filter_x_config [3] = {1, 0, 0};
-float filter_y_config [3] = {1, 0, 0};
-float filter_z_config [3] = {1, 0, 0};
+float filter_config [3] = {0.1f, 0.9f, 0};
 
 sensor_state_e ACC_init(acc_t * acc, mpu_t * mpu){
 
-	FILTER_init(&acc->filters[ACC_AXE_X], filter_x_config, FILTER_FIRST_ORDER);
-	FILTER_init(&acc->filters[ACC_AXE_Y], filter_y_config, FILTER_FIRST_ORDER);
-	FILTER_init(&acc->filters[ACC_AXE_Z], filter_z_config, FILTER_FIRST_ORDER);
+	FILTER_init(&acc->filters[ACC_AXE_X], filter_config, FILTER_FIRST_ORDER);
+	FILTER_init(&acc->filters[ACC_AXE_Y], filter_config, FILTER_FIRST_ORDER);
+	FILTER_init(&acc->filters[ACC_AXE_Z], filter_config, FILTER_FIRST_ORDER);
 
 #ifdef ACC_USE_MPU
 	acc->mpu = mpu ;

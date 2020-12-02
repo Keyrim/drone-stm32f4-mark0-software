@@ -8,15 +8,13 @@
 
 #include "gyro.h"
 
-float filter_axe_x[3] = {1, 0, 0};
-float filter_axe_y[3] = {1, 0, 0};
-float filter_axe_z[3] = {1, 0, 0};
+float filter[3] = {0.1f, 0.9f, 0};
 
 sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu){
 
-	FILTER_init(&gyro->filters[GYRO_AXE_X], filter_axe_x, FILTER_FIRST_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Y], filter_axe_y, FILTER_FIRST_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Z], filter_axe_z, FILTER_FIRST_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_X], filter, FILTER_FIRST_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_Y], filter, FILTER_FIRST_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_Z], filter, FILTER_FIRST_ORDER);
 
 #ifdef GYRO_USE_MPU
 	gyro->mpu = mpu ;

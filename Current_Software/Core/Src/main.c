@@ -110,7 +110,7 @@ int main(void)
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
   LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_1, 200, 12, 1);
-  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_2, 200, 12, 1);
+  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_3, 200, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
 
   SCHEDULER_init(&sys);

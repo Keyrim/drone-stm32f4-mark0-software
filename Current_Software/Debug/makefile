@@ -53,8 +53,8 @@ F4_flight_controller.bin \
 all: F4_flight_controller.elf secondary-outputs
 
 # Tool invocations
-F4_flight_controller.elf: $(OBJS) $(USER_OBJS) D:\Git\ Hub\F4_Flight_Controller\Current_Software\STM32F405RGTX_FLASH.ld
-	arm-none-eabi-gcc -o "F4_flight_controller.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Git Hub\F4_Flight_Controller\Current_Software\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F4_flight_controller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+F4_flight_controller.elf: $(OBJS) $(USER_OBJS) C:\WorkSpace\GitHub\F4_Flight_Controller\Current_Software\STM32F405RGTX_FLASH.ld
+	arm-none-eabi-gcc -o "F4_flight_controller.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\WorkSpace\GitHub\F4_Flight_Controller\Current_Software\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F4_flight_controller.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

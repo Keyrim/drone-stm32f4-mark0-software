@@ -24,11 +24,11 @@ void tasks_init(system_t * sys_){
 
 void process_print_f(uint32_t current_time_us){
 	//printf("%d\t%d\t%d\t%d\t%d\t%d\n", data[0], data[1], data[2], data[3], data[4], data[5]);
-	//gyro_t * gyro = &sys->sensors.gyro ;
+	gyro_t * gyro = &sys->sensors.gyro ;
 	acc_t * acc = &sys->sensors.acc ;
 	//printf("%d\t%d\t%d\t%lu\n",sys->sensors.gyro.mpu->gyro_raw[0], sys->sensors.gyro.mpu->gyro_raw[1], sys->sensors.gyro.mpu->gyro_raw[2], TASK_get_task(TASK_GYRO)->it_duration_us);
 	//printf("%f\t%f\t%f\t%f\t%f\t%f\t%lu\n",acc->raw[0], acc->raw[1], acc->raw[2],gyro->raw[0], gyro->raw[1], gyro->raw[2], TASK_get_task(TASK_GYRO_UPDATE)->duration_us);
-	printf("%f\t%f\n", acc->raw[ACC_AXE_Z], acc->filtered[ACC_AXE_Z]);
+	printf("%f\t%f\t%f\t%f\t%lu\n", acc->raw[ACC_AXE_Z], acc->filtered[ACC_AXE_Z], gyro->raw[ACC_AXE_X], gyro->filtered[ACC_AXE_X], TASK_get_task(TASK_GYRO_UPDATE)->duration_us);
 	//printf("%d\n", sys->sensors.gyro.mpu->gyro_raw[0]);
 }
 
@@ -59,10 +59,10 @@ void process_acc_update(uint32_t current_time_us){
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_HIGH, 			process_print_f, 			PERIOD_US_FROM_HERTZ(20)),
+		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_HIGH, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60)),
 		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(10)),
-		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(20)),
-		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_HIGH,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(20))
+		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(250)),
+		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_HIGH,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(250))
 };
 
 task_t * TASK_get_task(task_ids_t id){
