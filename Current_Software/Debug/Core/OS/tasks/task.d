@@ -40,6 +40,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Sensors/mpu.h \
  ../Core/OS/tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/tasks/../../Sensors/acc.h \
+ ../Core/OS/tasks/../../Sensors/ms5611.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/tasks/../scheduler/scheduler.h \
@@ -134,6 +135,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Sensors/../OS/macro_types.h:
 
 ../Core/OS/tasks/../../Sensors/acc.h:
+
+../Core/OS/tasks/../../Sensors/ms5611.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
 

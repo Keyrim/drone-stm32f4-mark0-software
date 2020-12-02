@@ -12,6 +12,7 @@
 #include "stm32f4xx_hal.h"
 #include "../Sensors/gyro.h"
 #include "../Sensors/acc.h"
+#include "../Sensors/ms5611.h"
 #include "../../Drivers/Inc/Sequence_led.h"
 
 typedef struct sensors_t{
@@ -22,6 +23,7 @@ typedef struct sensors_t{
 
 	//Sensors list
 	mpu_t mpu ;
+	ms5611_t ms5611 ;
 }sensors_t;
 
 typedef struct ihm_t{

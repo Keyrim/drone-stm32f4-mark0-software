@@ -78,7 +78,7 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
+  HAL_Delay(1000);
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -103,6 +103,9 @@ int main(void)
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
 
+
+  //Init du baromètre
+  //MS5611_init(&sys.sensors.ms5611, &hi2c1);
 
   //Init du GYRO et de l ACC en utilisant un MPU
   MPU_init(&sys.sensors.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);

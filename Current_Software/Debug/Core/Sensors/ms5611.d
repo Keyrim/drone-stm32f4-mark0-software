@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Sensors/ms5611.o: ../Core/Sensors/ms5611.c ../Core/Sensors/ms5611.h \
+ ../Core/Sensors/sensors.h ../Core/Sensors/../../Drivers/Inc/Filters.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,27 +33,13 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/i2c.h \
- ../Core/Inc/spi.h ../Core/Inc/tim.h ../Core/Inc/usart.h \
- ../Core/Inc/gpio.h ../Core/Src/../OS/system_d.h \
- ../Core/Src/../OS/macro_types.h ../Core/Src/../OS/../Sensors/gyro.h \
- ../Core/Src/../OS/../Sensors/sensors.h \
- ../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h \
- ../Core/Src/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Src/../OS/../Sensors/mpu.h \
- ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
- ../Core/Src/../OS/../Sensors/acc.h ../Core/Src/../OS/../Sensors/ms5611.h \
- ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Src/../OS/scheduler/scheduler.h \
- ../Core/Src/../OS/scheduler/../tasks/task.h \
- ../Core/Src/../OS/scheduler/../tasks/../system_d.h \
- ../Core/Src/../OS/scheduler/../macro_types.h \
- ../Core/Src/../OS/scheduler/../debug/debug.h \
- ../Core/Src/../OS/scheduler/../debug/retarget.h \
- ../Core/Src/../OS/scheduler/../system_d.h
+ ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h
 
-../Core/Inc/main.h:
+../Core/Sensors/ms5611.h:
+
+../Core/Sensors/sensors.h:
+
+../Core/Sensors/../../Drivers/Inc/Filters.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -120,56 +107,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Inc/adc.h:
-
-../Core/Inc/main.h:
-
-../Core/Inc/dma.h:
-
-../Core/Inc/i2c.h:
-
-../Core/Inc/spi.h:
-
-../Core/Inc/tim.h:
-
-../Core/Inc/usart.h:
-
-../Core/Inc/gpio.h:
-
-../Core/Src/../OS/system_d.h:
-
-../Core/Src/../OS/macro_types.h:
-
-../Core/Src/../OS/../Sensors/gyro.h:
-
-../Core/Src/../OS/../Sensors/sensors.h:
-
-../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h:
-
-../Core/Src/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Src/../OS/../Sensors/mpu.h:
-
-../Core/Src/../OS/../Sensors/../OS/macro_types.h:
-
-../Core/Src/../OS/../Sensors/acc.h:
-
-../Core/Src/../OS/../Sensors/ms5611.h:
-
-../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h:
-
-../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Src/../OS/scheduler/scheduler.h:
-
-../Core/Src/../OS/scheduler/../tasks/task.h:
-
-../Core/Src/../OS/scheduler/../tasks/../system_d.h:
-
-../Core/Src/../OS/scheduler/../macro_types.h:
-
-../Core/Src/../OS/scheduler/../debug/debug.h:
-
-../Core/Src/../OS/scheduler/../debug/retarget.h:
-
-../Core/Src/../OS/scheduler/../system_d.h:
+../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
