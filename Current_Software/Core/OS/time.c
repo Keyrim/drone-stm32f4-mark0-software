@@ -24,3 +24,8 @@ uint32_t TIME_us(void)
 
 	return t_us;
 }
+
+void TIME_delay_us_blocking(uint32_t duration_us){
+	uint32_t entrance_time = TIME_us();
+	while(TIME_us() < entrance_time + duration_us);
+}

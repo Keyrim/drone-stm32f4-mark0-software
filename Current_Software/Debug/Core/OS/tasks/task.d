@@ -35,6 +35,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/OS/tasks/../../Sensors/gyro.h \
  ../Core/OS/tasks/../../Sensors/sensors.h \
+ ../Core/OS/tasks/../../Sensors/../../Drivers/Inc/Filters.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/tasks/../../Sensors/mpu.h \
  ../Core/OS/tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/tasks/../../Sensors/acc.h \
@@ -122,6 +124,10 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Sensors/gyro.h:
 
 ../Core/OS/tasks/../../Sensors/sensors.h:
+
+../Core/OS/tasks/../../Sensors/../../Drivers/Inc/Filters.h:
+
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/tasks/../../Sensors/mpu.h:
 

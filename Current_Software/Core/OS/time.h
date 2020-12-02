@@ -11,5 +11,6 @@
 
 
 uint32_t TIME_us(void);
+void TIME_delay_us_blocking(uint32_t duration_us);
 
 #endif /* OS_TIME_H_ */

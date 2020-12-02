@@ -18,18 +18,19 @@ typedef struct acc_t{
 	sensor_state_e state ;
 
 	//Available acc list
-	mpu_t mpu ;
+	mpu_t * mpu ;
 
 	//Raw accelerations
 	float * raw ;
 	//filtered accelerations
 	float filtered[3];
 	//Filters
-	//Todo : filters acc
+	Filter_t filters[3];
 
 }acc_t;
 
-sensor_state_e ACC_init(acc_t * acc);
+sensor_state_e ACC_init(acc_t * acc, mpu_t * mpu);
 sensor_state_e ACC_update(acc_t * acc);
+void ACC_process_lpf(acc_t * acc);
 
 #endif /* SENSORS_ACC_H_ */

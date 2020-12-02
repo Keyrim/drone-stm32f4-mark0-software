@@ -19,6 +19,9 @@ typedef struct sensors_t{
 	gyro_t gyro ;
 	acc_t acc ;
 
+
+	//Sensors list
+	mpu_t mpu ;
 }sensors_t;
 
 typedef struct ihm_t{
@@ -30,6 +33,9 @@ typedef struct ihm_t{
 typedef struct{
 	ihm_t ihm ;
 	sensors_t sensors ;
+
+
+
 }system_t;
 
 

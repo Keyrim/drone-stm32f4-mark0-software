@@ -37,6 +37,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/gpio.h ../Core/Src/../OS/system_d.h \
  ../Core/Src/../OS/macro_types.h ../Core/Src/../OS/../Sensors/gyro.h \
  ../Core/Src/../OS/../Sensors/sensors.h \
+ ../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Src/../OS/../Sensors/mpu.h \
  ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Src/../OS/../Sensors/acc.h \
@@ -141,6 +143,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Src/../OS/../Sensors/gyro.h:
 
 ../Core/Src/../OS/../Sensors/sensors.h:
+
+../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h:
+
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Src/../OS/../Sensors/mpu.h:
 

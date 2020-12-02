@@ -32,8 +32,9 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Sensors/sensors.h ../Core/Sensors/mpu.h \
- ../Core/Sensors/../OS/macro_types.h
+ ../Core/Sensors/sensors.h ../Core/Sensors/../../Drivers/Inc/Filters.h \
+ ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Sensors/mpu.h ../Core/Sensors/../OS/macro_types.h
 
 ../Core/Sensors/acc.h:
 
@@ -104,6 +105,10 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
 ../Core/Sensors/sensors.h:
+
+../Core/Sensors/../../Drivers/Inc/Filters.h:
+
+../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Sensors/mpu.h:
 

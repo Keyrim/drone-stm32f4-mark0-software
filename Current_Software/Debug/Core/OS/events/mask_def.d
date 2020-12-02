@@ -38,6 +38,8 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../system_d.h ../Core/OS/events/../macro_types.h \
  ../Core/OS/events/../../Sensors/gyro.h \
  ../Core/OS/events/../../Sensors/sensors.h \
+ ../Core/OS/events/../../Sensors/../../Drivers/Inc/Filters.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/events/../../Sensors/mpu.h \
  ../Core/OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/OS/events/../../Sensors/acc.h \
@@ -129,6 +131,10 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 ../Core/OS/events/../../Sensors/gyro.h:
 
 ../Core/OS/events/../../Sensors/sensors.h:
+
+../Core/OS/events/../../Sensors/../../Drivers/Inc/Filters.h:
+
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/events/../../Sensors/mpu.h:
 

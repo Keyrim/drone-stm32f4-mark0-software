@@ -8,6 +8,7 @@
 #ifndef SENSORS_SENSORS_H_
 #define SENSORS_SENSORS_H_
 
+#include "../../Drivers/Inc/Filters.h"
 
 typedef enum sensor_connectivity_e{
 	USE_UART,
