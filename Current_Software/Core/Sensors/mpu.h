@@ -135,12 +135,15 @@ typedef struct{
 
 //Init functions for the mpu
 sensor_state_e MPU_init(mpu_t * mpu, I2C_HandleTypeDef * hi2c, SPI_HandleTypeDef * hspi, GPIO_TypeDef * pin_cs_gpio, uint16_t pin_cs);
+
 sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range);
+
 sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range);
 
 //Update functions for the mpu
 sensor_state_e MPU_update_gyro(mpu_t * mpu);
 sensor_state_e MPU_update_gyro_dma(mpu_t * mpu);
+
 sensor_state_e MPU_update_acc(mpu_t * mpu);
 
 //Appelé par le gestionnaire d'event quand le dma à finis son taff

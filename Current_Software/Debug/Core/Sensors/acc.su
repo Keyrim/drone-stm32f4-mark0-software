@@ -1,2 +1,3 @@
-acc.c:11:16:ACC_init	16	static
-acc.c:23:16:ACC_update	16	static
+acc.c:15:16:ACC_init	16	static
+acc.c:32:16:ACC_update	16	static
+acc.c:44:6:ACC_process_lpf	16	static

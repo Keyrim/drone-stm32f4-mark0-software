@@ -134,7 +134,7 @@ sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range){
 	uint8_t temp[2] ;
 	temp[0] = MPU6050_GYRO_CONFIG | MPU6050_READ ;
 	MPU_cs_lock(mpu);
-	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, &temp[1], 1, 2);
+	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, temp, 2, 2);
 	MPU_cs_unlock(mpu);
 	if(mpu->hal_state == HAL_OK){
 		HAL_Delay(1);
@@ -143,6 +143,17 @@ sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range){
 		temp[1] = (temp[1] & 0xE7) | (uint8_t)gyro_range << 3;
 		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  2, 2);
 		MPU_cs_unlock(mpu);
+	}
+	if(mpu->hal_state == HAL_OK){ // on vérifi si on a bien configuré le gyro comme on voulait
+		uint8_t temp2 = temp[1];
+		temp[0] = MPU6050_GYRO_CONFIG | MPU6050_READ ;
+		HAL_Delay(1);
+		MPU_cs_lock(mpu);
+		mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, temp, 2, 2);
+		MPU_cs_unlock(mpu);
+
+		if(temp[1] != temp2)
+			return SENSOR_NOT_INIT ;
 	}
 
 
@@ -169,7 +180,7 @@ sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range){
 			mpu->gyro_sensi = (float)1 / MPU6050_GYRO_SENS_2000 ;
 			break;
 	}
-	return mpu->state ;
+	return SENSOR_IDDLE;
 }
 
 /*
@@ -194,15 +205,26 @@ sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range){
 	uint8_t temp[2] ;
 	temp[0] = MPU6050_ACCEL_CONFIG | MPU6050_READ ;
 	MPU_cs_lock(mpu);
-	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, &temp[1], 1, 2);
+	mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, temp, 2, 2);
 	MPU_cs_unlock(mpu);
-	if(mpu->hal_state == HAL_OK){
+	if(mpu->hal_state == HAL_OK){	//Si mpu ok on écrit en spi dans le registre de config du mpu dédié au gyro
 		HAL_Delay(1);
 		MPU_cs_lock(mpu);
 		temp[0] = MPU6050_ACCEL_CONFIG ;
 		temp[1] = (temp[1] & 0xE7) | (uint8_t)acc_range << 3;
-		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  1, 2);
+		mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, temp,  2, 2);
 		MPU_cs_unlock(mpu);
+	}
+	if(mpu->hal_state == HAL_OK){ // on vérifi si on a bien configuré le gyro comme on voulait
+		uint8_t temp2 = temp[1];
+		temp[0] = MPU6050_ACCEL_CONFIG | MPU6050_READ ;
+		HAL_Delay(1);
+		MPU_cs_lock(mpu);
+		mpu->hal_state = HAL_SPI_TransmitReceive(mpu->hspi, temp, temp, 2, 2);
+		MPU_cs_unlock(mpu);
+
+		if(temp[1] != temp2)
+			return SENSOR_NOT_INIT ;
 	}
 
 	#endif
@@ -222,8 +244,7 @@ sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range){
 			mpu->acc_sensi = (float)1 / MPU6050_ACCE_SENS_16 ;
 			break;
 	}
-
-	return mpu->state ;
+	return SENSOR_IDDLE;
 }
 
 /*

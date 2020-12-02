@@ -14,7 +14,7 @@ sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu){
 #ifdef GYRO_USE_MPU
 	gyro->mpu = mpu ;
 	gyro->raw = gyro->mpu->gyro ;
-	gyro->state = MPU_init_gyro(gyro->mpu, MPU_GYRO_250s);
+	gyro->state = MPU_init_gyro(gyro->mpu, MPU_GYRO_2000s);
 #else
 #warning gyro not defined
 	gyro->state = SENSOR_ERROR ;
@@ -23,13 +23,14 @@ sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu){
 }
 
 sensor_state_e GYRO_update(gyro_t * gyro){
-
+	if(gyro->state == SENSOR_IDDLE){
 #ifdef GYRO_USE_MPU
-	gyro->state = MPU_update_gyro(gyro->mpu);
+		gyro->state = MPU_update_gyro(gyro->mpu);
 #else
 #warning gyro not defined
-	gyro->state = SENSOR_ERROR ;
+		gyro->state = SENSOR_ERROR ;
 #endif
+	}
 
 	return gyro->state ;
 }

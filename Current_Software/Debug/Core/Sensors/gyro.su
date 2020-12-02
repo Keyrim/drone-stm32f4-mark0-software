@@ -1,4 +1,4 @@
 gyro.c:12:16:GYRO_init	16	static
 gyro.c:25:16:GYRO_update	16	static
-gyro.c:37:16:GYRO_update_dma	16	static
-gyro.c:49:6:GYRO_dma_done	16	static
+gyro.c:38:16:GYRO_update_dma	16	static
+gyro.c:50:6:GYRO_dma_done	16	static
