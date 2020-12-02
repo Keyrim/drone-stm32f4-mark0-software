@@ -42,9 +42,9 @@ sensor_state_e ACC_update(acc_t * acc){
 }
 
 void ACC_process_lpf(acc_t * acc){
-	FILTER_process(&acc->filters[ACC_AXE_X], acc->raw[ACC_AXE_X]);
-	FILTER_process(&acc->filters[ACC_AXE_Y], acc->raw[ACC_AXE_Y]);
-	FILTER_process(&acc->filters[ACC_AXE_Z], acc->raw[ACC_AXE_Z]);
+	acc->filtered[ACC_AXE_X] = FILTER_process(&acc->filters[ACC_AXE_X], acc->raw[ACC_AXE_X]);
+	acc->filtered[ACC_AXE_Y] = FILTER_process(&acc->filters[ACC_AXE_Y], acc->raw[ACC_AXE_Y]);
+	acc->filtered[ACC_AXE_Z] = FILTER_process(&acc->filters[ACC_AXE_Z], acc->raw[ACC_AXE_Z]);
 }
 
 

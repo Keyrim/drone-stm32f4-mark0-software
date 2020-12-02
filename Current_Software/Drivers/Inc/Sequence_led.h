@@ -19,7 +19,8 @@
 #define SEQUENCE_LED_6 		0b101010000000
 #define SEQUENCE_LED_7 		0b101010100000
 #define SEQUENCE_LED_8 		0b111111000000
-#define SEQUENCE_LED_9		0b111111111111
+#define SEQUENCE_LED_ON		0b111111111111
+#define SEQUENCE_LED_OFF	0b000000000000
 
 //Structure utilis� par les fonctions s�quence led
 typedef struct{

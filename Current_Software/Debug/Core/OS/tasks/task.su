@@ -1,6 +1,6 @@
 task.c:13:6:tasks_init	16	static
-task.c:25:6:process_print_f	120	static
-task.c:35:6:process_led	16	static
-task.c:41:6:process_gyro_update	16	static
-task.c:45:6:process_acc_update	16	static
-task.c:65:10:TASK_get_task	16	static
+task.c:25:6:process_print_f	48	static
+task.c:36:6:process_led	16	static
+task.c:42:6:process_gyro_update	16	static
+task.c:47:6:process_acc_update	16	static
+task.c:68:10:TASK_get_task	16	static

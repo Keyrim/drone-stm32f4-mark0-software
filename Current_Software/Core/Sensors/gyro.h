@@ -27,13 +27,14 @@ typedef struct gyro_t{
 	//Filtered angles
 	float filtered[3];
 	//Filters
-	//Todo : filters
+	Filter_t filters[3];
 
 }gyro_t;
 
 sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu);
 sensor_state_e GYRO_update(gyro_t * gyro);
 sensor_state_e GYRO_update_dma(gyro_t * gyro);
+void GYRO_process_lpf(gyro_t * gyro);
 void GYRO_dma_done(gyro_t * gyro);
 
 
