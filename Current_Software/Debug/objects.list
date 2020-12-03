@@ -46,4 +46,5 @@
 "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o"
 "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o"
 "Drivers/Src/Filters.o"
+"Drivers/Src/Led_rgb.o"
 "Drivers/Src/Sequence_led.o"

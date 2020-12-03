@@ -7,6 +7,7 @@
 
 #include "task.h"
 #include "../scheduler/scheduler.h"
+#include "../events/events.h"
 
 static system_t * sys;
 
@@ -15,9 +16,11 @@ void tasks_init(system_t * sys_){
 	sys = sys_ ;
 
 	//Activation des tâches
+	SCHEDULER_enable_task(TASK_EVENT_CHECK, TRUE);
+
 	SCHEDULER_enable_task(TASK_LED, TRUE);
-	SCHEDULER_enable_task(TASK_PRINTF, TRUE);
-	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
+	//SCHEDULER_enable_task(TASK_PRINTF, TRUE);
+	//SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
 	SCHEDULER_enable_task(TASK_ACC_UPDATE, TRUE);
 
 }
@@ -49,20 +52,27 @@ void process_acc_update(uint32_t current_time_us){
 	ACC_process_lpf(&sys->sensors.acc);
 }
 
-#define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param) { 	\
+void process_event_main(uint32_t current_time_us){
+	UNUSED(current_time_us);
+	EVENT_process_events_main();
+}
+
+#define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
 	.id = id_param,										\
 	.static_priority = priority_param,					\
 	.process = task_function_param,						\
-	.desired_period_us = desired_period_us_param		\
+	.desired_period_us = desired_period_us_param,		\
+	.mode = mode_param									\
 }
 
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_HIGH, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60)),
-		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(10)),
-		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(250)),
-		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_HIGH,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(250))
+		[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_ALWAYS),
+		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_HIGH, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 	TASK_MODE_TIME),
+		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(100), TASK_MODE_ALWAYS),
+		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(250), 	TASK_MODE_TIME),
+		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_HIGH,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(250), 	TASK_MODE_TIME),
 };
 
 task_t * TASK_get_task(task_ids_t id){

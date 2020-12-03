@@ -50,7 +50,11 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/scheduler/../macro_types.h \
  ../Core/Src/../OS/scheduler/../debug/debug.h \
  ../Core/Src/../OS/scheduler/../debug/retarget.h \
- ../Core/Src/../OS/scheduler/../system_d.h
+ ../Core/Src/../OS/scheduler/../system_d.h \
+ ../Core/Src/../OS/events/events.h \
+ ../Core/Src/../OS/events/mask_def_enum.h ../Core/Src/../OS/events/mask.h \
+ ../Core/Src/../OS/events/../macro_types.h \
+ ../Core/Src/../OS/events/flags.h ../Core/Src/../OS/events/../system_d.h
 
 ../Core/Inc/main.h:
 
@@ -173,3 +177,15 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Src/../OS/scheduler/../debug/retarget.h:
 
 ../Core/Src/../OS/scheduler/../system_d.h:
+
+../Core/Src/../OS/events/events.h:
+
+../Core/Src/../OS/events/mask_def_enum.h:
+
+../Core/Src/../OS/events/mask.h:
+
+../Core/Src/../OS/events/../macro_types.h:
+
+../Core/Src/../OS/events/flags.h:
+
+../Core/Src/../OS/events/../system_d.h:

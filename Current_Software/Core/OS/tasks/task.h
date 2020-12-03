@@ -20,21 +20,31 @@ typedef enum task_priority{
 	//Priorité toujours positives
 	PRIORITY_LOW		= 1 ,
 	PRIORITY_MEDIUM	 	= 5 ,
-	PRIORITY_HIGH		= 10
+	PRIORITY_HIGH		= 10,
+	PRIORITY_EVENT		= 100
 }task_priority_t;
 
 typedef enum task_states{
 	INIT,				//	Tâche
-	READY				// 	Tâches plac�es dans la file d attente pour �tre trait�
+	READY				// 	Tâches placées dans la file d attente pour être trait�
 }task_states_t;
 
 typedef enum task_ids {
+	TASK_EVENT_CHECK,
 	TASK_PRINTF,
 	TASK_LED,
 	TASK_GYRO_UPDATE,
 	TASK_ACC_UPDATE,
 	TASK_COUNT
 }task_ids_t;
+
+typedef enum task_mode_e{
+	TASK_MODE_TIME,
+	TASK_MODE_EVENT,
+	TASK_MODE_ALWAYS,
+	TASK_MODE_TIMMER
+}task_mode_e;
+
 
 typedef enum{
 	PROCESS_IT,
@@ -48,6 +58,10 @@ typedef struct task{
 
 	//Process
 	void (*process)(uint32_t current_time_us);
+
+	//Execution mode => defines what "starts" a task
+	task_mode_e mode ;
+
 
 	//stat
 	uint32_t duration_us ;

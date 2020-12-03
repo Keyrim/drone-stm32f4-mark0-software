@@ -1,4 +1,5 @@
 Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
+ ../Core/Sensors/sensors.h ../Core/Sensors/../../Drivers/Inc/Filters.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,11 +33,28 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Sensors/sensors.h ../Core/Sensors/../../Drivers/Inc/Filters.h \
  ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Sensors/mpu.h ../Core/Sensors/../OS/macro_types.h
+ ../Core/Sensors/mpu.h ../Core/Sensors/../OS/macro_types.h \
+ ../Core/Sensors/../OS/events/events.h \
+ ../Core/Sensors/../OS/events/mask_def_enum.h \
+ ../Core/Sensors/../OS/events/mask.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/flags.h \
+ ../Core/Sensors/../OS/events/../system_d.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/../../Sensors/gyro.h \
+ ../Core/Sensors/../OS/events/../../Sensors/acc.h \
+ ../Core/Sensors/../OS/events/../../Sensors/sensors.h \
+ ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
+ ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h
 
 ../Core/Sensors/gyro.h:
+
+../Core/Sensors/sensors.h:
+
+../Core/Sensors/../../Drivers/Inc/Filters.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -104,12 +122,36 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Sensors/sensors.h:
-
-../Core/Sensors/../../Drivers/Inc/Filters.h:
-
 ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Sensors/mpu.h:
 
 ../Core/Sensors/../OS/macro_types.h:
+
+../Core/Sensors/../OS/events/events.h:
+
+../Core/Sensors/../OS/events/mask_def_enum.h:
+
+../Core/Sensors/../OS/events/mask.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/flags.h:
+
+../Core/Sensors/../OS/events/../system_d.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/../../Sensors/gyro.h:
+
+../Core/Sensors/../OS/events/../../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Sensors/sensors.h:
+
+../Core/Sensors/../OS/events/../../Sensors/mpu.h:
+
+../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:

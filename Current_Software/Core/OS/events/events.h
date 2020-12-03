@@ -19,26 +19,33 @@
 
 typedef enum events_id_main_e{
 	//Event list
-	EVENT_COUNT_MAIN
-}events_id_main_e;
+	EVENT_MAIN_GYRO_INIT_OK,
+	EVENT_MAIN_COUNT
+}events_id_main_e;		//Events déclenchés en tâche de fond
 
 typedef enum events_id_it_e{
 	//Event list
-	EVENT_GYRO_DMA_DONE,
-	EVENT_GYRO_DATA_READY,
-	EVENT_COUNT_IT
-}events_id_it_e;
+	EVENT_IT_GYRO_DMA_DONE,
+	EVENT_IT_GYRO_DATA_READY,
+	EVENT_IT_COUNT
+}events_id_it_e;		//Event déclenchés en it
 
 typedef enum{
 	EVENT_TYPE_HIGH_LVL,
 	EVENT_TYPE_ERROR
 }Event_type_t;
 
+typedef enum Event_state_e{
+	EVENT_ENABLE,
+	EVENT_DISABLE
+}Event_state_e;
+
 typedef struct{
 	Mask_t mask_and[EVENT_NB_MASK_PER_EVENT_MAX] ;	//Masques de conditions et
 	Mask_t mask_or[EVENT_NB_MASK_PER_EVENT_MAX] ;	//Masques de déclenchement
 	Mask_t mask_not[EVENT_NB_MASK_PER_EVENT_MAX] ; 	//Masques de conditions non
 	uint32_t nb_mask ;								//Nombre de paires de masque
+	Event_state_e state ;
 	void (*function)(mask_def_ids_t mask_id);
 }Event_t;
 

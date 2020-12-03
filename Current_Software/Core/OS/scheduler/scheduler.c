@@ -41,11 +41,24 @@ void SCHEDULER_run(void){
 
 	while(task_queu_position < task_queu_size && task != NULL){
 
-		//TODO : Tâches par évennement
-		if(task->static_priority != PRIORITY_REAL_TIME)
-			if(current_time_us >= task->last_execution_us + task->desired_period_us)
+		switch(task->mode){
+			case TASK_MODE_ALWAYS :
+				current_time_us = task_process(task, current_time_us);
+				break;
+			case TASK_MODE_TIME :
+				if(current_time_us >= task->last_execution_us + task->desired_period_us)
 					current_time_us = task_process(task, current_time_us);
-
+				break;
+			case TASK_MODE_EVENT :
+				current_time_us = task_process(task, current_time_us);
+				SCHEDULER_enable_task(task->id, FALSE);
+				break;
+			case TASK_MODE_TIMMER :
+				//Task called from a timmer it
+				break;
+			default:
+				break;
+		}
 		task = get_next_task();
 	}
 }

@@ -8,7 +8,7 @@
 #include "mask_def.h"
 #include "flags.h"
 #include "events.h"
-
+#include "../scheduler/scheduler.h"
 
 //Ensemble des flags
 volatile static Mask_t flags ;
@@ -25,17 +25,32 @@ static bool_e initialized = FALSE ;
 #define DEFINE_EVENT(event_function_param, nb_mask_param){  	\
 		.function = event_function_param ,						\
 		.nb_mask = nb_mask_param , 								\
+		.state = EVENT_ENABLE									\
 }
 
-//D�finitions des events
-//Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon d�rapage :)
-static Event_t events_main[EVENT_COUNT_MAIN] ={
+
+//	----------------------	Events main	----------------------
+
+static void gyro_init_ok(mask_def_ids_t mask_id){
+	//On dit que le gyro est ok et qu'il effectu des mesures
+	EVENT_Set_flag(FLAG_GYRO_OK);
+	EVENT_Set_flag(FLAG_GYRO_READING);
+	//On lance la tâche d'update du gyro
+	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
+}
+
+
+//Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX else failure :)
+static Event_t events_main[EVENT_MAIN_COUNT] ={
 		//Events array
+		[EVENT_MAIN_GYRO_INIT_OK] = DEFINE_EVENT(gyro_init_ok, 1)
 };
 
 
+//	----------------------	Events it	----------------------
+
 static void gyro_dma_done_func(mask_def_ids_t mask_id){
-	EVENT_Clean_flag(FLAG_DMA_GYRO_DONE);
+	EVENT_Clean_flag(FLAG_GYRO_DMA_DONE);
 	GYRO_dma_done(&sys->sensors.gyro);
 }
 
@@ -43,24 +58,26 @@ static void gyro_data_ready_func(mask_def_ids_t mask_id){
 
 }
 
+
+
 //Définitions des events
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon d�rapage :)
-static Event_t events_it[EVENT_COUNT_IT] ={
+static Event_t events_it[EVENT_IT_COUNT] ={
 		//Events array
-		[EVENT_GYRO_DMA_DONE] = DEFINE_EVENT(gyro_dma_done_func, 1),
-		[EVENT_GYRO_DATA_READY] = DEFINE_EVENT(gyro_data_ready_func, 0)
+		[EVENT_IT_GYRO_DMA_DONE] = DEFINE_EVENT(gyro_dma_done_func, 1),
+		[EVENT_IT_GYRO_DATA_READY] = DEFINE_EVENT(gyro_data_ready_func, 0)
 };
 
 //Déclenchement des events en main
 void EVENT_process_events_main(){
 	if(initialized){
 	//Pout chaque event
-		for(uint32_t e = 0; e < EVENT_COUNT_MAIN; e ++){
+		for(uint32_t e = 0; e < EVENT_MAIN_COUNT; e ++){
 
 			uint32_t m = 0 ;
 			bool_e function_did_run_once = FALSE ;
 			//On test chaque paires de masque
-			while(m < events_main[e].nb_mask && !function_did_run_once){
+			while(m < events_main[e].nb_mask && !function_did_run_once && events_main[e].state == EVENT_ENABLE){
 				if(Mask_test_and(events_main[e].mask_and[m], flags)){		//Mask and test
 					if(Mask_test_or(events_main[e].mask_or[m], flags)){		//Mask or test
 						if(!Mask_test_or(events_main[e].mask_not[m], flags)){	//Mask not test
@@ -80,7 +97,7 @@ void EVENT_process_events_main(){
 void EVENT_process_events_it(){
 	if(initialized){
 	//Pout chaque event
-		for(uint32_t e = 0; e < EVENT_COUNT_IT; e ++){
+		for(uint32_t e = 0; e < EVENT_IT_COUNT; e ++){
 			uint32_t m = 0 ;
 			bool_e function_did_run_once = FALSE ;
 			//On test chaque paires de masque
@@ -138,11 +155,17 @@ void EVENT_timmer_callback(TIM_HandleTypeDef * htim){
 void EVENT_init(system_t * sys_, TIM_HandleTypeDef * htim_event_){
 	initialized = TRUE ;
 	sys =sys_;
-	mask_def_gyro_dma_done(&events_it[EVENT_GYRO_DMA_DONE]);
 
-	//On lance le timmer dédié à l'it
-	htim_event = htim_event_ ;
-	HAL_TIM_Base_Start_IT(htim_event);
+	//Configuration des mask associés aux events
+	mask_def_events_it_init(events_it);
+	mask_def_events_main_init(events_main);
+
+	//On lance le timmer dédié à l'it event
+	if(htim_event_ != NULL){
+		htim_event = htim_event_ ;
+		HAL_TIM_Base_Start_IT(htim_event);
+	}
+
 
 
 

@@ -1,1 +1,4 @@
-mask_def.c:12:6:mask_def_gyro_dma_done	16	static
+mask_def.c:20:6:mask_def_events_it_init	16	static
+mask_def.c:26:6:mask_def_events_main_init	16	static
+mask_def.c:32:13:mask_def_gyro_dma_done	16	static
+mask_def.c:37:13:mask_def_gyro_init_ok	16	static

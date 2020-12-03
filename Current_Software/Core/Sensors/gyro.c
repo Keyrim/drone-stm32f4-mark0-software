@@ -7,6 +7,7 @@
 
 
 #include "gyro.h"
+#include "../OS/events/events.h"
 
 float filter[3] = {0.1f, 0.9f, 0};
 
@@ -24,6 +25,10 @@ sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu){
 #warning gyro not defined
 	gyro->state = SENSOR_ERROR ;
 #endif
+
+	if(gyro->state == SENSOR_IDDLE)
+		EVENT_Set_flag(FLAG_GYRO_INIT);
+
 	return gyro->state ;
 }
 
@@ -36,6 +41,7 @@ sensor_state_e GYRO_update(gyro_t * gyro){
 		gyro->state = SENSOR_ERROR ;
 #endif
 	}
+
 
 	return gyro->state ;
 }

@@ -9,7 +9,7 @@
 #define SENSORS_GYRO_H_
 
 
-#include "stm32f4xx_hal.h"
+//#include "stm32f4xx_hal.h"
 #include "sensors.h"
 #include "mpu.h"
 

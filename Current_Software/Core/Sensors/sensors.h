@@ -10,6 +10,7 @@
 
 #include "../../Drivers/Inc/Filters.h"
 
+
 typedef enum sensor_connectivity_e{
 	USE_UART,
 	USE_UART_DMA,

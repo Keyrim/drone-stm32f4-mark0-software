@@ -31,6 +31,7 @@
 /* USER CODE BEGIN Includes */
 #include "../OS/system_d.h"
 #include "../OS/scheduler/scheduler.h"
+#include "../OS/events/events.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -112,11 +113,12 @@ int main(void)
   GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
-  LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_1, 200, 12, 1);
-  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_3, 200, 12, 1);
+  LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_5, 1, 12, 1);
+  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
 
   SCHEDULER_init(&sys);
+  EVENT_init(&sys, NULL);
 
   /* USER CODE END 2 */
 
