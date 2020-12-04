@@ -8,6 +8,14 @@
 #include "mpu.h"
 #include "../OS/time.h"
 
+#define NB_MPU_USED 1
+
+//Ces trois tableaux sont liés et permettent de savoir pour un I2C ou SPI donné, quelle est le mpu associé
+static I2C_HandleTypeDef * I2C_handlers[NB_MPU_USED] ;
+static SPI_HandleTypeDef * SPI_handlers[NB_MPU_USED] ;
+static mpu_t * mpu_handlers[NB_MPU_USED];
+static uint8_t mpu_init_compteur = 0 ;
+
 //Private functions
 void convert_gyro(mpu_t * mpu){
 #ifdef MPU_USE_I2C
@@ -78,21 +86,27 @@ sensor_state_e MPU_init(mpu_t * mpu, I2C_HandleTypeDef * hi2c, SPI_HandleTypeDef
 
 	//Check la présence du mpu si I2C
 #ifdef MPU_USE_I2C
+	mpu_handlers[mpu_init_compteur] = mpu ;
+	I2C_handlers[mpu_init_compteur++] = hi2C ;
 	mpu->hal_state = HAL_I2C_IsDeviceReady(mpu->hi2c, mpu->adresse, 2, 2);
 	if(mpu->hal_state != HAL_OK){
 		mpu->state = SENSOR_NOT_DETECTED ;
 		return mpu->state ;
 	}
-#endif
+
 
 
 	//Wakeup du mpu
 
-#ifdef MPU_USE_I2C
+
 	uint8_t wakeup_data = 0x00 ;
 	mpu->hal_state  = HAL_I2C_Mem_Write(mpu->hi2c, mpu->adresse, MPU6050_PWR_MGMT_1, I2C_MEMADD_SIZE_8BIT, &wakeup_data, 1, 10);
 #endif
 #ifdef	MPU_USE_SPI
+
+	mpu_handlers[mpu_init_compteur] = mpu ;
+	SPI_handlers[mpu_init_compteur++] = hspi ;
+
 	uint8_t wakeup_data[] = {MPU6050_PWR_MGMT_1, 0x00} ;
 
 	MPU_cs_lock(mpu);
@@ -312,17 +326,26 @@ sensor_state_e MPU_update_acc(mpu_t * mpu){
 	return SENSOR_IDDLE ;
 }
 
-//Gestion du gyro en dma uniquement en I2C pour le moment (dma inutile quand le spi tourne à 10MHz .. )
+//Update des données en DMA, ATTENTION à bien avoir un hdma associé au hdi2c ou hspi utilisé par le mpu
 sensor_state_e MPU_update_gyro_dma(mpu_t * mpu){
 
-	mpu->start_time_dma = TIME_us();
+	//mpu->start_time_dma = TIME_us();
 
-
+#ifdef MPU_USE_I2C	//Lecture en i2C
 	mpu->hal_state = HAL_I2C_Mem_Read_DMA(mpu->hi2c, mpu->adresse, MPU6050_GYRO_XOUT_H, I2C_MEMADD_SIZE_8BIT, mpu->gyro_data, 6);
-	mpu->dma_state = MPU_DMA_GYRO_IN_PROGRESS ;
-
-	if(mpu->hal_state == HAL_OK)
+#else
+	#ifdef MPU_USE_SPI	//Lecture en SPI
+	uint8_t registers [] = {MPU6050_GYRO_XOUT_H | MPU6050_READ, 0, 0, 0, 0, 0};
+	MPU_cs_lock(mpu);
+	mpu->hal_state = HAL_SPI_TransmitReceive_DMA(mpu->hspi, registers, mpu->gyro_data, 6);
+	#else
+		return SENSOR_ERROR ;
+	#endif
+#endif
+	if(mpu->hal_state == HAL_OK){
 		mpu->state = SENSOR_IN_PROGRESS ;
+		mpu->dma_state = MPU_DMA_GYRO_IN_PROGRESS ;
+	}
 	else if(mpu->hal_state == HAL_BUSY)
 		mpu->state = SENSOR_HAL_BUSY ;
 	else
@@ -331,16 +354,30 @@ sensor_state_e MPU_update_gyro_dma(mpu_t * mpu){
 	return mpu->state ;
 }
 void MPU_dma_transmit_done(mpu_t * mpu){
-	if(!mpu->dma_state)
-		return ;	//Si pas de lecture dma en cour on ignore
 
-	else if(mpu->dma_state == MPU_DMA_GYRO_IN_PROGRESS)
+	//Si le mpu n'utilise pas de DMA atm on ignore (peut être un autre périphérique sur le SPI)
+	if(!mpu->dma_state)
+		return ;
+
+
+	//Si SPI on relâche le pin CS du mpu
+#ifdef MPU_USE_SPI
+	MPU_cs_unlock(mpu);
+#endif
+
+	if(mpu->dma_state == MPU_DMA_GYRO_IN_PROGRESS)
 		convert_gyro(mpu);
 	else if(mpu->dma_state == MPU_DMA_ACC_IN_PROGREE)
 		convert_acc(mpu);
-	mpu->end_time_dma = TIME_us();
-	mpu->delta_time_dma = mpu->end_time_dma - mpu->start_time_dma ;
+
+//	mpu->end_time_dma = TIME_us();
+//	mpu->delta_time_dma = mpu->end_time_dma - mpu->start_time_dma ;
 	mpu->dma_state = MPU_DMA_IDDLE ;
+
+}
+
+HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
 
 }
 

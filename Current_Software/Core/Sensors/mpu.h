@@ -127,6 +127,10 @@ typedef struct{
 	MPU_acc_range_e acc_range ;
 	float acc_sensi ;
 
+	//Read register
+	uint8_t request_bytes[8];
+
+
 	uint32_t start_time_dma ;
 	uint32_t end_time_dma ;
 	uint32_t delta_time_dma ;

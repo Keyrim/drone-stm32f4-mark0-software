@@ -38,7 +38,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/macro_types.h ../Core/Src/../OS/../Sensors/gyro.h \
  ../Core/Src/../OS/../Sensors/sensors.h \
  ../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h \
- ../Core/Src/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Src/../OS/../Sensors/mpu.h \
  ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Src/../OS/../Sensors/acc.h ../Core/Src/../OS/../Sensors/ms5611.h \
@@ -150,7 +150,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Src/../OS/../Sensors/../../Drivers/Inc/Filters.h:
 
-../Core/Src/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Src/../OS/../Sensors/mpu.h:
 

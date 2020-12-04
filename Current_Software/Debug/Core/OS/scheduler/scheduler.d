@@ -37,14 +37,14 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/gyro.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/sensors.h \
- ../Core/OS/scheduler/../tasks/../../Sensors/../../Drivers/Inc/Filters.h \
- c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ d:\git\ hub\f4_flight_controller\current_software\drivers\inc\filters.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/mpu.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h \
- ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../macro_types.h \
  ../Core/OS/scheduler/../debug/debug.h \
  ../Core/OS/scheduler/../debug/retarget.h \
@@ -128,9 +128,9 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
 
 ../Core/OS/scheduler/../tasks/../../Sensors/sensors.h:
 
-../Core/OS/scheduler/../tasks/../../Sensors/../../Drivers/Inc/Filters.h:
+d:\git\ hub\f4_flight_controller\current_software\drivers\inc\filters.h:
 
-c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Sensors/mpu.h:
 
@@ -142,7 +142,7 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h:
 
-../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../macro_types.h:
 
