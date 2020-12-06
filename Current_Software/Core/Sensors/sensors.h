@@ -18,13 +18,17 @@ typedef enum sensor_connectivity_e{
 	USE_I2C_DMA
 }sensor_connectivity_e;
 
+typedef enum sensor_request_e{
+	SENSOR_REQUEST_OK,
+	SENSOR_REQUEST_BUSY,
+	SENSOR_REQUEST_FAIL
+}sensor_request_e;
 
 typedef enum sensor_state_e{
 	SENSOR_IDDLE,
 	SENSOR_NOT_INIT,
 	SENSOR_NOT_DETECTED,
-	SENSOR_IN_PROGRESS,
-	SENSOR_HAL_BUSY,
+	SENSOR_BUSY,
 	SENSOR_ERROR
 }sensor_state_e;
 

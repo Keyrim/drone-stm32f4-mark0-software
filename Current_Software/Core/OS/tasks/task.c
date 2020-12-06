@@ -20,8 +20,7 @@ void tasks_init(system_t * sys_){
 
 	SCHEDULER_enable_task(TASK_LED, TRUE);
 	//SCHEDULER_enable_task(TASK_PRINTF, TRUE);
-	//SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
-	SCHEDULER_enable_task(TASK_ACC_UPDATE, TRUE);
+
 
 }
 
@@ -31,8 +30,8 @@ void process_print_f(uint32_t current_time_us){
 	acc_t * acc = &sys->sensors.acc ;
 	//printf("%d\t%d\t%d\t%lu\n",sys->sensors.gyro.mpu->gyro_raw[0], sys->sensors.gyro.mpu->gyro_raw[1], sys->sensors.gyro.mpu->gyro_raw[2], TASK_get_task(TASK_GYRO)->it_duration_us);
 	//printf("%f\t%f\t%f\t%f\t%f\t%f\t%lu\n",acc->raw[0], acc->raw[1], acc->raw[2],gyro->raw[0], gyro->raw[1], gyro->raw[2], TASK_get_task(TASK_GYRO_UPDATE)->duration_us);
-	printf("%f\t%f\t%f\t%f\t%lu\n", acc->raw[ACC_AXE_Z], acc->filtered[ACC_AXE_Z], gyro->raw[ACC_AXE_X], gyro->filtered[ACC_AXE_X], TASK_get_task(TASK_GYRO_UPDATE)->duration_us);
-	//printf("%d\n", sys->sensors.gyro.mpu->gyro_raw[0]);
+	printf("%f\t%f\t%lu\n", acc->filtered[ACC_AXE_Z], gyro->filtered[ACC_AXE_X], SCHEDULER_get_cpu_load());
+	//printf("%f\n", acc->filtered[GYRO_AXE_X]);
 }
 
 
@@ -43,12 +42,19 @@ void process_led(uint32_t current_time_us){
 }
 
 void process_gyro_update(uint32_t current_time_us){
-	GYRO_update(&sys->sensors.gyro);
+	GYRO_ACC_update_dma(&sys->sensors.gyro);
+
+}
+
+void process_gyro_filter(uint32_t current_time_us){
 	GYRO_process_lpf(&sys->sensors.gyro);
 }
 
 void process_acc_update(uint32_t current_time_us){
 	ACC_update(&sys->sensors.acc);
+}
+
+void process_acc_filter(uint32_t current_time_us){
 	ACC_process_lpf(&sys->sensors.acc);
 }
 
@@ -68,11 +74,16 @@ void process_event_main(uint32_t current_time_us){
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-		[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_ALWAYS),
-		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_HIGH, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 	TASK_MODE_TIME),
-		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(100), TASK_MODE_ALWAYS),
-		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(250), 	TASK_MODE_TIME),
-		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_HIGH,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(250), 	TASK_MODE_TIME),
+		[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(500), 	TASK_MODE_TIME),
+
+		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 	TASK_MODE_TIME),
+		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(500), 	TASK_MODE_TIME),
+
+		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_MEDIUM,	 	process_gyro_update, 		PERIOD_US_FROM_HERTZ(2500), 	TASK_MODE_TIME),
+		[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_EVENT,	 		process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+
+		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_MEDIUM,	 	process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 	TASK_MODE_TIME),
+		[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_EVENT,	 		process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 };
 
 task_t * TASK_get_task(task_ids_t id){

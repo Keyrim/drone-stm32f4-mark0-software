@@ -34,7 +34,9 @@ typedef enum task_ids {
 	TASK_PRINTF,
 	TASK_LED,
 	TASK_GYRO_UPDATE,
+	TASK_GYRO_FILTER,
 	TASK_ACC_UPDATE,
+	TASK_ACC_FILTER,
 	TASK_COUNT
 }task_ids_t;
 
@@ -61,7 +63,6 @@ typedef struct task{
 
 	//Execution mode => defines what "starts" a task
 	task_mode_e mode ;
-
 
 	//stat
 	uint32_t duration_us ;

@@ -20,13 +20,14 @@
 typedef enum events_id_main_e{
 	//Event list
 	EVENT_MAIN_GYRO_INIT_OK,
+	EVENT_MAIN_ACC_INIT_OK,
 	EVENT_MAIN_COUNT
 }events_id_main_e;		//Events déclenchés en tâche de fond
 
 typedef enum events_id_it_e{
 	//Event list
-	EVENT_IT_GYRO_DMA_DONE,
 	EVENT_IT_GYRO_DATA_READY,
+	EVENT_IT_ACC_DATA_READY,
 	EVENT_IT_COUNT
 }events_id_it_e;		//Event déclenchés en it
 
@@ -36,8 +37,8 @@ typedef enum{
 }Event_type_t;
 
 typedef enum Event_state_e{
-	EVENT_ENABLE,
-	EVENT_DISABLE
+	EVENT_ENABLED,
+	EVENT_DISABLED
 }Event_state_e;
 
 typedef struct{

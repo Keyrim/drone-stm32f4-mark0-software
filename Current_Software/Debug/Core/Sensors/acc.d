@@ -34,7 +34,21 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Sensors/sensors.h ../Core/Sensors/../../Drivers/Inc/Filters.h \
  ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Sensors/mpu.h ../Core/Sensors/../OS/macro_types.h
+ ../Core/Sensors/mpu.h ../Core/Sensors/../OS/macro_types.h \
+ ../Core/Sensors/../OS/events/events.h \
+ ../Core/Sensors/../OS/events/mask_def_enum.h \
+ ../Core/Sensors/../OS/events/mask.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/flags.h \
+ ../Core/Sensors/../OS/events/../system_d.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/../../Sensors/gyro.h \
+ ../Core/Sensors/../OS/events/../../Sensors/sensors.h \
+ ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
+ ../Core/Sensors/../OS/events/../../Sensors/acc.h \
+ ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h
 
 ../Core/Sensors/acc.h:
 
@@ -113,3 +127,31 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
 ../Core/Sensors/mpu.h:
 
 ../Core/Sensors/../OS/macro_types.h:
+
+../Core/Sensors/../OS/events/events.h:
+
+../Core/Sensors/../OS/events/mask_def_enum.h:
+
+../Core/Sensors/../OS/events/mask.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/flags.h:
+
+../Core/Sensors/../OS/events/../system_d.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/../../Sensors/gyro.h:
+
+../Core/Sensors/../OS/events/../../Sensors/sensors.h:
+
+../Core/Sensors/../OS/events/../../Sensors/mpu.h:
+
+../Core/Sensors/../OS/events/../../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:

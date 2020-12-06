@@ -12,10 +12,8 @@
 #include "sensors.h"
 #include "mpu.h"
 
-#define ACC_USE_MPU
 
 typedef struct acc_t{
-	sensor_state_e state ;
 
 	//Available acc list
 	mpu_t * mpu ;
@@ -29,8 +27,9 @@ typedef struct acc_t{
 
 }acc_t;
 
-sensor_state_e ACC_init(acc_t * acc, mpu_t * mpu);
-sensor_state_e ACC_update(acc_t * acc);
+void ACC_init(acc_t * acc, mpu_t * mpu);
+void ACC_update(acc_t * acc);
+void ACC_update_dma(acc_t * acc);
 void ACC_process_lpf(acc_t * acc);
 
 #endif /* SENSORS_ACC_H_ */

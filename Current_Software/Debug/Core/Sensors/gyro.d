@@ -48,7 +48,7 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
  ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
  ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h \
- d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h
 
 ../Core/Sensors/gyro.h:
 
@@ -154,4 +154,4 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
 
 ../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h:
 
-d:\git\ hub\f4_flight_controller\current_software\core\os\macro_types.h:
+../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:

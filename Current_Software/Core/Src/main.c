@@ -79,7 +79,7 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  HAL_Delay(1000);
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -102,6 +102,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
   MX_ADC2_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
 
@@ -109,7 +110,7 @@ int main(void)
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
 
   //Init du GYRO et de l ACC en utilisant un MPU
-  MPU_init(&sys.sensors.mpu, NULL, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
+  MPU_init(&sys.sensors.mpu, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
   GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
@@ -118,7 +119,7 @@ int main(void)
   LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
 
   SCHEDULER_init(&sys);
-  EVENT_init(&sys, NULL);
+  EVENT_init(&sys, &htim2);
 
   /* USER CODE END 2 */
 

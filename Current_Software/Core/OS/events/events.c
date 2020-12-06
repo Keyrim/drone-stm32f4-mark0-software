@@ -22,51 +22,71 @@ static bool_e initialized = FALSE ;
 
 
 
-#define DEFINE_EVENT(event_function_param, nb_mask_param){  	\
+#define DEFINE_EVENT(event_function_param, nb_mask_param, enable_param){  	\
 		.function = event_function_param ,						\
 		.nb_mask = nb_mask_param , 								\
-		.state = EVENT_ENABLE									\
+		.state = enable_param									\
 }
 
 
-//	----------------------	Events main	----------------------
-
-static void gyro_init_ok(mask_def_ids_t mask_id){
-	//On dit que le gyro est ok et qu'il effectu des mesures
-	EVENT_Set_flag(FLAG_GYRO_OK);
-	EVENT_Set_flag(FLAG_GYRO_READING);
-	//On lance la tâche d'update du gyro
-	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
-}
-
+//	----------------------	Events main	--------------------------------------------------------------------------------
+static void gyro_init_ok_func(mask_def_ids_t mask_id);
+static void acc_init_ok_func(mask_def_ids_t mask_id);
 
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX else failure :)
 static Event_t events_main[EVENT_MAIN_COUNT] ={
 		//Events array
-		[EVENT_MAIN_GYRO_INIT_OK] = DEFINE_EVENT(gyro_init_ok, 1)
+		[EVENT_MAIN_GYRO_INIT_OK] = DEFINE_EVENT(gyro_init_ok_func, 1, EVENT_ENABLED),
+		[EVENT_MAIN_ACC_INIT_OK] = DEFINE_EVENT(acc_init_ok_func, 1, EVENT_DISABLED)
 };
 
-
-//	----------------------	Events it	----------------------
-
-static void gyro_dma_done_func(mask_def_ids_t mask_id){
-	EVENT_Clean_flag(FLAG_GYRO_DMA_DONE);
-	GYRO_dma_done(&sys->sensors.gyro);
+static void gyro_init_ok_func(mask_def_ids_t mask_id){
+	//On dit que le gyro est ok et qu'il effectu des mesures
+	EVENT_Set_flag(FLAG_GYRO_READING);
+	//On lance la tâche d'update du gyro
+	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
+	events_main[EVENT_MAIN_GYRO_INIT_OK].state = EVENT_DISABLED ;
 }
 
-static void gyro_data_ready_func(mask_def_ids_t mask_id){
-
+static void acc_init_ok_func(mask_def_ids_t mask_id){
+	//On dit que le gyro est ok et qu'il effectu des mesures
+	EVENT_Set_flag(FLAG_ACC_READING);
+	//On lance la tâche d'update du gyro
+	SCHEDULER_enable_task(TASK_ACC_UPDATE, TRUE);
+	events_main[EVENT_MAIN_ACC_INIT_OK].state = EVENT_DISABLED ;
 }
 
+//	----------------------	Events it	----------------------------------------------------------------------------
 
+
+
+static void gyro_data_ready_func(mask_def_ids_t mask_id);
+static void acc_data_ready_func(mask_def_ids_t mask_id);
 
 //Définitions des events
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon d�rapage :)
 static Event_t events_it[EVENT_IT_COUNT] ={
 		//Events array
-		[EVENT_IT_GYRO_DMA_DONE] = DEFINE_EVENT(gyro_dma_done_func, 1),
-		[EVENT_IT_GYRO_DATA_READY] = DEFINE_EVENT(gyro_data_ready_func, 0)
+		[EVENT_IT_GYRO_DATA_READY] = DEFINE_EVENT(gyro_data_ready_func, 1, EVENT_ENABLED),
+		[EVENT_IT_ACC_DATA_READY] = DEFINE_EVENT(acc_data_ready_func, 1, EVENT_ENABLED)
 };
+
+static void gyro_data_ready_func(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_GYRO_DATA_READY);
+	__enable_irq();
+	//On lance la tâche d'update du gyro
+	SCHEDULER_enable_task(TASK_GYRO_FILTER, TRUE);
+}
+
+static void acc_data_ready_func(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_ACC_DATA_READY);
+	__enable_irq();
+	//On lance la tâche d'update du gyro
+	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
+}
+
 
 //Déclenchement des events en main
 void EVENT_process_events_main(){
@@ -77,7 +97,7 @@ void EVENT_process_events_main(){
 			uint32_t m = 0 ;
 			bool_e function_did_run_once = FALSE ;
 			//On test chaque paires de masque
-			while(m < events_main[e].nb_mask && !function_did_run_once && events_main[e].state == EVENT_ENABLE){
+			while(m < events_main[e].nb_mask && !function_did_run_once && events_main[e].state == EVENT_ENABLED){
 				if(Mask_test_and(events_main[e].mask_and[m], flags)){		//Mask and test
 					if(Mask_test_or(events_main[e].mask_or[m], flags)){		//Mask or test
 						if(!Mask_test_or(events_main[e].mask_not[m], flags)){	//Mask not test
@@ -101,7 +121,7 @@ void EVENT_process_events_it(){
 			uint32_t m = 0 ;
 			bool_e function_did_run_once = FALSE ;
 			//On test chaque paires de masque
-			while(m < events_it[e].nb_mask && !function_did_run_once){
+			while(m < events_it[e].nb_mask && !function_did_run_once && events_it[e].state == EVENT_ENABLED){
 				if(Mask_test_and(events_it[e].mask_and[m], flags)){		//Mask and test
 					if(Mask_test_or(events_it[e].mask_or[m], flags)){		//Mask or test
 						if(!Mask_test_or(events_it[e].mask_not[m], flags)){	//Mask not test
@@ -120,6 +140,7 @@ void EVENT_process_events_it(){
 //Set et clean depuis le main
 bool_e EVENT_Set_flag(Flags_t flag){
 	bool_e to_ret ;
+	new_flag_it = TRUE ;
 	__disable_irq();
 	to_ret = MASK_set_flag(&flags, flag);		//It désactivitées pour éviter la réentrance
 	__enable_irq();
@@ -127,17 +148,19 @@ bool_e EVENT_Set_flag(Flags_t flag){
 }
 bool_e EVENT_Clean_flag(Flags_t flag){
 	bool_e to_ret ;
+	new_flag_it = TRUE ;
 	__disable_irq();
 	to_ret = MASK_clean_flag(&flags, flag);		//It désactivitées pour éviter la réentrance
 	__enable_irq();
 	return to_ret ;
 }
 
-//Set et clean de flag depuis it
+//Set a flag, disable irq before use
 bool_e EVENT_set_flag_it(Flags_t flag){
 	new_flag_it = TRUE ;
 	return MASK_set_flag(&flags, flag);
 }
+//Clear a flag, disable irq before use
 bool_e EVENT_clean_flag_it(Flags_t flag){
 	new_flag_it = TRUE ;
 	return MASK_clean_flag(&flags, flag);
@@ -165,13 +188,12 @@ void EVENT_init(system_t * sys_, TIM_HandleTypeDef * htim_event_){
 		htim_event = htim_event_ ;
 		HAL_TIM_Base_Start_IT(htim_event);
 	}
-
-
-
-
-
-
 }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  EVENT_timmer_callback(htim);
+}
+
 
 
 

@@ -13,13 +13,10 @@
 #include "sensors.h"
 #include "mpu.h"
 
-#define GYRO_USE_MPU	//Gyro currently used
-
 
 typedef struct gyro_t{
-	sensor_state_e state ;
 
-	//Available gyro list
+	//Mpu used
 	mpu_t * mpu ;
 
 	//Raw angles
@@ -31,11 +28,14 @@ typedef struct gyro_t{
 
 }gyro_t;
 
-sensor_state_e GYRO_init(gyro_t * gyro, mpu_t * mpu);
-sensor_state_e GYRO_update(gyro_t * gyro);
-sensor_state_e GYRO_update_dma(gyro_t * gyro);
+void GYRO_init(gyro_t * gyro, mpu_t * mpu);
+void GYRO_update(gyro_t * gyro);
+void GYRO_update_dma(gyro_t * gyro);
 void GYRO_process_lpf(gyro_t * gyro);
-void GYRO_dma_done(gyro_t * gyro);
 
+
+//Special gyro AND acc functions
+void GYRO_ACC_update(gyro_t * gyro);
+void GYRO_ACC_update_dma(gyro_t * gyro);
 
 #endif /* SENSORS_GYRO_H_ */

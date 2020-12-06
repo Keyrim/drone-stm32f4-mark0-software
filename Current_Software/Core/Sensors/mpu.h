@@ -12,17 +12,12 @@
 #include "sensors.h"
 #include "../OS/macro_types.h"
 
-//#define MPU_USE_I2C
+#define NB_MPU_USED 1
+
+
 #define MPU_USE_SPI
-#ifdef MPU_USE_I2C
-	#ifdef MPU_USE_SPI
-		#error MPU ERROR Cant use I2C and SPI
-	#endif
-#else
-	#ifndef MPU_USE_SPI
-		#error MPU ERROR Need I2C or SPI
-	#endif
-#endif
+
+
 
 /* Default I2C address */
 #define MPU6050_I2C_ADDR			0xD0
@@ -94,7 +89,8 @@ typedef enum MPU_gyro_range_e{
 typedef enum MPU_dma_state_e{
 	MPU_DMA_IDDLE,
 	MPU_DMA_GYRO_IN_PROGRESS,
-	MPU_DMA_ACC_IN_PROGREE
+	MPU_DMA_ACC_IN_PROGRESS,
+	MPU_DMA_ACC_AND_GYRO_IN_PROGRESS
 }MPU_dma_state_e;
 
 
@@ -113,19 +109,24 @@ typedef struct{
 	//Mpu settings
 	uint8_t adresse ;
 
+	//Mpu registers reading
+	uint8_t data[14];
+
 	//Gyroscope stuff
-	uint8_t gyro_data[6];
+	uint8_t * gyro_data;
 	int16_t gyro_raw[3];
 	float gyro[3];
 	MPU_gyro_range_e gyro_range ;
 	float gyro_sensi ;
+	void (*gyro_data_callback)(void);
 
 	//Accelerometer stuff
-	uint8_t acc_data[6];
+	uint8_t * acc_data;
 	int16_t acc_raw[3];
 	float acc[3];
 	MPU_acc_range_e acc_range ;
 	float acc_sensi ;
+	void (*acc_data_callback)(void);
 
 	//Read register
 	uint8_t request_bytes[8];
@@ -138,20 +139,23 @@ typedef struct{
 
 
 //Init functions for the mpu
-sensor_state_e MPU_init(mpu_t * mpu, I2C_HandleTypeDef * hi2c, SPI_HandleTypeDef * hspi, GPIO_TypeDef * pin_cs_gpio, uint16_t pin_cs);
+sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * pin_cs_gpio, uint16_t pin_cs);
 
-sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range);
+sensor_request_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range, void (*gyro_data_callback));
 
-sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range);
+sensor_request_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range, void (*acc_data_callback));
 
 //Update functions for the mpu
-sensor_state_e MPU_update_gyro(mpu_t * mpu);
-sensor_state_e MPU_update_gyro_dma(mpu_t * mpu);
+sensor_request_e MPU_update_gyro(mpu_t * mpu);
+sensor_request_e MPU_update_gyro_dma(mpu_t * mpu);
 
-sensor_state_e MPU_update_acc(mpu_t * mpu);
+sensor_request_e MPU_update_acc(mpu_t * mpu);
+sensor_request_e MPU_update_acc_dma(mpu_t * mpu);
 
-//Appelé par le gestionnaire d'event quand le dma à finis son taff
-void MPU_dma_transmit_done(mpu_t * mpu);
+sensor_request_e MPU_update_all(mpu_t * mpu);
+sensor_request_e MPU_update_all_dma(mpu_t * mpu);
+
+
 
 
 

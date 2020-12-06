@@ -1,5 +1,7 @@
-gyro.c:14:16:GYRO_init	16	static
-gyro.c:35:16:GYRO_update	16	static
-gyro.c:49:16:GYRO_update_dma	16	static
-gyro.c:61:6:GYRO_process_lpf	16	static
-gyro.c:67:6:GYRO_dma_done	16	static
+gyro.c:16:6:GYRO_init	16	static
+gyro.c:38:6:GYRO_update	16	static
+gyro.c:51:6:GYRO_ACC_update	16	static
+gyro.c:65:6:GYRO_update_dma	16	static
+gyro.c:78:6:GYRO_ACC_update_dma	16	static
+gyro.c:91:6:GYRO_process_lpf	16	static
+gyro.c:97:13:gyro_data_callback	8	static
