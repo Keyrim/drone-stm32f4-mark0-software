@@ -18,6 +18,7 @@ RM := rm -rf
 -include Core/OS/events/subdir.mk
 -include Core/OS/debug/subdir.mk
 -include Core/OS/subdir.mk
+-include Core/Estimators/subdir.mk
 -include subdir.mk
 -include objects.mk
 

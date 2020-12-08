@@ -28,6 +28,7 @@ typedef enum events_id_it_e{
 	//Event list
 	EVENT_IT_GYRO_DATA_READY,
 	EVENT_IT_ACC_DATA_READY,
+	EVENT_IT_ORIENTATION_UPDATE,
 	EVENT_IT_COUNT
 }events_id_it_e;		//Event déclenchés en it
 

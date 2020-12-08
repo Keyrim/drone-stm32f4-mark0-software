@@ -64,6 +64,7 @@ void ACC_process_lpf(acc_t * acc){
 	acc->filtered[ACC_AXE_X] = FILTER_process(&acc->filters[ACC_AXE_X], acc->raw[ACC_AXE_X]);
 	acc->filtered[ACC_AXE_Y] = FILTER_process(&acc->filters[ACC_AXE_Y], acc->raw[ACC_AXE_Y]);
 	acc->filtered[ACC_AXE_Z] = FILTER_process(&acc->filters[ACC_AXE_Z], acc->raw[ACC_AXE_Z]);
+	EVENT_Set_flag(FLAG_ACC_FILTERED_DATA_READY);
 }
 
 static void acc_data_callback(void){

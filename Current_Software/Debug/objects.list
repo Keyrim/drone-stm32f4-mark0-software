@@ -1,3 +1,4 @@
+"Core/Estimators/orientation.o"
 "Core/OS/debug/debug.o"
 "Core/OS/debug/retarget.o"
 "Core/OS/events/events.o"

@@ -43,8 +43,12 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../config.h \
  ../Core/OS/scheduler/../macro_types.h \
  ../Core/OS/scheduler/../debug/debug.h \
  ../Core/OS/scheduler/../debug/retarget.h \
@@ -140,9 +144,17 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h:
 
+../Core/OS/scheduler/../tasks/../../Estimators/orientation.h:
+
+../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h:
+
+../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h:
+
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/OS/scheduler/../tasks/../../config.h:
 
 ../Core/OS/scheduler/../macro_types.h:
 

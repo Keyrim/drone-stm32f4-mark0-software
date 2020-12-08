@@ -19,6 +19,7 @@ OBJCOPY_BIN :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Estimators \
 Core/OS/debug \
 Core/OS/events \
 Core/OS/scheduler \

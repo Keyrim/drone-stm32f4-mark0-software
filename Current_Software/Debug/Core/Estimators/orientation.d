@@ -1,5 +1,7 @@
-Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
- ../Core/OS/events/mask_def.h ../Core/OS/events/events.h \
+Core/Estimators/orientation.o: ../Core/Estimators/orientation.c \
+ ../Core/Estimators/orientation.h ../Core/Estimators/../Sensors/gyro.h \
+ ../Core/Estimators/../Sensors/sensors.h \
+ ../Core/Estimators/../Sensors/../../Drivers/Inc/Filters.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -33,27 +35,18 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/OS/events/mask_def_enum.h ../Core/OS/events/mask.h \
- ../Core/OS/events/../macro_types.h ../Core/OS/events/flags.h \
- ../Core/OS/events/../system_d.h ../Core/OS/events/../macro_types.h \
- ../Core/OS/events/../../Sensors/gyro.h \
- ../Core/OS/events/../../Sensors/sensors.h \
- ../Core/OS/events/../../Sensors/../../Drivers/Inc/Filters.h \
- ../Core/OS/events/../../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/OS/events/../../Sensors/mpu.h \
- ../Core/OS/events/../../Sensors/../OS/macro_types.h \
- ../Core/OS/events/../../Sensors/acc.h \
- ../Core/OS/events/../../Sensors/ms5611.h \
- ../Core/OS/events/../../Estimators/orientation.h \
- ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
- ../Core/OS/events/../../Estimators/../Sensors/acc.h \
- ../Core/OS/events/../../../Drivers/Inc/Sequence_led.h \
- ../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/OS/events/../../config.h
+ ../Core/Estimators/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Estimators/../Sensors/mpu.h \
+ ../Core/Estimators/../Sensors/../OS/macro_types.h \
+ ../Core/Estimators/../Sensors/acc.h
 
-../Core/OS/events/mask_def.h:
+../Core/Estimators/orientation.h:
 
-../Core/OS/events/events.h:
+../Core/Estimators/../Sensors/gyro.h:
+
+../Core/Estimators/../Sensors/sensors.h:
+
+../Core/Estimators/../Sensors/../../Drivers/Inc/Filters.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -121,42 +114,10 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/OS/events/mask_def_enum.h:
+../Core/Estimators/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
-../Core/OS/events/mask.h:
+../Core/Estimators/../Sensors/mpu.h:
 
-../Core/OS/events/../macro_types.h:
+../Core/Estimators/../Sensors/../OS/macro_types.h:
 
-../Core/OS/events/flags.h:
-
-../Core/OS/events/../system_d.h:
-
-../Core/OS/events/../macro_types.h:
-
-../Core/OS/events/../../Sensors/gyro.h:
-
-../Core/OS/events/../../Sensors/sensors.h:
-
-../Core/OS/events/../../Sensors/../../Drivers/Inc/Filters.h:
-
-../Core/OS/events/../../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/OS/events/../../Sensors/mpu.h:
-
-../Core/OS/events/../../Sensors/../OS/macro_types.h:
-
-../Core/OS/events/../../Sensors/acc.h:
-
-../Core/OS/events/../../Sensors/ms5611.h:
-
-../Core/OS/events/../../Estimators/orientation.h:
-
-../Core/OS/events/../../Estimators/../Sensors/gyro.h:
-
-../Core/OS/events/../../Estimators/../Sensors/acc.h:
-
-../Core/OS/events/../../../Drivers/Inc/Sequence_led.h:
-
-../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/OS/events/../../config.h:
+../Core/Estimators/../Sensors/acc.h:

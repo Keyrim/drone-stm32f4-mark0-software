@@ -92,6 +92,7 @@ void GYRO_process_lpf(gyro_t * gyro){
 	gyro->filtered[GYRO_AXE_X] =  FILTER_process(&gyro->filters[GYRO_AXE_X], gyro->raw[GYRO_AXE_X]);
 	gyro->filtered[GYRO_AXE_Y] =  FILTER_process(&gyro->filters[GYRO_AXE_Y], gyro->raw[GYRO_AXE_Y]);
 	gyro->filtered[GYRO_AXE_Z] =  FILTER_process(&gyro->filters[GYRO_AXE_Z], gyro->raw[GYRO_AXE_Z]);
+	EVENT_Set_flag(FLAG_GYRO_FILTERED_DATA_READY);
 }
 
 static void gyro_data_callback(void){

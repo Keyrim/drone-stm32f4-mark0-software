@@ -62,13 +62,15 @@ static void acc_init_ok_func(mask_def_ids_t mask_id){
 
 static void gyro_data_ready_func(mask_def_ids_t mask_id);
 static void acc_data_ready_func(mask_def_ids_t mask_id);
+static void orientation_update(mask_def_ids_t mask_id);
 
 //Définitions des events
-//Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon d�rapage :)
+//Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon dérapage :)
 static Event_t events_it[EVENT_IT_COUNT] ={
 		//Events array
-		[EVENT_IT_GYRO_DATA_READY] = DEFINE_EVENT(gyro_data_ready_func, 1, EVENT_ENABLED),
-		[EVENT_IT_ACC_DATA_READY] = DEFINE_EVENT(acc_data_ready_func, 1, EVENT_ENABLED)
+		[EVENT_IT_GYRO_DATA_READY] = 		DEFINE_EVENT(gyro_data_ready_func, 	1, EVENT_ENABLED),
+		[EVENT_IT_ACC_DATA_READY] = 		DEFINE_EVENT(acc_data_ready_func, 	1, EVENT_ENABLED),
+		[EVENT_IT_ORIENTATION_UPDATE] = 	DEFINE_EVENT(orientation_update, 	1, EVENT_ENABLED)
 };
 
 static void gyro_data_ready_func(mask_def_ids_t mask_id){
@@ -85,6 +87,14 @@ static void acc_data_ready_func(mask_def_ids_t mask_id){
 	__enable_irq();
 	//On lance la tâche d'update du gyro
 	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
+}
+
+static void orientation_update(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_ACC_FILTERED_DATA_READY);
+	MASK_clean_flag(&flags, FLAG_GYRO_FILTERED_DATA_READY);
+	__enable_irq();
+	SCHEDULER_enable_task(TASK_ORIENTATION_UPDATE, TRUE);
 }
 
 

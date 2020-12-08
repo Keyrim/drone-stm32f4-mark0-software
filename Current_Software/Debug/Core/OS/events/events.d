@@ -44,8 +44,12 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
  ../Core/OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/OS/events/../../Sensors/acc.h \
  ../Core/OS/events/../../Sensors/ms5611.h \
+ ../Core/OS/events/../../Estimators/orientation.h \
+ ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
+ ../Core/OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/OS/events/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/events/../../config.h \
  ../Core/OS/events/../scheduler/scheduler.h \
  ../Core/OS/events/../scheduler/../tasks/task.h \
  ../Core/OS/events/../scheduler/../tasks/../system_d.h \
@@ -152,9 +156,17 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
 
 ../Core/OS/events/../../Sensors/ms5611.h:
 
+../Core/OS/events/../../Estimators/orientation.h:
+
+../Core/OS/events/../../Estimators/../Sensors/gyro.h:
+
+../Core/OS/events/../../Estimators/../Sensors/acc.h:
+
 ../Core/OS/events/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/OS/events/../../config.h:
 
 ../Core/OS/events/../scheduler/scheduler.h:
 

@@ -21,7 +21,8 @@ typedef enum task_priority{
 	PRIORITY_LOW		= 1 ,
 	PRIORITY_MEDIUM	 	= 5 ,
 	PRIORITY_HIGH		= 10,
-	PRIORITY_EVENT		= 100
+	PRIORITY_EVENT		= 100,
+	PRIORITY_SCHEDULER	= 101
 }task_priority_t;
 
 typedef enum task_states{
@@ -30,6 +31,7 @@ typedef enum task_states{
 }task_states_t;
 
 typedef enum task_ids {
+	TASK_SCHEDULER,
 	TASK_EVENT_CHECK,
 	TASK_PRINTF,
 	TASK_LED,
@@ -37,6 +39,7 @@ typedef enum task_ids {
 	TASK_GYRO_FILTER,
 	TASK_ACC_UPDATE,
 	TASK_ACC_FILTER,
+	TASK_ORIENTATION_UPDATE,
 	TASK_COUNT
 }task_ids_t;
 

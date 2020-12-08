@@ -18,6 +18,9 @@ static void mask_def_gyro_init_ok(Event_t * event);
 static void mask_def_acc_data_ready(Event_t * event);
 static void mask_def_acc_init_ok(Event_t * event);
 
+// ----------------	Orientation ------------------------
+static void mask_def_orientation_update(Event_t * event);
+
 //----------------	GLOBAL INIT ------------------------
 void mask_def_events_it_init(Event_t * event){
 	//Gyro mask def
@@ -25,6 +28,9 @@ void mask_def_events_it_init(Event_t * event){
 
 	//Acc mask def
 	mask_def_acc_data_ready(&event[EVENT_IT_ACC_DATA_READY]);
+
+	//Orientation
+	mask_def_orientation_update(&event[EVENT_IT_ORIENTATION_UPDATE]);
 
 }
 
@@ -66,8 +72,14 @@ static void mask_def_acc_data_ready(Event_t * event){
 	MASK_set_flag(&event->mask_or[MASK_ACC_DATA_READY], FLAG_ACC_DATA_READY);
 }
 
-
-
+// ----------------	ORIENTATION ------------------------
+static void mask_def_orientation_update(Event_t * event){
+	//Si les données filtrées du gyro et de l'acc on go
+	MASK_set_flag(&event->mask_and[MASK_ORIENTATION_UPDATE], FLAG_ACC_OK);
+	MASK_set_flag(&event->mask_and[MASK_ORIENTATION_UPDATE], FLAG_GYRO_OK);
+	MASK_set_flag(&event->mask_and[MASK_ORIENTATION_UPDATE], FLAG_GYRO_FILTERED_DATA_READY);
+	MASK_set_flag(&event->mask_or[MASK_ORIENTATION_UPDATE], FLAG_ACC_FILTERED_DATA_READY);
+}
 
 
 

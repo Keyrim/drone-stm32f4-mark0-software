@@ -42,9 +42,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/../Sensors/mpu.h \
  ../Core/Src/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Src/../OS/../Sensors/acc.h ../Core/Src/../OS/../Sensors/ms5611.h \
+ ../Core/Src/../OS/../Estimators/orientation.h \
+ ../Core/Src/../OS/../Estimators/../Sensors/gyro.h \
+ ../Core/Src/../OS/../Estimators/../Sensors/acc.h \
  ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h \
  ../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Src/../OS/scheduler/scheduler.h \
+ ../Core/Src/../OS/../config.h ../Core/Src/../OS/scheduler/scheduler.h \
  ../Core/Src/../OS/scheduler/../tasks/task.h \
  ../Core/Src/../OS/scheduler/../tasks/../system_d.h \
  ../Core/Src/../OS/scheduler/../macro_types.h \
@@ -160,9 +163,17 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Src/../OS/../Sensors/ms5611.h:
 
+../Core/Src/../OS/../Estimators/orientation.h:
+
+../Core/Src/../OS/../Estimators/../Sensors/gyro.h:
+
+../Core/Src/../OS/../Estimators/../Sensors/acc.h:
+
 ../Core/Src/../OS/../../Drivers/Inc/Sequence_led.h:
 
 ../Core/Src/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Src/../OS/../config.h:
 
 ../Core/Src/../OS/scheduler/scheduler.h:
 

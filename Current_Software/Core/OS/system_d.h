@@ -13,7 +13,9 @@
 #include "../Sensors/gyro.h"
 #include "../Sensors/acc.h"
 #include "../Sensors/ms5611.h"
+#include "../Estimators/orientation.h"
 #include "../../Drivers/Inc/Sequence_led.h"
+#include "../config.h"
 
 typedef struct sensors_t{
 	//Sensors
@@ -35,7 +37,7 @@ typedef struct ihm_t{
 typedef struct{
 	ihm_t ihm ;
 	sensors_t sensors ;
-
+	orientation_t orientation ;
 
 
 }system_t;

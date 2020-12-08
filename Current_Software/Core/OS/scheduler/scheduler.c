@@ -13,6 +13,10 @@ static uint32_t task_queu_size = 0 ;
 static uint32_t task_queu_position = 0 ;
 static system_t * sys ;
 
+//Task to add or delete
+static volatile task_t * task_to_moove[TASK_COUNT] ;
+static volatile bool_e way_to_moove[TASK_COUNT] ;
+static volatile uint8_t task_to_moove_counter;
 
 static task_t * get_first_task(void);
 static task_t * get_next_task(void);
@@ -61,6 +65,18 @@ void SCHEDULER_run(void){
 		}
 		task = get_next_task();
 	}
+}
+
+void SCHEDULER_task(void){
+	//On reséquence les tâches en faisant attention aux tâches à supprimer ou rajouter
+	for(uint8_t t = 0; t < task_to_moove_counter; t++)
+	{
+		if(way_to_moove[t])
+			queu_add((task_t *)task_to_moove[t]);
+		else
+			queu_remove((task_t *)task_to_moove[t]);
+	}
+	task_to_moove_counter = 0 ;
 }
 
 uint32_t SCHEDULER_get_cpu_load(void){
@@ -116,10 +132,10 @@ static uint32_t task_process(task_t * task, uint32_t current_time_us){
 
 //Activation ou d�sactivation par ajout ou suppression dans la queu dans la queu
 void SCHEDULER_enable_task(task_ids_t id, bool_e enable){
-	if(enable && id < TASK_COUNT)
-		queu_add(TASK_get_task(id));
-	else
-		queu_remove(TASK_get_task(id));
+	__disable_irq();
+	task_to_moove[task_to_moove_counter] = TASK_get_task(id);
+	way_to_moove[task_to_moove_counter++] = enable ;
+	__enable_irq();
 }
 
 void SCHEDULER_reschedule_task(task_ids_t id, uint32_t new_period_us){
@@ -134,6 +150,9 @@ void SCHEDULER_reschedule_task(task_ids_t id, uint32_t new_period_us){
 //}
 
 static bool_e queu_contains(task_t * task){
+	if(task == NULL)
+		return FALSE ;
+
 	for(uint32_t t = 0; t < task_queu_size; t++)
 		if(task_queu[t] == task)
 			return TRUE ;
@@ -141,16 +160,22 @@ static bool_e queu_contains(task_t * task){
 }
 
 static bool_e queu_add(task_t * task){
-	if(queu_contains(task) || task_queu_size >= TASK_COUNT)
+
+	if(queu_contains(task) || task_queu_size >= TASK_COUNT || task == NULL)
 		return FALSE ;
 
 
 	uint32_t t = 0 ;
 	while(t < TASK_COUNT)
 	{
-		if(task_queu[t] == NULL || task->static_priority > task_queu[t]->static_priority){
-			if(task_queu[t] != NULL)
-				memmove(&task_queu[t+1], &task_queu[t], sizeof(task) * (task_queu_size +1 - t));
+		if(task_queu[t] == NULL)
+		{
+			task_queu[t] = task ;
+			task_queu_size ++ ;
+			return TRUE;
+		}
+		else if(task->static_priority > task_queu[t]->static_priority){
+			memmove(&task_queu[t+1], &task_queu[t], sizeof(task) * (task_queu_size - t));
 			task_queu[t] = task ;
 			task_queu_size ++ ;
 			return TRUE ;
@@ -161,7 +186,7 @@ static bool_e queu_add(task_t * task){
 }
 
 static bool_e queu_remove(task_t * task){
-	if(!queu_contains(task))
+	if(!queu_contains(task) || task == NULL)
 		return FALSE ;
 
 	for(uint32_t t = 0; t < task_queu_size; t ++){
