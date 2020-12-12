@@ -8,6 +8,6 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#define GYRO_LOOP_FREQUENCY 500
+#define GYRO_LOOP_FREQUENCY 2500
 
 #endif /* CONFIG_H_ */

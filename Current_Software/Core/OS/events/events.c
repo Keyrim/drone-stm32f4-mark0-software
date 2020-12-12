@@ -44,7 +44,7 @@ static void gyro_init_ok_func(mask_def_ids_t mask_id){
 	//On dit que le gyro est ok et qu'il effectu des mesures
 	EVENT_Set_flag(FLAG_GYRO_READING);
 	//On lance la tâche d'update du gyro
-	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
+	SCHEDULER_task_set_mode(TASK_GYRO_UPDATE, TASK_MODE_TIME);
 	events_main[EVENT_MAIN_GYRO_INIT_OK].state = EVENT_DISABLED ;
 }
 
@@ -52,7 +52,7 @@ static void acc_init_ok_func(mask_def_ids_t mask_id){
 	//On dit que le gyro est ok et qu'il effectu des mesures
 	EVENT_Set_flag(FLAG_ACC_READING);
 	//On lance la tâche d'update du gyro
-	SCHEDULER_enable_task(TASK_ACC_UPDATE, TRUE);
+	SCHEDULER_task_set_mode(TASK_ACC_UPDATE, TASK_MODE_TIME);
 	events_main[EVENT_MAIN_ACC_INIT_OK].state = EVENT_DISABLED ;
 }
 
@@ -78,7 +78,7 @@ static void gyro_data_ready_func(mask_def_ids_t mask_id){
 	MASK_clean_flag(&flags, FLAG_GYRO_DATA_READY);
 	__enable_irq();
 	//On lance la tâche d'update du gyro
-	SCHEDULER_enable_task(TASK_GYRO_FILTER, TRUE);
+	SCHEDULER_task_set_mode(TASK_GYRO_FILTER, TASK_MODE_EVENT);
 }
 
 static void acc_data_ready_func(mask_def_ids_t mask_id){
@@ -86,7 +86,7 @@ static void acc_data_ready_func(mask_def_ids_t mask_id){
 	MASK_clean_flag(&flags, FLAG_ACC_DATA_READY);
 	__enable_irq();
 	//On lance la tâche d'update du gyro
-	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
+	SCHEDULER_task_set_mode(TASK_ACC_FILTER, TASK_MODE_EVENT);
 }
 
 static void orientation_update(mask_def_ids_t mask_id){
@@ -94,7 +94,7 @@ static void orientation_update(mask_def_ids_t mask_id){
 	MASK_clean_flag(&flags, FLAG_ACC_FILTERED_DATA_READY);
 	MASK_clean_flag(&flags, FLAG_GYRO_FILTERED_DATA_READY);
 	__enable_irq();
-	SCHEDULER_enable_task(TASK_ORIENTATION_UPDATE, TRUE);
+	SCHEDULER_task_set_mode(TASK_ORIENTATION_UPDATE, TASK_MODE_EVENT);
 }
 
 

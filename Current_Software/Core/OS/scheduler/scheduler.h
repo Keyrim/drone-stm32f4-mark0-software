@@ -19,6 +19,7 @@
 void SCHEDULER_init(system_t * sys_);
 void SCHEDULER_run(void);
 
+void SCHEDULER_task_set_mode(task_ids_t id, task_mode_e mode);
 void SCHEDULER_enable_task(task_ids_t id, bool_e enable);
 void SCHEDULER_reschedule_task(task_ids_t id, uint32_t new_period_us);
 

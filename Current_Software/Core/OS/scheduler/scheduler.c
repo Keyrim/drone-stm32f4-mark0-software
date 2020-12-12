@@ -8,14 +8,14 @@
 #include "../time.h"
 
 //Variables privées
-static task_t * task_queu[TASK_COUNT+1];	//+1 sinon le memoove fait de la merde :/
+static task_t * task_queu[TASK_COUNT];
 static uint32_t task_queu_size = 0 ;
 static uint32_t task_queu_position = 0 ;
 static system_t * sys ;
 
 //Task to add or delete
-static volatile task_t * task_to_moove[TASK_COUNT] ;
-static volatile bool_e way_to_moove[TASK_COUNT] ;
+static volatile task_t * task_to_change[TASK_COUNT] ;
+static volatile task_mode_e change_mode[TASK_COUNT] ;
 static volatile uint8_t task_to_moove_counter;
 
 static task_t * get_first_task(void);
@@ -42,39 +42,44 @@ void SCHEDULER_init(system_t * sys_){
 void SCHEDULER_run(void){
 	uint32_t current_time_us = TIME_us();
 	task_t * task = get_first_task();
-
+	bool_e task_executed = FALSE ;
 	while(task_queu_position < task_queu_size && task != NULL){
 
 		switch(task->mode){
 			case TASK_MODE_ALWAYS :
 				current_time_us = task_process(task, current_time_us);
+				task_executed = TRUE ;
 				break;
 			case TASK_MODE_TIME :
-				if(current_time_us >= task->last_execution_us + task->desired_period_us)
+				if(current_time_us >= task->desired_next_start_us){
 					current_time_us = task_process(task, current_time_us);
+					task->desired_next_start_us += task->desired_period_us ;
+					task_executed = TRUE ;
+				}
 				break;
 			case TASK_MODE_EVENT :
 				current_time_us = task_process(task, current_time_us);
-				SCHEDULER_enable_task(task->id, FALSE);
+				task_executed = TRUE ;
+				task->mode = TASK_MODE_WAIT ;
 				break;
 			case TASK_MODE_TIMMER :
-				//Task called from a timmer it
-				break;
+			case TASK_MODE_WAIT:
 			default:
 				break;
 		}
+		if(task_executed && (task != TASK_get_task(TASK_SCHEDULER)) && (task != TASK_get_task(TASK_EVENT_CHECK)))
+			//Stop the while loop if we executed a task
+			break;
+		task_executed = FALSE ;
 		task = get_next_task();
 	}
 }
 
 void SCHEDULER_task(void){
-	//On reséquence les tâches en faisant attention aux tâches à supprimer ou rajouter
+	//Changement de mode pour les tâches
 	for(uint8_t t = 0; t < task_to_moove_counter; t++)
 	{
-		if(way_to_moove[t])
-			queu_add((task_t *)task_to_moove[t]);
-		else
-			queu_remove((task_t *)task_to_moove[t]);
+		task_to_change[t]->mode = change_mode[t] ;
 	}
 	task_to_moove_counter = 0 ;
 }
@@ -130,11 +135,18 @@ static uint32_t task_process(task_t * task, uint32_t current_time_us){
 
 
 
-//Activation ou d�sactivation par ajout ou suppression dans la queu dans la queu
+//Activation ou désactivation par ajout ou suppression dans la queu dans la queu
 void SCHEDULER_enable_task(task_ids_t id, bool_e enable){
+	if(enable)
+		queu_add(TASK_get_task(id));
+	else
+		queu_remove(TASK_get_task(id));
+}
+
+void SCHEDULER_task_set_mode(task_ids_t id, task_mode_e mode){
 	__disable_irq();
-	task_to_moove[task_to_moove_counter] = TASK_get_task(id);
-	way_to_moove[task_to_moove_counter++] = enable ;
+	task_to_change[task_to_moove_counter] = TASK_get_task(id);
+	change_mode[task_to_moove_counter++] = mode ;
 	__enable_irq();
 }
 
