@@ -29,8 +29,8 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_GYRO_FILTER, TRUE);
 	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
 	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
-
-
+	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_UPDATE, TRUE);
+	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_ANALYSIS, TRUE);
 
 }
 
@@ -92,6 +92,15 @@ void process_task_scheduler(uint32_t current_time_us){
 	SCHEDULER_task();
 }
 
+void process_controller_channel_update(uint32_t current_time_us){
+	if(CONTROLLER_Update_Channels_Array())
+		SCHEDULER_task_set_mode(TASK_CONTROLLER_CHANNEL_ANALYSIS, TASK_MODE_EVENT);
+}
+
+void process_controller_channel_analysis(uint32_t current_time_us){
+	CONTROLLER_Update_Channels_Analysis();
+}
+
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
 	.id = id_param,										\
 	.static_priority = priority_param,					\
@@ -103,20 +112,23 @@ void process_task_scheduler(uint32_t current_time_us){
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-		[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_ALWAYS),
-		[TASK_SCHEDULER] = 		DEFINE_TASK(TASK_SCHEDULER, 		PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
+	[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_ALWAYS),
+	[TASK_SCHEDULER] = 		DEFINE_TASK(TASK_SCHEDULER, 		PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
 
-		[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 					TASK_MODE_TIME),
-		[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
+	[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 					TASK_MODE_TIME),
+	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
 
-		[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_LOOP_FREQUENCY), 	TASK_MODE_TIME),
-		[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_HIGH,	 		process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_LOOP_FREQUENCY), 	TASK_MODE_TIME),
+	[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_HIGH,	 		process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
 
-		[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_MEDIUM,	 	process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
-		[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_HIGH,	 		process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_MEDIUM,	 	process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
+	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_HIGH,	 		process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
 
-		[TASK_ORIENTATION_UPDATE] = 	DEFINE_TASK(TASK_ORIENTATION_UPDATE, 		PRIORITY_HIGH,	 		process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_HIGH,		process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_CONTROLLER_CHANNEL_ANALYSIS] = 	DEFINE_TASK(TASK_CONTROLLER_CHANNEL_ANALYSIS, 	PRIORITY_MEDIUM,	process_controller_channel_analysis, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 };
+
 
 task_t * TASK_get_task(task_ids_t id){
 	return &tasks[id];

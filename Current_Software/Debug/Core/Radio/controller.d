@@ -1,4 +1,5 @@
-Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
+Core/Radio/controller.o: ../Core/Radio/controller.c \
+ ../Core/Radio/controller.h ../Core/Radio/../../Drivers/Inc/Ibus.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,27 +33,34 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/../OS/system_d.h ../Core/Inc/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Sensors/sensors.h \
- ../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h \
- ../Core/Inc/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/mpu.h \
- ../Core/Inc/../OS/../Sensors/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/acc.h ../Core/Inc/../OS/../Sensors/ms5611.h \
- ../Core/Inc/../OS/../Estimators/orientation.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
- ../Core/Inc/../OS/../Radio/controller.h \
- ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
- ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h ../Core/Inc/../OS/../config.h
+ ../Core/Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Radio/../OS/events/events.h \
+ ../Core/Radio/../OS/events/mask_def_enum.h \
+ ../Core/Radio/../OS/events/mask.h \
+ ../Core/Radio/../OS/events/../macro_types.h \
+ ../Core/Radio/../OS/events/flags.h \
+ ../Core/Radio/../OS/events/../system_d.h \
+ ../Core/Radio/../OS/events/../macro_types.h \
+ ../Core/Radio/../OS/events/../../Sensors/gyro.h \
+ ../Core/Radio/../OS/events/../../Sensors/sensors.h \
+ ../Core/Radio/../OS/events/../../Sensors/../../Drivers/Inc/Filters.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Radio/../OS/events/../../Sensors/mpu.h \
+ ../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h \
+ ../Core/Radio/../OS/events/../../Sensors/acc.h \
+ ../Core/Radio/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Radio/../OS/events/../../Estimators/orientation.h \
+ ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h \
+ ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
+ ../Core/Radio/../OS/events/../../Radio/controller.h \
+ ../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h \
+ ../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h \
+ ../Core/Radio/../OS/events/../../config.h
 
-../Core/Inc/spi.h:
+../Core/Radio/controller.h:
 
-../Core/Inc/main.h:
+../Core/Radio/../../Drivers/Inc/Ibus.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -120,42 +128,50 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Inc/../OS/system_d.h:
+../Core/Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
-../Core/Inc/../OS/macro_types.h:
+../Core/Radio/../OS/events/events.h:
 
-../Core/Inc/../OS/../Sensors/gyro.h:
+../Core/Radio/../OS/events/mask_def_enum.h:
 
-../Core/Inc/../OS/../Sensors/sensors.h:
+../Core/Radio/../OS/events/mask.h:
 
-../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h:
+../Core/Radio/../OS/events/../macro_types.h:
 
-../Core/Inc/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Radio/../OS/events/flags.h:
 
-../Core/Inc/../OS/../Sensors/mpu.h:
+../Core/Radio/../OS/events/../system_d.h:
 
-../Core/Inc/../OS/../Sensors/../OS/macro_types.h:
+../Core/Radio/../OS/events/../macro_types.h:
 
-../Core/Inc/../OS/../Sensors/acc.h:
+../Core/Radio/../OS/events/../../Sensors/gyro.h:
 
-../Core/Inc/../OS/../Sensors/ms5611.h:
+../Core/Radio/../OS/events/../../Sensors/sensors.h:
 
-../Core/Inc/../OS/../Estimators/orientation.h:
+../Core/Radio/../OS/events/../../Sensors/../../Drivers/Inc/Filters.h:
 
-../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Inc/../OS/../Estimators/../Sensors/acc.h:
+../Core/Radio/../OS/events/../../Sensors/mpu.h:
 
-../Core/Inc/../OS/../Radio/controller.h:
+../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h:
 
-../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h:
+../Core/Radio/../OS/events/../../Sensors/acc.h:
 
-../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Radio/../OS/events/../../Sensors/ms5611.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h:
+../Core/Radio/../OS/events/../../Estimators/orientation.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
+../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h:
 
-../Core/Inc/../OS/../config.h:
+../Core/Radio/../OS/events/../../Radio/controller.h:
+
+../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h:
+
+../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h:
+
+../Core/Radio/../OS/events/../../config.h:

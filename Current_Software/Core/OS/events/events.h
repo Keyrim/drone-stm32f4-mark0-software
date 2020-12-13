@@ -21,6 +21,7 @@ typedef enum events_id_main_e{
 	//Event list
 	EVENT_MAIN_GYRO_INIT_OK,
 	EVENT_MAIN_ACC_INIT_OK,
+	EVENT_MAIN_IBUS_DATA_RDY,
 	EVENT_MAIN_COUNT
 }events_id_main_e;		//Events déclenchés en tâche de fond
 
@@ -63,13 +64,10 @@ void EVENT_process_events_it(void);
 void EVENT_timmer_callback(TIM_HandleTypeDef * htim);
 
 
-//Set and clean flags from main only
-bool_e EVENT_Set_flag(Flags_t flag);
-bool_e EVENT_Clean_flag(Flags_t flag);
+//Set and clean flags
+void EVENT_Set_flag(Flags_e flag);
+void EVENT_Clean_flag(Flags_e flag);
 
-//Set and clean flags from it (between disable_irq : : enable_irq)
-bool_e EVENT_set_flag_it(Flags_t flag);
-bool_e EVENT_clean_flag_it(Flags_t flag);
 
 
 

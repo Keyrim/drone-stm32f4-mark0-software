@@ -8,8 +8,9 @@
 #ifndef EVENTS_FLAGS_H_
 #define EVENTS_FLAGS_H_
 
-typedef enum{
+typedef enum Flags_e{
 	//Flags
+
 
 	//GYRO
 	FLAG_GYRO_OK,
@@ -23,8 +24,34 @@ typedef enum{
 	FLAG_ACC_DATA_READY,
 	FLAG_ACC_FILTERED_DATA_READY,
 
+	//RADIO
+	FLAG_IBUS_DATA_RDY,
+
+	//Channel analysis
+	FLAG_CHAN_5_POS_1,
+	FLAG_CHAN_5_POS_3,
+
+	FLAG_CHAN_6_POS_1,
+	FLAG_CHAN_6_POS_2,
+	FLAG_CHAN_6_POS_3,
+
+	FLAG_CHAN_7_POS_1,
+	FLAG_CHAN_7_POS_2,
+	FLAG_CHAN_7_POS_3,
+
+	FLAG_CHAN_8_POS_1,
+	FLAG_CHAN_8_POS_3,
+
+	FLAG_CHAN_9_PUSH,
+
+	FLAG_CHAN_10_ON,
+
+	FLAG_THROTTLE_HIGH,
+	FLAG_THROTTLE_LOW,
+	FLAG_THROTTLE_NULL,
+
 	FLAG_COUNT
-}Flags_t;
+}Flags_e;
 
 
 #endif /* EVENTS_FLAGS_H_ */

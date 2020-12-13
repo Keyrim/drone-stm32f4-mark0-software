@@ -25,6 +25,7 @@ Core/OS/events \
 Core/OS/scheduler \
 Core/OS/tasks \
 Core/OS \
+Core/Radio \
 Core/Sensors \
 Core/Src \
 Core/Startup \

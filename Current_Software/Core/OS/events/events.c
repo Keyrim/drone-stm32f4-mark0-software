@@ -12,7 +12,7 @@
 
 //Ensemble des flags
 volatile static Mask_t flags ;
-volatile static bool_e new_flag_it = FALSE ;
+volatile static bool_e new_flag = FALSE ;
 static TIM_HandleTypeDef * htim_event ;
 static system_t * sys ;
 
@@ -32,12 +32,14 @@ static bool_e initialized = FALSE ;
 //	----------------------	Events main	--------------------------------------------------------------------------------
 static void gyro_init_ok_func(mask_def_ids_t mask_id);
 static void acc_init_ok_func(mask_def_ids_t mask_id);
+static void ibus_data_rdy(mask_def_ids_t mask_id);
 
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX else failure :)
 static Event_t events_main[EVENT_MAIN_COUNT] ={
 		//Events array
 		[EVENT_MAIN_GYRO_INIT_OK] = DEFINE_EVENT(gyro_init_ok_func, 1, EVENT_ENABLED),
-		[EVENT_MAIN_ACC_INIT_OK] = DEFINE_EVENT(acc_init_ok_func, 1, EVENT_DISABLED)
+		[EVENT_MAIN_ACC_INIT_OK] = DEFINE_EVENT(acc_init_ok_func, 1, EVENT_DISABLED),
+		[EVENT_MAIN_IBUS_DATA_RDY] = DEFINE_EVENT(ibus_data_rdy, 1, EVENT_ENABLED)
 };
 
 static void gyro_init_ok_func(mask_def_ids_t mask_id){
@@ -54,6 +56,15 @@ static void acc_init_ok_func(mask_def_ids_t mask_id){
 	//On lance la tâche d'update du gyro
 	SCHEDULER_task_set_mode(TASK_ACC_UPDATE, TASK_MODE_TIME);
 	events_main[EVENT_MAIN_ACC_INIT_OK].state = EVENT_DISABLED ;
+}
+
+static void ibus_data_rdy(mask_def_ids_t mask_id){
+	//On clean le flag ibus_data_rdy
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_IBUS_DATA_RDY);
+	__enable_irq();
+	//On déclenche la tâche de traitement des octets pour l ibus
+	SCHEDULER_task_set_mode(TASK_CONTROLLER_CHANNEL_UPDATE, TASK_MODE_EVENT);
 }
 
 //	----------------------	Events it	----------------------------------------------------------------------------
@@ -148,38 +159,25 @@ void EVENT_process_events_it(){
 }
 
 //Set et clean depuis le main
-bool_e EVENT_Set_flag(Flags_t flag){
-	bool_e to_ret ;
-	new_flag_it = TRUE ;
-	__disable_irq();
-	to_ret = MASK_set_flag(&flags, flag);		//It désactivitées pour éviter la réentrance
+void EVENT_Set_flag(Flags_e flag){
+	__disable_irq();					//It désactivitées pour éviter la réentrance
+	new_flag = TRUE ;
+	MASK_set_flag(&flags, flag);
 	__enable_irq();
-	return to_ret ;
 }
-bool_e EVENT_Clean_flag(Flags_t flag){
-	bool_e to_ret ;
-	new_flag_it = TRUE ;
-	__disable_irq();
-	to_ret = MASK_clean_flag(&flags, flag);		//It désactivitées pour éviter la réentrance
+void EVENT_Clean_flag(Flags_e flag){
+	__disable_irq();					//It désactivitées pour éviter la réentrance
+	new_flag = TRUE ;
+	MASK_clean_flag(&flags, flag);
 	__enable_irq();
-	return to_ret ;
 }
 
-//Set a flag, disable irq before use
-bool_e EVENT_set_flag_it(Flags_t flag){
-	new_flag_it = TRUE ;
-	return MASK_set_flag(&flags, flag);
-}
-//Clear a flag, disable irq before use
-bool_e EVENT_clean_flag_it(Flags_t flag){
-	new_flag_it = TRUE ;
-	return MASK_clean_flag(&flags, flag);
-}
+
 
 void EVENT_timmer_callback(TIM_HandleTypeDef * htim){
-	if(new_flag_it){
+	if(new_flag){
 		if(htim == htim_event){
-			new_flag_it = FALSE ;
+			new_flag = FALSE ;
 			EVENT_process_events_it();
 		}
 	}

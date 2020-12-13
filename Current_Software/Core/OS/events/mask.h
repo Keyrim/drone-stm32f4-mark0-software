@@ -19,8 +19,8 @@ typedef struct{
 
 //Fonctions qui g�rent les bits / les flags sur les masques
 
-bool_e MASK_set_flag(volatile Mask_t * mask, Flags_t flag);
-bool_e MASK_clean_flag(volatile Mask_t * mask, Flags_t flag);
+bool_e MASK_set_flag(volatile Mask_t * mask, Flags_e flag);
+bool_e MASK_clean_flag(volatile Mask_t * mask, Flags_e flag);
 
 
 //Fonctions de tests avec les masques
@@ -33,8 +33,8 @@ Mask_t MASK_or(Mask_t mask1, Mask_t mask2);
 Mask_t MASK_not(Mask_t mask);
 
 //Cr�er un mask � partir d'un tableau de flag
-Mask_t MASK_create(Flags_t * flag_array, int32_t len);
-Mask_t MASK_create_single(Flags_t flag);
+Mask_t MASK_create(Flags_e * flag_array, int32_t len);
+Mask_t MASK_create_single(Flags_e flag);
 
 //Renvoit un mask vide
 Mask_t MASK_get_empty_mask();

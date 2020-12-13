@@ -33,7 +33,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../OS/system_d.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

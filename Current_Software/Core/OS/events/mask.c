@@ -42,7 +42,7 @@ bool_e Mask_test_or(Mask_t mask_test, Mask_t mask_ref){
 }
 
 //Passe le flag s�l�ctionner � l'�tat haut, renvoit faux si il l'�tait d�j�, vrai sinon
-bool_e MASK_set_flag(volatile Mask_t * mask, Flags_t flag){
+bool_e MASK_set_flag(volatile Mask_t * mask, Flags_e flag){
 	uint32_t array_nb = flag / 32 ;
 	uint32_t flag_pos = flag % 32 ;
 	uint32_t flag_mask = (uint32_t)(1 << flag_pos) ;
@@ -55,7 +55,7 @@ bool_e MASK_set_flag(volatile Mask_t * mask, Flags_t flag){
 }
 
 //Clean un flag, renvoit si il �tat d�j� clean, vrai sinon
-bool_e MASK_clean_flag(volatile Mask_t * mask, Flags_t flag){
+bool_e MASK_clean_flag(volatile Mask_t * mask, Flags_e flag){
 	uint32_t array_nb = flag / 32 ;
 	uint32_t flag_pos = flag % 32 ;
 	uint32_t flag_mask = (uint32_t)(1 << flag_pos) ;
@@ -95,7 +95,7 @@ Mask_t MASK_not(Mask_t mask){
 
 
 //Cr�er un mask � partir d'un tableau de flag
-Mask_t MASK_create(Flags_t * flag_array, int32_t len){
+Mask_t MASK_create(Flags_e * flag_array, int32_t len){
 	Mask_t mask_return = MASK_get_empty_mask() ;
 	for(int32_t f = 0; f < len; f++)
 		MASK_set_flag(&mask_return, flag_array[f]);
@@ -103,7 +103,7 @@ Mask_t MASK_create(Flags_t * flag_array, int32_t len){
 	return mask_return ;
 }
 
-Mask_t MASK_create_single(Flags_t flag){
+Mask_t MASK_create_single(Flags_e flag){
 	Mask_t mask_return = MASK_get_empty_mask() ;
 	MASK_set_flag(&mask_return, flag);
 	return mask_return ;

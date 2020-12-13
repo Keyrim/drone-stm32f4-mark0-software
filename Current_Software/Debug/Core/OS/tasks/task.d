@@ -44,8 +44,12 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/acc.h \
+ ../Core/OS/tasks/../../Radio/controller.h \
+ ../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h \
+ ../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h \
  ../Core/OS/tasks/../../config.h \
  ../Core/OS/tasks/../scheduler/scheduler.h \
  ../Core/OS/tasks/../scheduler/../tasks/task.h \
@@ -154,9 +158,17 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Core/OS/tasks/../../Estimators/../Sensors/acc.h:
 
+../Core/OS/tasks/../../Radio/controller.h:
+
+../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h:
+
+../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
 ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/OS/tasks/../../../Drivers/Inc/Ibus.h:
 
 ../Core/OS/tasks/../../config.h:
 

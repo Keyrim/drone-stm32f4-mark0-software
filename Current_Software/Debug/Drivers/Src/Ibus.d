@@ -1,4 +1,4 @@
-Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
+Drivers/Src/Ibus.o: ../Drivers/Src/Ibus.c ../Drivers/Src/../Inc/Ibus.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,27 +32,9 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/../OS/system_d.h ../Core/Inc/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Sensors/sensors.h \
- ../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h \
- ../Core/Inc/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/mpu.h \
- ../Core/Inc/../OS/../Sensors/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/acc.h ../Core/Inc/../OS/../Sensors/ms5611.h \
- ../Core/Inc/../OS/../Estimators/orientation.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
- ../Core/Inc/../OS/../Radio/controller.h \
- ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
- ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h ../Core/Inc/../OS/../config.h
+ ../Drivers/Src/../Inc/../../Core/OS/macro_types.h
 
-../Core/Inc/spi.h:
-
-../Core/Inc/main.h:
+../Drivers/Src/../Inc/Ibus.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -120,42 +102,4 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Inc/../OS/system_d.h:
-
-../Core/Inc/../OS/macro_types.h:
-
-../Core/Inc/../OS/../Sensors/gyro.h:
-
-../Core/Inc/../OS/../Sensors/sensors.h:
-
-../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h:
-
-../Core/Inc/../OS/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Inc/../OS/../Sensors/mpu.h:
-
-../Core/Inc/../OS/../Sensors/../OS/macro_types.h:
-
-../Core/Inc/../OS/../Sensors/acc.h:
-
-../Core/Inc/../OS/../Sensors/ms5611.h:
-
-../Core/Inc/../OS/../Estimators/orientation.h:
-
-../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
-
-../Core/Inc/../OS/../Estimators/../Sensors/acc.h:
-
-../Core/Inc/../OS/../Radio/controller.h:
-
-../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h:
-
-../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h:
-
-../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
-
-../Core/Inc/../OS/../config.h:
+../Drivers/Src/../Inc/../../Core/OS/macro_types.h:

@@ -109,7 +109,7 @@ int main(void)
   //Init du baromètre
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
 
-  //Init du GYRO et de l ACC en utilisant un MPU
+  //Init du GYRO et de l ACC en utilisant un MPU6000
   MPU_init(&sys.sensors.mpu, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
   GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
@@ -119,6 +119,10 @@ int main(void)
   LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_5, 1, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
+
+  CONTROLLER_Init(&sys.radio.controller, &sys.radio.ibus);
+  IBUS_init(&sys.radio.ibus, &huart3, CONTROLLER_Rx_Data_Rdy);
+
 
   SCHEDULER_init(&sys);
   EVENT_init(&sys, &htim2);

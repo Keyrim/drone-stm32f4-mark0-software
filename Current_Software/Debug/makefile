@@ -13,6 +13,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/Sensors/subdir.mk
+-include Core/Radio/subdir.mk
 -include Core/OS/tasks/subdir.mk
 -include Core/OS/scheduler/subdir.mk
 -include Core/OS/events/subdir.mk

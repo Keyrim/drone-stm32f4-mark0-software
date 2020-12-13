@@ -21,6 +21,8 @@ static void mask_def_acc_init_ok(Event_t * event);
 // ----------------	Orientation ------------------------
 static void mask_def_orientation_update(Event_t * event);
 
+// ----------------	Radio ------------------------
+static void mask_def_ibus_data_rdy(Event_t * event);
 //----------------	GLOBAL INIT ------------------------
 void mask_def_events_it_init(Event_t * event){
 	//Gyro mask def
@@ -40,6 +42,9 @@ void mask_def_events_main_init(Event_t * event){
 
 	//Acc mask def
 	mask_def_acc_init_ok(&event[EVENT_MAIN_ACC_INIT_OK]);
+
+	//Ibus
+	mask_def_ibus_data_rdy(&event[EVENT_MAIN_IBUS_DATA_RDY]);
 
 }
 
@@ -81,7 +86,13 @@ static void mask_def_orientation_update(Event_t * event){
 	MASK_set_flag(&event->mask_or[MASK_ORIENTATION_UPDATE], FLAG_ACC_FILTERED_DATA_READY);
 }
 
+// ----------------	Radio ------------------------
 
+static void mask_def_ibus_data_rdy(Event_t * event){
+	//Si flag data rdy on y go
+	MASK_set_flag(&event->mask_and[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
+	MASK_set_flag(&event->mask_or[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
+}
 
 
 

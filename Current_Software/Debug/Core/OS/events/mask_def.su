@@ -1,7 +1,8 @@
-mask_def.c:25:6:mask_def_events_it_init	16	static
-mask_def.c:37:6:mask_def_events_main_init	16	static
-mask_def.c:47:13:mask_def_gyro_init_ok	16	static
-mask_def.c:54:13:mask_def_gyro_data_ready	16	static
-mask_def.c:62:13:mask_def_acc_init_ok	16	static
-mask_def.c:69:13:mask_def_acc_data_ready	16	static
-mask_def.c:76:13:mask_def_orientation_update	16	static
+mask_def.c:27:6:mask_def_events_it_init	16	static
+mask_def.c:39:6:mask_def_events_main_init	16	static
+mask_def.c:52:13:mask_def_gyro_init_ok	16	static
+mask_def.c:59:13:mask_def_gyro_data_ready	16	static
+mask_def.c:67:13:mask_def_acc_init_ok	16	static
+mask_def.c:74:13:mask_def_acc_data_ready	16	static
+mask_def.c:81:13:mask_def_orientation_update	16	static
+mask_def.c:91:13:mask_def_ibus_data_rdy	16	static

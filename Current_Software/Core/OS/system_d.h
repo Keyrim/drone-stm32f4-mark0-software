@@ -14,7 +14,9 @@
 #include "../Sensors/acc.h"
 #include "../Sensors/ms5611.h"
 #include "../Estimators/orientation.h"
+#include "../Radio/controller.h"
 #include "../../Drivers/Inc/Sequence_led.h"
+#include "../../Drivers/Inc/Ibus.h"
 #include "../config.h"
 
 typedef struct sensors_t{
@@ -28,6 +30,11 @@ typedef struct sensors_t{
 	ms5611_t ms5611 ;
 }sensors_t;
 
+typedef struct radio_t{
+	ibus_t ibus;
+	controller_t controller ;
+}radio_t;
+
 typedef struct ihm_t{
 	sequence_led_t led_red ;
 	sequence_led_t led_green ;
@@ -38,8 +45,7 @@ typedef struct{
 	ihm_t ihm ;
 	sensors_t sensors ;
 	orientation_t orientation ;
-
-
+	radio_t	radio;
 }system_t;
 
 
