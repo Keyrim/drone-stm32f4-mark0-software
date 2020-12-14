@@ -13,12 +13,15 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/Sensors/subdir.mk
+-include Core/Regulation/subdir.mk
 -include Core/Radio/subdir.mk
+-include Core/Propulsion/subdir.mk
 -include Core/OS/tasks/subdir.mk
 -include Core/OS/scheduler/subdir.mk
 -include Core/OS/events/subdir.mk
 -include Core/OS/debug/subdir.mk
 -include Core/OS/subdir.mk
+-include Core/Flight_mode/subdir.mk
 -include Core/Estimators/subdir.mk
 -include subdir.mk
 -include objects.mk

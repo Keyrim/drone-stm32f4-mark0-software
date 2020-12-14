@@ -23,6 +23,10 @@ static void mask_def_orientation_update(Event_t * event);
 
 // ----------------	Radio ------------------------
 static void mask_def_ibus_data_rdy(Event_t * event);
+
+// ----------------	Flight Modes ------------------------
+static void mask_def_on_the_ground(Event_t * event);
+static void mask_def_manual_accro(Event_t * event);
 //----------------	GLOBAL INIT ------------------------
 void mask_def_events_it_init(Event_t * event){
 	//Gyro mask def
@@ -33,6 +37,8 @@ void mask_def_events_it_init(Event_t * event){
 
 	//Orientation
 	mask_def_orientation_update(&event[EVENT_IT_ORIENTATION_UPDATE]);
+
+
 
 }
 
@@ -45,6 +51,10 @@ void mask_def_events_main_init(Event_t * event){
 
 	//Ibus
 	mask_def_ibus_data_rdy(&event[EVENT_MAIN_IBUS_DATA_RDY]);
+
+	//Flight_modes
+	mask_def_on_the_ground(&event[EVENT_MAIN_ON_THE_GROUND]);
+	mask_def_manual_accro(&event[EVENT_MAIN_MANUAL_ACCRO]);
 
 }
 
@@ -92,6 +102,23 @@ static void mask_def_ibus_data_rdy(Event_t * event){
 	//Si flag data rdy on y go
 	MASK_set_flag(&event->mask_and[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
 	MASK_set_flag(&event->mask_or[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
+}
+
+// ----------------	Flight Modes ------------------------
+static void mask_def_on_the_ground(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_ON_THE_GROUND_MANUAL], FLAG_FLIGHT_MODE_MANUAL_ACCRO);
+
+	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_MANUAL], FLAG_THROTTLE_NULL);
+	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_MANUAL], FLAG_CHAN_5_POS_1);
+
+}
+
+static void mask_def_manual_accro(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_FLIGHT_MODE_ON_THE_GROUND);
+	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_CHAN_5_POS_3);
+
+	MASK_set_flag(&event->mask_or[MASK_MANUAL_ON_THE_GROUND], FLAG_THROTTLE_LOW);
+
 }
 
 

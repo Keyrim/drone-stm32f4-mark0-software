@@ -22,6 +22,11 @@ typedef enum events_id_main_e{
 	EVENT_MAIN_GYRO_INIT_OK,
 	EVENT_MAIN_ACC_INIT_OK,
 	EVENT_MAIN_IBUS_DATA_RDY,
+	//	Flights modes transition
+	EVENT_MAIN_ON_THE_GROUND,
+	EVENT_MAIN_MANUAL_ACCRO,
+
+	//Count
 	EVENT_MAIN_COUNT
 }events_id_main_e;		//Events déclenchés en tâche de fond
 

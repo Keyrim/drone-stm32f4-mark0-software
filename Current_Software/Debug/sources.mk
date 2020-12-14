@@ -20,12 +20,15 @@ OBJCOPY_BIN :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Estimators \
+Core/Flight_mode \
 Core/OS/debug \
 Core/OS/events \
 Core/OS/scheduler \
 Core/OS/tasks \
 Core/OS \
+Core/Propulsion \
 Core/Radio \
+Core/Regulation \
 Core/Sensors \
 Core/Src \
 Core/Startup \

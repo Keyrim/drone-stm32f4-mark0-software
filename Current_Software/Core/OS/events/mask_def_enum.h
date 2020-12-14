@@ -33,6 +33,14 @@ typedef enum{
 	MASK_IBUS_DATA_RDY = 0,
 	MASK_IBUS_DATA_RDY_COUNT,
 
+	//On the ground
+	MASK_ON_THE_GROUND_MANUAL = 0,
+	MASK_ON_THE_GROUND_COUNT,
+
+	//Manual
+	MASK_MANUAL_ON_THE_GROUND = 0,
+	MASK_MANUAL_COUNT,
+
 	MASK_DEF_LAST
 }mask_def_ids_t;
 

@@ -46,9 +46,19 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
  ../Core/Inc/../OS/../Radio/controller.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Inc/../OS/../Propulsion/Propulsion.h \
+ ../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/Motors.h \
+ ../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
+ ../Core/Inc/../OS/../Regulation/../Estimators/orientation.h \
+ ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h \
+ ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h \
  ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h ../Core/Inc/../OS/../config.h
+ ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h \
+ ../Core/Inc/../OS/../../Drivers/Inc/Motors.h \
+ ../Core/Inc/../OS/../config.h
 
 ../Core/Inc/main.h:
 
@@ -150,10 +160,28 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
 
 ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
+../Core/Inc/../OS/../Propulsion/Propulsion.h:
+
+../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/Motors.h:
+
+../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Inc/../OS/../Regulation/Regu_orientation.h:
+
+../Core/Inc/../OS/../Regulation/../Estimators/orientation.h:
+
+../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h:
+
+../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
 ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h:
 
 ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
+
+../Core/Inc/../OS/../../Drivers/Inc/Motors.h:
 
 ../Core/Inc/../OS/../config.h:

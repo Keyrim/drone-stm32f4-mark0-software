@@ -42,6 +42,7 @@ typedef enum task_ids {
 	TASK_ORIENTATION_UPDATE,
 	TASK_CONTROLLER_CHANNEL_UPDATE,
 	TASK_CONTROLLER_CHANNEL_ANALYSIS,
+	TASK_MOTORS_UPDATE,
 	TASK_COUNT
 }task_ids_t;
 
@@ -55,7 +56,7 @@ typedef enum task_mode_e{
 
 
 typedef enum{
-	PROCESS_IT,
+	PROCESS_IT = 0x00,
 	PROCESS_MAIN
 }process_type_e;
 

@@ -9,6 +9,7 @@
 #include "flags.h"
 #include "events.h"
 #include "../scheduler/scheduler.h"
+#include "../Flight_mode/Flight_mode.h"
 
 //Ensemble des flags
 volatile static Mask_t flags ;
@@ -33,13 +34,17 @@ static bool_e initialized = FALSE ;
 static void gyro_init_ok_func(mask_def_ids_t mask_id);
 static void acc_init_ok_func(mask_def_ids_t mask_id);
 static void ibus_data_rdy(mask_def_ids_t mask_id);
+static void on_the_ground(mask_def_ids_t mask_id);
+static void manual_accro(mask_def_ids_t mask_id);
 
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX else failure :)
 static Event_t events_main[EVENT_MAIN_COUNT] ={
 		//Events array
-		[EVENT_MAIN_GYRO_INIT_OK] = DEFINE_EVENT(gyro_init_ok_func, 1, EVENT_ENABLED),
-		[EVENT_MAIN_ACC_INIT_OK] = DEFINE_EVENT(acc_init_ok_func, 1, EVENT_DISABLED),
-		[EVENT_MAIN_IBUS_DATA_RDY] = DEFINE_EVENT(ibus_data_rdy, 1, EVENT_ENABLED)
+		[EVENT_MAIN_GYRO_INIT_OK] = 	DEFINE_EVENT(gyro_init_ok_func, 	MASK_GYRO_INIT_COUNT, 		EVENT_ENABLED),
+		[EVENT_MAIN_ACC_INIT_OK] = 		DEFINE_EVENT(acc_init_ok_func, 		MASK_ACC_INIT_COUNT, 		EVENT_DISABLED),
+		[EVENT_MAIN_IBUS_DATA_RDY] = 	DEFINE_EVENT(ibus_data_rdy, 		MASK_IBUS_DATA_RDY_COUNT, 	EVENT_ENABLED),
+		[EVENT_MAIN_ON_THE_GROUND] = 	DEFINE_EVENT(on_the_ground, 		MASK_ON_THE_GROUND_COUNT, 	EVENT_ENABLED),
+		[EVENT_MAIN_MANUAL_ACCRO] = 	DEFINE_EVENT(manual_accro, 			MASK_MANUAL_COUNT, 			EVENT_ENABLED)
 };
 
 static void gyro_init_ok_func(mask_def_ids_t mask_id){
@@ -67,6 +72,21 @@ static void ibus_data_rdy(mask_def_ids_t mask_id){
 	SCHEDULER_task_set_mode(TASK_CONTROLLER_CHANNEL_UPDATE, TASK_MODE_EVENT);
 }
 
+static void on_the_ground(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_FLIGHT_MODE_MANUAL_ACCRO);
+	MASK_set_flag(&flags, FLAG_FLIGHT_MODE_ON_THE_GROUND);
+	__enable_irq();
+	FLIGHT_MODE_Set_Flight_Mode(FLIGHT_MODE_ON_THE_GROUND);
+}
+static void manual_accro(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_clean_flag(&flags, FLAG_FLIGHT_MODE_ON_THE_GROUND);
+	MASK_set_flag(&flags, FLAG_FLIGHT_MODE_MANUAL_ACCRO);
+	__enable_irq();
+	FLIGHT_MODE_Set_Flight_Mode(FLIGHT_MODE_MANUAL_ACCRO);
+}
+
 //	----------------------	Events it	----------------------------------------------------------------------------
 
 
@@ -79,9 +99,9 @@ static void orientation_update(mask_def_ids_t mask_id);
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX sinon dérapage :)
 static Event_t events_it[EVENT_IT_COUNT] ={
 		//Events array
-		[EVENT_IT_GYRO_DATA_READY] = 		DEFINE_EVENT(gyro_data_ready_func, 	1, EVENT_ENABLED),
-		[EVENT_IT_ACC_DATA_READY] = 		DEFINE_EVENT(acc_data_ready_func, 	1, EVENT_ENABLED),
-		[EVENT_IT_ORIENTATION_UPDATE] = 	DEFINE_EVENT(orientation_update, 	1, EVENT_ENABLED)
+		[EVENT_IT_GYRO_DATA_READY] = 		DEFINE_EVENT(gyro_data_ready_func, 	MASK_GYRO_DATA_READY_COUNT, 	EVENT_ENABLED),
+		[EVENT_IT_ACC_DATA_READY] = 		DEFINE_EVENT(acc_data_ready_func, 	MASK_ACC_DATA_READY_COUNT, 		EVENT_ENABLED),
+		[EVENT_IT_ORIENTATION_UPDATE] = 	DEFINE_EVENT(orientation_update, 	MASK_ORIENTATION_UPDATE_COUNT,	EVENT_ENABLED)
 };
 
 static void gyro_data_ready_func(mask_def_ids_t mask_id){
@@ -190,6 +210,8 @@ void EVENT_init(system_t * sys_, TIM_HandleTypeDef * htim_event_){
 	//Configuration des mask associés aux events
 	mask_def_events_it_init(events_it);
 	mask_def_events_main_init(events_main);
+
+	MASK_set_flag(&flags, FLAG_FLIGHT_MODE_ON_THE_GROUND);
 
 	//On lance le timmer dédié à l'it event
 	if(htim_event_ != NULL){

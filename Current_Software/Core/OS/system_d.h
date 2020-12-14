@@ -15,8 +15,11 @@
 #include "../Sensors/ms5611.h"
 #include "../Estimators/orientation.h"
 #include "../Radio/controller.h"
+#include "../Propulsion/Propulsion.h"
+#include "../Regulation/Regu_orientation.h"
 #include "../../Drivers/Inc/Sequence_led.h"
 #include "../../Drivers/Inc/Ibus.h"
+#include "../../Drivers/Inc/Motors.h"
 #include "../config.h"
 
 typedef struct sensors_t{
@@ -29,6 +32,15 @@ typedef struct sensors_t{
 	mpu_t mpu ;
 	ms5611_t ms5611 ;
 }sensors_t;
+
+typedef struct regulation_t{
+	//Orientation
+	regu_orientation_t orientation ;
+	//Position
+	//Todo position regulation
+}regulation_t;
+
+
 
 typedef struct radio_t{
 	ibus_t ibus;
@@ -46,6 +58,8 @@ typedef struct{
 	sensors_t sensors ;
 	orientation_t orientation ;
 	radio_t	radio;
+	propulsion_t propulsion ;
+	regulation_t regulation ;
 }system_t;
 
 

@@ -50,9 +50,18 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../../Radio/controller.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/events/../../Propulsion/Propulsion.h \
+ ../Core/OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/OS/events/../../Regulation/../Estimators/orientation.h \
+ ../Core/OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/OS/events/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/events/../../../Drivers/Inc/Ibus.h \
+ ../Core/OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/OS/events/../../config.h
 
 ../Core/OS/events/mask_def.h:
@@ -165,10 +174,28 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 
 ../Core/OS/events/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
+../Core/OS/events/../../Propulsion/Propulsion.h:
+
+../Core/OS/events/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/OS/events/../../Regulation/../Estimators/orientation.h:
+
+../Core/OS/events/../../Regulation/../../Drivers/Inc/Pid.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
 ../Core/OS/events/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/OS/events/../../../Drivers/Inc/Ibus.h:
+
+../Core/OS/events/../../../Drivers/Inc/Motors.h:
 
 ../Core/OS/events/../../config.h:

@@ -32,6 +32,7 @@
 #include "../OS/system_d.h"
 #include "../OS/scheduler/scheduler.h"
 #include "../OS/events/events.h"
+#include "../Flight_mode/Flight_mode.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,7 +115,7 @@ int main(void)
   GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
-  ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_LOOP_FREQUENCY);
+
 
   LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_5, 1, 12, 1);
   LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
@@ -123,6 +124,11 @@ int main(void)
   CONTROLLER_Init(&sys.radio.controller, &sys.radio.ibus);
   IBUS_init(&sys.radio.ibus, &huart3, CONTROLLER_Rx_Data_Rdy);
 
+  ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_LOOP_FREQUENCY);
+  REGULATION_ORIENTATION_Init(&sys.regulation.orientation, &sys.orientation, sys.propulsion.consigne);
+  PROPULSION_Init(&sys.propulsion, &htim1);
+
+  FLIGHT_MODE_Init(&sys);
 
   SCHEDULER_init(&sys);
   EVENT_init(&sys, &htim2);

@@ -53,9 +53,18 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/Radio/../OS/events/../../Radio/controller.h \
+ ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h \
+ ../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/Radio/../OS/events/../../Regulation/../Estimators/orientation.h \
+ ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h \
+ ../Core/Radio/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Radio/../OS/events/../../config.h
 
 ../Core/Radio/controller.h:
@@ -168,10 +177,28 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Radio/controller.h:
 
+../Core/Radio/../OS/events/../../Propulsion/Propulsion.h:
+
+../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/Radio/../OS/events/../../Regulation/../Estimators/orientation.h:
+
+../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
 ../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h:
+
+../Core/Radio/../OS/events/../../../Drivers/Inc/Motors.h:
 
 ../Core/Radio/../OS/events/../../config.h:

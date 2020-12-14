@@ -8,6 +8,7 @@
 #include "task.h"
 #include "../scheduler/scheduler.h"
 #include "../events/events.h"
+#include "../Flight_mode/Flight_mode.h"
 
 static system_t * sys;
 
@@ -31,6 +32,7 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
 	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_UPDATE, TRUE);
 	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_ANALYSIS, TRUE);
+	SCHEDULER_enable_task(TASK_MOTORS_UPDATE, TRUE);
 
 }
 
@@ -86,6 +88,8 @@ void process_orientation_update(uint32_t current_time_us){
 	UNUSED(current_time_us);
 	delta_1 = (end_time_filtering_gyro - start_time_gyro) ;
 	ORIENTATION_Update(&sys->orientation);
+	REGULATION_ORIENTATION_Process();
+	PROPULSION_Update_Motors();
 }
 
 void process_task_scheduler(uint32_t current_time_us){
@@ -99,6 +103,16 @@ void process_controller_channel_update(uint32_t current_time_us){
 
 void process_controller_channel_analysis(uint32_t current_time_us){
 	CONTROLLER_Update_Channels_Analysis();
+}
+
+void process_motor_update(uint32_t current_time_us){
+//	sys->propulsion.duty[0] = sys->radio.controller.channels[2]-1000;
+//	sys->propulsion.duty[1] = sys->radio.controller.channels[2]-1000;
+//	sys->propulsion.duty[2] = sys->radio.controller.channels[2]-1000;
+//	sys->propulsion.duty[3] = sys->radio.controller.channels[2]-1000;
+//	MOTORS_Change_output(&sys->propulsion.motors);
+	FLIGHT_MODE_Main();
+
 }
 
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
@@ -123,6 +137,7 @@ task_t tasks [TASK_COUNT] ={
 
 	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_MEDIUM,	 	process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
 	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_HIGH,	 		process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_MOTORS_UPDATE] = 	DEFINE_TASK(TASK_MOTORS_UPDATE, 	PRIORITY_HIGH,	 		process_motor_update, 		PERIOD_US_FROM_HERTZ(250), 					TASK_MODE_TIME),
 
 	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_HIGH,		process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),

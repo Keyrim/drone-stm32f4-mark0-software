@@ -47,9 +47,18 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Radio/controller.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/tasks/../../Propulsion/Propulsion.h \
+ ../Core/OS/tasks/../../Propulsion/../../Drivers/Inc/Motors.h \
+ ../Core/OS/tasks/../../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/tasks/../../Regulation/Regu_orientation.h \
+ ../Core/OS/tasks/../../Regulation/../Estimators/orientation.h \
+ ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Pid.h \
+ ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h \
+ ../Core/OS/tasks/../../../Drivers/Inc/Motors.h \
  ../Core/OS/tasks/../../config.h \
  ../Core/OS/tasks/../scheduler/scheduler.h \
  ../Core/OS/tasks/../scheduler/../tasks/task.h \
@@ -62,7 +71,9 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../events/mask.h \
  ../Core/OS/tasks/../events/../macro_types.h \
  ../Core/OS/tasks/../events/flags.h \
- ../Core/OS/tasks/../events/../system_d.h
+ ../Core/OS/tasks/../events/../system_d.h \
+ ../Core/Inc/../Flight_mode/Flight_mode.h \
+ ../Core/Inc/../Flight_mode/../OS/system_d.h
 
 ../Core/OS/tasks/task.h:
 
@@ -164,11 +175,29 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
+../Core/OS/tasks/../../Propulsion/Propulsion.h:
+
+../Core/OS/tasks/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+../Core/OS/tasks/../../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/OS/tasks/../../Regulation/Regu_orientation.h:
+
+../Core/OS/tasks/../../Regulation/../Estimators/orientation.h:
+
+../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Pid.h:
+
+../Core/OS/tasks/../../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Filters.h:
+
 ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h:
+
+../Core/OS/tasks/../../../Drivers/Inc/Motors.h:
 
 ../Core/OS/tasks/../../config.h:
 
@@ -195,3 +224,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../events/flags.h:
 
 ../Core/OS/tasks/../events/../system_d.h:
+
+../Core/Inc/../Flight_mode/Flight_mode.h:
+
+../Core/Inc/../Flight_mode/../OS/system_d.h:

@@ -49,9 +49,18 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Radio/controller.h \
  ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../Propulsion/Propulsion.h \
+ ../Core/OS/scheduler/../tasks/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/orientation.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Ibus.h \
+ ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Motors.h \
  ../Core/OS/scheduler/../tasks/../../config.h \
  ../Core/OS/scheduler/../macro_types.h \
  ../Core/OS/scheduler/../debug/debug.h \
@@ -160,11 +169,29 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
+../Core/OS/scheduler/../tasks/../../Propulsion/Propulsion.h:
+
+../Core/OS/scheduler/../tasks/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/orientation.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Pid.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h:
+
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h:
 
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Ibus.h:
+
+../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Motors.h:
 
 ../Core/OS/scheduler/../tasks/../../config.h:
 
