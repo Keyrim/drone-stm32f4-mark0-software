@@ -2,6 +2,6 @@ Flight_mode.c:36:6:FLIGHT_MODE_Init	16	static
 Flight_mode.c:41:6:FLIGHT_MODE_Set_Flight_Mode	16	static
 Flight_mode.c:45:6:FLIGHT_MODE_Main	8	static
 Flight_mode.c:68:13:on_the_ground_entrance	8	static
-Flight_mode.c:71:13:on_the_ground_main	4	static
-Flight_mode.c:74:13:manual_accro_entrance	8	static
-Flight_mode.c:78:13:manual_accro_main	4	static
+Flight_mode.c:72:13:on_the_ground_main	4	static
+Flight_mode.c:75:13:manual_accro_entrance	8	static
+Flight_mode.c:80:13:manual_accro_main	4	static

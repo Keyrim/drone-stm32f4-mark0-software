@@ -54,6 +54,9 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Inc/../OS/../Regulation/Regu_position.h \
+ ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
+ ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h \
  ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h \
@@ -177,6 +180,12 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Inc/../OS/../Regulation/Regu_position.h:
+
+../Core/Inc/../OS/../Regulation/Regu_orientation.h:
+
+../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h:
 
 ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h:
 

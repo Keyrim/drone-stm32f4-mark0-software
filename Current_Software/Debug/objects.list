@@ -11,6 +11,7 @@
 "Core/Propulsion/Propulsion.o"
 "Core/Radio/controller.o"
 "Core/Regulation/Regu_orientation.o"
+"Core/Regulation/Regu_position.o"
 "Core/Sensors/acc.o"
 "Core/Sensors/baro.o"
 "Core/Sensors/gyro.o"

@@ -88,6 +88,8 @@ void process_orientation_update(uint32_t current_time_us){
 	UNUSED(current_time_us);
 	delta_1 = (end_time_filtering_gyro - start_time_gyro) ;
 	ORIENTATION_Update(&sys->orientation);
+
+	REGULATION_POSITION_Process();
 	REGULATION_ORIENTATION_Process();
 	PROPULSION_Update_Motors();
 }

@@ -7,8 +7,8 @@ task.c:74:6:process_acc_update	16	static
 task.c:78:6:process_acc_filter	16	static
 task.c:82:6:process_event_main	16	static
 task.c:87:6:process_orientation_update	16	static
-task.c:95:6:process_task_scheduler	16	static
-task.c:99:6:process_controller_channel_update	16	static
-task.c:104:6:process_controller_channel_analysis	16	static
-task.c:108:6:process_motor_update	16	static
-task.c:148:10:TASK_get_task	16	static
+task.c:97:6:process_task_scheduler	16	static
+task.c:101:6:process_controller_channel_update	16	static
+task.c:106:6:process_controller_channel_analysis	16	static
+task.c:110:6:process_motor_update	16	static
+task.c:150:10:TASK_get_task	16	static

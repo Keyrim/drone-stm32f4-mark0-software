@@ -89,7 +89,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  HAL_Delay(100);	//Let the time to the components to start
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -105,7 +105,7 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_Delay(100);	//Let the time to the components to start
 
   //Init du baromètre
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
@@ -126,6 +126,7 @@ int main(void)
 
   ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_LOOP_FREQUENCY);
   REGULATION_ORIENTATION_Init(&sys.regulation.orientation, &sys.orientation, sys.propulsion.consigne);
+  REGULATION_POSITION_Init(&sys.regulation.position, &sys.regulation.orientation, sys.propulsion.consigne);
   PROPULSION_Init(&sys.propulsion, &htim1);
 
   FLIGHT_MODE_Init(&sys);

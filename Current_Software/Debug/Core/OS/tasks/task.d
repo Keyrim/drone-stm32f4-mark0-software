@@ -55,6 +55,9 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Pid.h \
  ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/OS/tasks/../../Regulation/Regu_position.h \
+ ../Core/OS/tasks/../../Regulation/Regu_orientation.h \
+ ../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
  ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h \
@@ -190,6 +193,12 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/OS/tasks/../../Regulation/Regu_position.h:
+
+../Core/OS/tasks/../../Regulation/Regu_orientation.h:
+
+../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
 

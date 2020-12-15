@@ -1,6 +1,5 @@
-Core/Flight_mode/Flight_mode.o: ../Core/Flight_mode/Flight_mode.c \
- ../Core/Flight_mode/Flight_mode.h ../Core/Flight_mode/../OS/system_d.h \
- ../Core/Flight_mode/../OS/macro_types.h \
+Core/Regulation/Regu_position.o: ../Core/Regulation/Regu_position.c \
+ ../Core/Regulation/Regu_position.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -34,42 +33,23 @@ Core/Flight_mode/Flight_mode.o: ../Core/Flight_mode/Flight_mode.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Flight_mode/../OS/../Sensors/gyro.h \
- ../Core/Flight_mode/../OS/../Sensors/sensors.h \
- ../Core/Flight_mode/../OS/../Sensors/../../Drivers/Inc/Filters.h \
+ ../Core/Regulation/Regu_orientation.h \
+ ../Core/Regulation/../Estimators/orientation.h \
+ ../Core/Regulation/../Estimators/../Sensors/gyro.h \
+ ../Core/Regulation/../Estimators/../Sensors/sensors.h \
+ ../Core/Regulation/../Estimators/../Sensors/../../Drivers/Inc/Filters.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Flight_mode/../OS/../Sensors/mpu.h \
- ../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h \
- ../Core/Flight_mode/../OS/../Sensors/acc.h \
- ../Core/Flight_mode/../OS/../Sensors/ms5611.h \
- ../Core/Flight_mode/../OS/../Estimators/orientation.h \
- ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h \
- ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h \
- ../Core/Flight_mode/../OS/../Radio/controller.h \
- ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h \
- c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Flight_mode/../OS/../Propulsion/Propulsion.h \
- ../Core/Flight_mode/../OS/../Propulsion/../../Drivers/Inc/Motors.h \
- c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
- ../Core/Flight_mode/../OS/../Regulation/../Estimators/orientation.h \
- ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Pid.h \
- c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h \
- ../Core/Flight_mode/../OS/../Regulation/Regu_position.h \
- ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
- ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/Motors.h \
- ../Core/Flight_mode/../OS/../config.h
+ ../Core/Regulation/../Estimators/../Sensors/mpu.h \
+ ../Core/Regulation/../Estimators/../Sensors/../OS/macro_types.h \
+ ../Core/Regulation/../Estimators/../Sensors/acc.h \
+ ../Core/Regulation/../../Drivers/Inc/Pid.h \
+ ../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Regulation/../Propulsion/Propulsion.h \
+ ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h \
+ ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h
 
-../Core/Flight_mode/Flight_mode.h:
-
-../Core/Flight_mode/../OS/system_d.h:
-
-../Core/Flight_mode/../OS/macro_types.h:
+../Core/Regulation/Regu_position.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -137,62 +117,32 @@ Core/Flight_mode/Flight_mode.o: ../Core/Flight_mode/Flight_mode.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Flight_mode/../OS/../Sensors/gyro.h:
+../Core/Regulation/Regu_orientation.h:
 
-../Core/Flight_mode/../OS/../Sensors/sensors.h:
+../Core/Regulation/../Estimators/orientation.h:
 
-../Core/Flight_mode/../OS/../Sensors/../../Drivers/Inc/Filters.h:
+../Core/Regulation/../Estimators/../Sensors/gyro.h:
 
-c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+../Core/Regulation/../Estimators/../Sensors/sensors.h:
 
-../Core/Flight_mode/../OS/../Sensors/mpu.h:
-
-../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h:
-
-../Core/Flight_mode/../OS/../Sensors/acc.h:
-
-../Core/Flight_mode/../OS/../Sensors/ms5611.h:
-
-../Core/Flight_mode/../OS/../Estimators/orientation.h:
-
-../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h:
-
-../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h:
-
-../Core/Flight_mode/../OS/../Radio/controller.h:
-
-../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h:
+../Core/Regulation/../Estimators/../Sensors/../../Drivers/Inc/Filters.h:
 
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Flight_mode/../OS/../Propulsion/Propulsion.h:
+../Core/Regulation/../Estimators/../Sensors/mpu.h:
 
-../Core/Flight_mode/../OS/../Propulsion/../../Drivers/Inc/Motors.h:
+../Core/Regulation/../Estimators/../Sensors/../OS/macro_types.h:
 
-c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+../Core/Regulation/../Estimators/../Sensors/acc.h:
 
-../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h:
+../Core/Regulation/../../Drivers/Inc/Pid.h:
 
-../Core/Flight_mode/../OS/../Regulation/../Estimators/orientation.h:
+../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
-../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Pid.h:
+../Core/Regulation/../../Drivers/Inc/Filters.h:
 
-c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+../Core/Regulation/../Propulsion/Propulsion.h:
 
-../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h:
 
-../Core/Flight_mode/../OS/../Regulation/Regu_position.h:
-
-../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h:
-
-../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h:
-
-../Core/Flight_mode/../OS/../../Drivers/Inc/Sequence_led.h:
-
-../Core/Flight_mode/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
-
-../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h:
-
-../Core/Flight_mode/../OS/../../Drivers/Inc/Motors.h:
-
-../Core/Flight_mode/../OS/../config.h:
+../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h:

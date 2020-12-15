@@ -11,11 +11,13 @@
 
 #include "../../Drivers/Inc/Motors.h"
 
+
+
 typedef enum motors_names_e{
-	MOTOR_FL = 0x00,
-	MOTOR_FR,
+	MOTOR_BL = 0x00,
+	MOTOR_FL,
 	MOTOR_BR,
-	MOTOR_BL,
+	MOTOR_FR,
 	MOTOR_COUNT
 }motors_names_e;
 

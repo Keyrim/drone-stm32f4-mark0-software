@@ -17,7 +17,7 @@ float filter_pid_velocity_yaw[3] = {1.0f, 0.0f, 0.0f};
 
 float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.5f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
 float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.5f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
-float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {0.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
+float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {0.5f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
 
 
 //	------------------------------	Angular Pos Regulation settings	-----------------------------------------
@@ -44,7 +44,9 @@ void REGULATION_ORIENTATION_Process(void){
 
 	switch(regu_orientation->mode){
 		case REGULATION_ORIENTATION_MODE_OFF:
-			//Set motors low
+			regu_orientation->outputs[PROP_CONSIGNE_ROLL] = 0;
+			regu_orientation->outputs[PROP_CONSIGNE_PITCH] = 0;
+			regu_orientation->outputs[PROP_CONSIGNE_YAW] = 0;
 			break;
 		case REGULATION_ORIENTATION_MODE_ACCRO:
 			regu_orientation->outputs[PROP_CONSIGNE_ROLL] = (int16_t)PID_compute(&regu_orientation->pid_angular_speed[ORIENTATION_ROLL], regu_orientation->consigne_angular_speed[ORIENTATION_ROLL], orientation->angular_velocity[ORIENTATION_ROLL]);

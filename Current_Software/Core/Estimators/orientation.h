@@ -15,8 +15,8 @@
 #include "math.h"
 
 typedef enum Orientation_Axes_e{
-	ORIENTATION_ROLL = 0x00,
-	ORIENTATION_PITCH,
+	ORIENTATION_PITCH = 0x00,
+	ORIENTATION_ROLL,
 	ORIENTATION_YAW,
 	ORIENTATION_AXES_COUNT
 }Orientation_Axes_e;

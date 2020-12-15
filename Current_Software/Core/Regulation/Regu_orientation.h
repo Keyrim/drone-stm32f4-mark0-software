@@ -11,7 +11,7 @@
 #include "../Estimators/orientation.h"
 #include "../../Drivers/Inc/Pid.h"
 
-#define REGU_ORIENTATION_FREQUENCY 250
+#define REGU_ORIENTATION_FREQUENCY 2500
 
 typedef enum regulation_orientation_mode_e{
 	REGULATION_ORIENTATION_MODE_OFF,

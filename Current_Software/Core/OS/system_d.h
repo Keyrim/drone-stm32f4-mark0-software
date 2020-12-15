@@ -17,6 +17,7 @@
 #include "../Radio/controller.h"
 #include "../Propulsion/Propulsion.h"
 #include "../Regulation/Regu_orientation.h"
+#include "../Regulation/Regu_position.h"
 #include "../../Drivers/Inc/Sequence_led.h"
 #include "../../Drivers/Inc/Ibus.h"
 #include "../../Drivers/Inc/Motors.h"
@@ -37,7 +38,7 @@ typedef struct regulation_t{
 	//Orientation
 	regu_orientation_t orientation ;
 	//Position
-	//Todo position regulation
+	regu_position_t position;
 }regulation_t;
 
 

@@ -67,18 +67,21 @@ void FLIGHT_MODE_Main(void){
 //	-------------------------	Functions definitions	-------------------------
 static void on_the_ground_entrance(void){
 	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
+	REUGLATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_OFF);
 }
 static void on_the_ground_main(void){
 }
 
 static void manual_accro_entrance(void){
 	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_ACCRO);
+	REUGLATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_ON);
 }
 
 static void manual_accro_main(void){
-	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL] = ((float)sys->radio.controller.channels[0]-1500)*0.5f;
-	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_PITCH] = ((float)sys->radio.controller.channels[1]-1500)*0.5f;
-	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_YAW] = ((float)sys->radio.controller.channels[3]-1500)*0.5f;
+	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL] = -((float)sys->radio.controller.channels[0]-1500)*0.5f;
+	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_PITCH] = -((float)sys->radio.controller.channels[1]-1500)*0.5f;
+	sys->regulation.orientation.consigne_angular_speed[ORIENTATION_YAW] = -((float)sys->radio.controller.channels[3]-1500)*0.5f;
+	sys->regulation.position.consigne = sys->radio.controller.channels[2]-1000;
 }
 
 
