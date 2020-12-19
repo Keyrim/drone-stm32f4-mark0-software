@@ -47,6 +47,7 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
  ../Core/Sensors/../OS/events/../../Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Sensors/../OS/events/../../sensors/batterie.h \
  ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h \
@@ -64,8 +65,8 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
- ../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h \
- ../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h \
+ ../Core/Sensors/../OS/events/../../Ihm/Ihm.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Sensors/../OS/events/../../config.h
@@ -172,6 +173,8 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
 
 ../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
 
+../Core/Sensors/../OS/events/../../sensors/batterie.h:
+
 ../Core/Sensors/../OS/events/../../Estimators/orientation.h:
 
 ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h:
@@ -206,9 +209,9 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
 
-../Core/Sensors/../OS/events/../../../Drivers/Inc/Sequence_led.h:
+../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h:
 
-../Core/Sensors/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Sensors/../OS/events/../../Ihm/Ihm.h:
 
 ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h:
 

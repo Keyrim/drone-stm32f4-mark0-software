@@ -27,34 +27,24 @@ static void mask_def_ibus_data_rdy(Event_t * event);
 // ----------------	Flight Modes ------------------------
 static void mask_def_on_the_ground(Event_t * event);
 static void mask_def_manual_accro(Event_t * event);
-//----------------	GLOBAL INIT ------------------------
-void mask_def_events_it_init(Event_t * event){
+
+
+
+
+void mask_def_events_init(Event_t * event){
 	//Gyro mask def
-	mask_def_gyro_data_ready(&event[EVENT_IT_GYRO_DATA_READY]);
-
+	mask_def_gyro_init_ok(&event[EVENT_GYRO_INIT_OK]);
+	mask_def_gyro_data_ready(&event[EVENT_GYRO_DATA_READY]);
 	//Acc mask def
-	mask_def_acc_data_ready(&event[EVENT_IT_ACC_DATA_READY]);
-
-	//Orientation
-	mask_def_orientation_update(&event[EVENT_IT_ORIENTATION_UPDATE]);
-
-
-
-}
-
-void mask_def_events_main_init(Event_t * event){
-	//Gyro mask def
-	mask_def_gyro_init_ok(&event[EVENT_MAIN_GYRO_INIT_OK]);
-
-	//Acc mask def
-	mask_def_acc_init_ok(&event[EVENT_MAIN_ACC_INIT_OK]);
-
+	mask_def_acc_init_ok(&event[EVENT_ACC_INIT_OK]);
+	mask_def_acc_data_ready(&event[EVENT_ACC_DATA_READY]);
 	//Ibus
-	mask_def_ibus_data_rdy(&event[EVENT_MAIN_IBUS_DATA_RDY]);
-
+	mask_def_ibus_data_rdy(&event[EVENT_IBUS_DATA_RDY]);
+	//Orientation
+	mask_def_orientation_update(&event[EVENT_ORIENTATION_UPDATE]);
 	//Flight_modes
-	mask_def_on_the_ground(&event[EVENT_MAIN_ON_THE_GROUND]);
-	mask_def_manual_accro(&event[EVENT_MAIN_MANUAL_ACCRO]);
+	mask_def_on_the_ground(&event[EVENT_ON_THE_GROUND]);
+	mask_def_manual_accro(&event[EVENT_MANUAL_ACCRO]);
 
 }
 

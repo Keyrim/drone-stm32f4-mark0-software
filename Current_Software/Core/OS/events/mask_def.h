@@ -11,8 +11,7 @@
 #include "events.h"
 #include "mask_def_enum.h"
 
-void mask_def_events_it_init(Event_t * event);
-void mask_def_events_main_init(Event_t * event);
+void mask_def_events_init(Event_t * event);
 
 
 

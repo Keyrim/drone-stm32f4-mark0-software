@@ -9,12 +9,14 @@
 #include "../scheduler/scheduler.h"
 #include "../events/events.h"
 #include "../Flight_mode/Flight_mode.h"
+#include "../OS/time.h"
+
 
 static system_t * sys;
 
 static uint32_t start_time_gyro = 0;
 static uint32_t end_time_filtering_gyro= 0;
-static uint32_t delta_1 ;
+
 
 void tasks_init(system_t * sys_){
 	//On mémorise où se trouve notre structure système
@@ -32,7 +34,8 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
 	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_UPDATE, TRUE);
 	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_ANALYSIS, TRUE);
-	SCHEDULER_enable_task(TASK_MOTORS_UPDATE, TRUE);
+	SCHEDULER_enable_task(TASK_HIGH_LVL, TRUE);
+	SCHEDULER_enable_task(TASK_TELEMETRIE, TRUE);
 
 }
 
@@ -51,9 +54,11 @@ void process_print_f(uint32_t current_time_us){
 
 
 void process_led(uint32_t current_time_us){
-	LED_SEQUENCE_play(&sys->ihm.led_blue, current_time_us);
-	LED_SEQUENCE_play(&sys->ihm.led_red, current_time_us);
-	LED_SEQUENCE_play(&sys->ihm.led_green, current_time_us);
+	uint8_t data[2];
+	data[0] = (uint8_t)(sys->orientation.angular_position[ORIENTATION_ROLL] + 100);
+	data[1] = SCHEDULER_get_cpu_load();
+	TELEMETRY_Send_Data(&sys->radio.telemetry, data, 1);
+	IHM_Update();
 }
 
 void process_gyro_update(uint32_t current_time_us){
@@ -64,8 +69,6 @@ void process_gyro_update(uint32_t current_time_us){
 
 void process_gyro_filter(uint32_t current_time_us){
 	end_time_filtering_gyro = current_time_us ;
-//	delta_1 = 90  * delta_1 + 10* (end_time_filtering_gyro - start_time_gyro) ;
-//	delta_1 /= 100 ;
 
 	GYRO_process_lpf(&sys->sensors.gyro);
 
@@ -81,17 +84,17 @@ void process_acc_filter(uint32_t current_time_us){
 
 void process_event_main(uint32_t current_time_us){
 	UNUSED(current_time_us);
-	EVENT_process_events_main();
+	EVENT_process(FALSE);
 }
 
 void process_orientation_update(uint32_t current_time_us){
-	UNUSED(current_time_us);
-	delta_1 = (end_time_filtering_gyro - start_time_gyro) ;
+
 	ORIENTATION_Update(&sys->orientation);
 
 	REGULATION_POSITION_Process();
 	REGULATION_ORIENTATION_Process();
 	PROPULSION_Update_Motors();
+	//delta_1 = (TIME_us() - start_time_gyro) ;
 }
 
 void process_task_scheduler(uint32_t current_time_us){
@@ -107,14 +110,13 @@ void process_controller_channel_analysis(uint32_t current_time_us){
 	CONTROLLER_Update_Channels_Analysis();
 }
 
-void process_motor_update(uint32_t current_time_us){
-//	sys->propulsion.duty[0] = sys->radio.controller.channels[2]-1000;
-//	sys->propulsion.duty[1] = sys->radio.controller.channels[2]-1000;
-//	sys->propulsion.duty[2] = sys->radio.controller.channels[2]-1000;
-//	sys->propulsion.duty[3] = sys->radio.controller.channels[2]-1000;
-//	MOTORS_Change_output(&sys->propulsion.motors);
+void process_high_lvl(uint32_t current_time_us){
+	EVENT_process(TRUE);
 	FLIGHT_MODE_Main();
+}
 
+void process_telemetry(uint32_t current_time_us){
+	TELEMETRY_Process(&sys->radio.telemetry, current_time_us);
 }
 
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
@@ -128,20 +130,22 @@ void process_motor_update(uint32_t current_time_us){
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-	[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_ALWAYS),
+	[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
 	[TASK_SCHEDULER] = 		DEFINE_TASK(TASK_SCHEDULER, 		PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
 
-	[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(60), 					TASK_MODE_TIME),
-	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_LOW,	 		process_led, 				PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
+	[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_TIME),
+	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_HIGH,	 		process_led, 				PERIOD_US_FROM_HERTZ(200), 				TASK_MODE_TIME),
 
-	[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_HIGH,	 		process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_LOOP_FREQUENCY), 	TASK_MODE_TIME),
-	[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_HIGH,	 		process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_REAL_TIME,	 	process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_FREQUENCY), 		TASK_MODE_TIME),
+	[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_REAL_TIME,	 	process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
 
-	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_MEDIUM,	 	process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
-	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_HIGH,	 		process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
-	[TASK_MOTORS_UPDATE] = 	DEFINE_TASK(TASK_MOTORS_UPDATE, 	PRIORITY_HIGH,	 		process_motor_update, 		PERIOD_US_FROM_HERTZ(250), 					TASK_MODE_TIME),
+	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_LOW,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
+	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_REAL_TIME,	 	process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_HIGH_LVL] = 		DEFINE_TASK(TASK_HIGH_LVL, 			PRIORITY_MEDIUM,	 	process_high_lvl, 			PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
+	[TASK_TELEMETRIE] = 	DEFINE_TASK(TASK_TELEMETRIE, 		PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 					TASK_MODE_TIME),
 
-	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_HIGH,		process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+
+	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,	process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 	[TASK_CONTROLLER_CHANNEL_ANALYSIS] = 	DEFINE_TASK(TASK_CONTROLLER_CHANNEL_ANALYSIS, 	PRIORITY_MEDIUM,	process_controller_channel_analysis, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 };

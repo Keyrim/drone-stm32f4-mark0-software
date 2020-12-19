@@ -86,8 +86,11 @@ void SCHEDULER_task(void){
 
 uint32_t SCHEDULER_get_cpu_load(void){
 	uint32_t load_pourcentage = 0 ;
-	for(uint32_t t = 0; t < task_queu_size; t++)
-		load_pourcentage += task_queu[t]->duration_us * 10000 / task_queu[t]->real_period_us ;
+	for(uint32_t t = 2; t < task_queu_size; t++)
+		if(task_queu[t]->real_period_us)
+			load_pourcentage += task_queu[t]->duration_us * 100 / task_queu[t]->real_period_us ;
+
+
 	return load_pourcentage ;
 }
 

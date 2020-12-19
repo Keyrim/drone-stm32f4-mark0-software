@@ -40,6 +40,7 @@ Core/Src/adc.o: ../Core/Src/adc.c ../Core/Inc/adc.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Sensors/mpu.h \
  ../Core/Inc/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Inc/../OS/../Sensors/acc.h ../Core/Inc/../OS/../Sensors/ms5611.h \
+ ../Core/Inc/../OS/../sensors/batterie.h \
  ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
@@ -57,8 +58,8 @@ Core/Src/adc.o: ../Core/Src/adc.c ../Core/Inc/adc.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Regulation/Regu_position.h \
  ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
  ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Inc/../OS/../Telemetry/Telemetry.h \
+ ../Core/Inc/../OS/../Ihm/Ihm.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Motors.h \
  ../Core/Inc/../OS/../config.h
@@ -153,6 +154,8 @@ Core/Src/adc.o: ../Core/Src/adc.c ../Core/Inc/adc.h ../Core/Inc/main.h \
 
 ../Core/Inc/../OS/../Sensors/ms5611.h:
 
+../Core/Inc/../OS/../sensors/batterie.h:
+
 ../Core/Inc/../OS/../Estimators/orientation.h:
 
 ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
@@ -187,9 +190,9 @@ Core/Src/adc.o: ../Core/Src/adc.c ../Core/Inc/adc.h ../Core/Inc/main.h \
 
 ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/Sequence_led.h:
+../Core/Inc/../OS/../Telemetry/Telemetry.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Inc/../OS/../Ihm/Ihm.h:
 
 ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
 

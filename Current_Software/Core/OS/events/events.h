@@ -18,25 +18,26 @@
 #define EVENT_NB_MASK_PER_EVENT_MAX 7
 
 typedef enum events_id_main_e{
-	//Event list
-	EVENT_MAIN_GYRO_INIT_OK,
-	EVENT_MAIN_ACC_INIT_OK,
-	EVENT_MAIN_IBUS_DATA_RDY,
+	//	----------------- Low lvl events (called before any task execution)----------------------
+	EVENT_GYRO_DATA_READY = 0x00,
+	EVENT_ACC_DATA_READY,
+	EVENT_ORIENTATION_UPDATE,
+	EVENT_IBUS_DATA_RDY,
+	EVENT_GYRO_INIT_OK,
+	EVENT_ACC_INIT_OK,
+	//Low lvl event's count
+	EVENT_LOW_LVL_COUNT,
+
+
+	//	----------------- High lvl events (called jsut before the high lvl)----------------------
 	//	Flights modes transition
-	EVENT_MAIN_ON_THE_GROUND,
-	EVENT_MAIN_MANUAL_ACCRO,
+	EVENT_ON_THE_GROUND = EVENT_LOW_LVL_COUNT,
+	EVENT_MANUAL_ACCRO,
 
 	//Count
-	EVENT_MAIN_COUNT
+	EVENT_COUNT
 }events_id_main_e;		//Events déclenchés en tâche de fond
 
-typedef enum events_id_it_e{
-	//Event list
-	EVENT_IT_GYRO_DATA_READY,
-	EVENT_IT_ACC_DATA_READY,
-	EVENT_IT_ORIENTATION_UPDATE,
-	EVENT_IT_COUNT
-}events_id_it_e;		//Event déclenchés en it
 
 typedef enum{
 	EVENT_TYPE_HIGH_LVL,
@@ -59,14 +60,10 @@ typedef struct{
 
 
 //Init event
-void EVENT_init(system_t * sys_, TIM_HandleTypeDef * htim_event_);
+void EVENT_init(system_t * sys_);
 
 //Process events handler
-void EVENT_process_events_main(void);
-void EVENT_process_events_it(void);
-
-//Events timmer it to call
-void EVENT_timmer_callback(TIM_HandleTypeDef * htim);
+void EVENT_process(bool_e test_all);
 
 
 //Set and clean flags

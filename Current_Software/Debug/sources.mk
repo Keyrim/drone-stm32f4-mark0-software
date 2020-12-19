@@ -21,6 +21,7 @@ OBJCOPY_BIN :=
 SUBDIRS := \
 Core/Estimators \
 Core/Flight_mode \
+Core/Ihm \
 Core/OS/debug \
 Core/OS/events \
 Core/OS/scheduler \
@@ -32,6 +33,7 @@ Core/Regulation \
 Core/Sensors \
 Core/Src \
 Core/Startup \
+Core/Telemetry \
 Drivers/STM32F4xx_HAL_Driver/Src \
 Drivers/Src \
 

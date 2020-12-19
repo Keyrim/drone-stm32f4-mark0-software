@@ -13,12 +13,14 @@
 #include "../Sensors/gyro.h"
 #include "../Sensors/acc.h"
 #include "../Sensors/ms5611.h"
+#include "../sensors/batterie.h"
 #include "../Estimators/orientation.h"
 #include "../Radio/controller.h"
 #include "../Propulsion/Propulsion.h"
 #include "../Regulation/Regu_orientation.h"
 #include "../Regulation/Regu_position.h"
-#include "../../Drivers/Inc/Sequence_led.h"
+#include "../Telemetry/Telemetry.h"
+#include "../Ihm/Ihm.h"
 #include "../../Drivers/Inc/Ibus.h"
 #include "../../Drivers/Inc/Motors.h"
 #include "../config.h"
@@ -27,6 +29,7 @@ typedef struct sensors_t{
 	//Sensors
 	gyro_t gyro ;
 	acc_t acc ;
+	batterie_t batterie ;
 
 
 	//Sensors list
@@ -46,16 +49,13 @@ typedef struct regulation_t{
 typedef struct radio_t{
 	ibus_t ibus;
 	controller_t controller ;
+	telemetry_t telemetry ;
 }radio_t;
 
-typedef struct ihm_t{
-	sequence_led_t led_red ;
-	sequence_led_t led_green ;
-	sequence_led_t led_blue ;
-}ihm_t;
+
 
 typedef struct{
-	ihm_t ihm ;
+	Ihm_t ihm ;
 	sensors_t sensors ;
 	orientation_t orientation ;
 	radio_t	radio;

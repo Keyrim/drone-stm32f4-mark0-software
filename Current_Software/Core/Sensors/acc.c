@@ -13,6 +13,7 @@ static void acc_data_callback(void);
 
 float filter_config [3] = {0.1f, 0.9f, 0};
 
+
 void ACC_init(acc_t * acc, mpu_t * mpu){
 
 	FILTER_init(&acc->filters[ACC_AXE_X], filter_config, FILTER_FIRST_ORDER);

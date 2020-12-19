@@ -28,7 +28,7 @@ typedef struct reug_position_t{
 }regu_position_t;
 
 void REGULATION_POSITION_Init(regu_position_t * regu_position_, regu_orientation_t * regu_orientation_, int16_t * outputs);
-void REUGLATION_POSITION_Set_Regulation_Mode(regu_position_mode_e regu_mode);
+void REGULATION_POSITION_Set_Regulation_Mode(regu_position_mode_e regu_mode);
 void REGULATION_POSITION_Process(void);
 
 #endif /* REGULATION_REGU_POSITION_H_ */

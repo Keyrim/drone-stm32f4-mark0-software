@@ -1,5 +1,5 @@
-Drivers/Src/Sequence_led.o: ../Drivers/Src/Sequence_led.c \
- ../Drivers/Src/../Inc/Sequence_led.h \
+Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
+ ../Core/Telemetry/Telemetry.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,10 +32,9 @@ Drivers/Src/Sequence_led.o: ../Drivers/Src/Sequence_led.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Drivers/Src/../Inc/../../Core/OS/macro_types.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 
-../Drivers/Src/../Inc/Sequence_led.h:
+../Core/Telemetry/Telemetry.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -102,5 +101,3 @@ Drivers/Src/Sequence_led.o: ../Drivers/Src/Sequence_led.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-
-../Drivers/Src/../Inc/../../Core/OS/macro_types.h:

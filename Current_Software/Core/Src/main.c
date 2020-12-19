@@ -105,7 +105,7 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(100);	//Let the time to the components to start
+  HAL_Delay(100);	//Let the time for the components to start
 
   //Init du baromètre
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
@@ -117,22 +117,29 @@ int main(void)
 
 
 
-  LED_SEQUENCE_init(&sys.ihm.led_blue, PIN_LED_BLUE_GPIO_Port, PIN_LED_BLUE_Pin, SEQUENCE_LED_5, 1, 12, 1);
-  LED_SEQUENCE_init(&sys.ihm.led_red, PIN_LED_RED_GPIO_Port, PIN_LED_RED_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
-  LED_SEQUENCE_init(&sys.ihm.led_green, PIN_LED_GREEN_GPIO_Port, PIN_LED_GREEN_Pin, SEQUENCE_LED_OFF, 200, 12, 1);
+  IHM_Init(&sys.ihm);
+  IHM_Led_Init(LED_HIGH_LVL, 30, PIN_LED_RGB_1_Pin, LED_OUTPUT_NEGATIVE);
+  IHM_Led_Init(LED_SENSORS, 30, PIN_LED_RGB_2_Pin, LED_OUTPUT_NEGATIVE);
+
+  IHM_Set_Sequences(LED_HIGH_LVL, SEQUENCE_LED_OFF, SEQUENCE_LED_1, SEQUENCE_LED_OFF);
+  IHM_Set_Sequences(LED_SENSORS, SEQUENCE_LED_OFF, SEQUENCE_LED_OFF, SEQUENCE_LED_3);
+
+  BATTERIE_Init(&sys.sensors.batterie, &hadc2);
 
   CONTROLLER_Init(&sys.radio.controller, &sys.radio.ibus);
   IBUS_init(&sys.radio.ibus, &huart3, CONTROLLER_Rx_Data_Rdy);
 
-  ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_LOOP_FREQUENCY);
+  ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_FREQUENCY);
   REGULATION_ORIENTATION_Init(&sys.regulation.orientation, &sys.orientation, sys.propulsion.consigne);
   REGULATION_POSITION_Init(&sys.regulation.position, &sys.regulation.orientation, sys.propulsion.consigne);
   PROPULSION_Init(&sys.propulsion, &htim1);
 
+  TELEMETRY_Init(&sys.radio.telemetry, &huart2);
+
   FLIGHT_MODE_Init(&sys);
 
   SCHEDULER_init(&sys);
-  EVENT_init(&sys, &htim2);
+  EVENT_init(&sys);
 
   /* USER CODE END 2 */
 

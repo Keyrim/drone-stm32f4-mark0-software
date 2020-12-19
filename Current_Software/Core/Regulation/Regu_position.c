@@ -24,7 +24,7 @@ void REGULATION_POSITION_Init(regu_position_t * regu_position_, regu_orientation
 
 }
 
-void REUGLATION_POSITION_Set_Regulation_Mode(regu_position_mode_e regu_mode){
+void REGULATION_POSITION_Set_Regulation_Mode(regu_position_mode_e regu_mode){
 	regu_position->mode = regu_mode ;
 }
 

@@ -67,14 +67,16 @@ void FLIGHT_MODE_Main(void){
 //	-------------------------	Functions definitions	-------------------------
 static void on_the_ground_entrance(void){
 	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
-	REUGLATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_OFF);
+	REGULATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_OFF);
+	IHM_Set_Sequences(LED_HIGH_LVL, SEQUENCE_LED_OFF, SEQUENCE_LED_1, SEQUENCE_LED_OFF);
 }
 static void on_the_ground_main(void){
 }
 
 static void manual_accro_entrance(void){
 	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_ACCRO);
-	REUGLATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_ON);
+	REGULATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_ON);
+	IHM_Set_Sequences(LED_HIGH_LVL, SEQUENCE_LED_OFF, SEQUENCE_LED_OFF, SEQUENCE_LED_1);
 }
 
 static void manual_accro_main(void){

@@ -49,6 +49,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/Radio/../OS/events/../../Sensors/acc.h \
  ../Core/Radio/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Radio/../OS/events/../../sensors/batterie.h \
  ../Core/Radio/../OS/events/../../Estimators/orientation.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
@@ -64,8 +65,8 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
- ../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h \
- ../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Radio/../OS/events/../../Telemetry/Telemetry.h \
+ ../Core/Radio/../OS/events/../../Ihm/Ihm.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Radio/../OS/events/../../config.h
@@ -172,6 +173,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Sensors/ms5611.h:
 
+../Core/Radio/../OS/events/../../sensors/batterie.h:
+
 ../Core/Radio/../OS/events/../../Estimators/orientation.h:
 
 ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h:
@@ -202,9 +205,9 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
 
-../Core/Radio/../OS/events/../../../Drivers/Inc/Sequence_led.h:
+../Core/Radio/../OS/events/../../Telemetry/Telemetry.h:
 
-../Core/Radio/../OS/events/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Radio/../OS/events/../../Ihm/Ihm.h:
 
 ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h:
 

@@ -1,5 +1,5 @@
-acc.c:16:6:ACC_init	16	static
-acc.c:38:6:ACC_update	16	static
-acc.c:51:6:ACC_update_dma	16	static
-acc.c:63:6:ACC_process_lpf	16	static
-acc.c:70:13:acc_data_callback	8	static
+acc.c:17:6:ACC_init	16	static
+acc.c:39:6:ACC_update	16	static
+acc.c:52:6:ACC_update_dma	16	static
+acc.c:64:6:ACC_process_lpf	16	static
+acc.c:71:13:acc_data_callback	8	static

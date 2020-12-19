@@ -51,11 +51,11 @@ void CONTROLLER_Update_Channels_Analysis(void){
 					break;
 
 				case ANALYSIS_MODE_STICK_LVL :
-					if(controller->channels[ch] > 1000 && controller->channels[ch] <= 1070)
+					if(controller->channels[ch] > 1000 && controller->channels[ch] <= 1050)
 						controller->throttle_lvl[ch] = THROTTLE_LVL_NULL ;
-					else if(controller->channels[ch] > 1070 && controller->channels[ch] <= 1120)
+					else if(controller->channels[ch] > 1050 && controller->channels[ch] <= 1150)
 						controller->throttle_lvl[ch] = THROTTLE_LVL_LOW ;
-					else if(controller->channels[ch] > 1120 && controller->channels[ch] < 2000)
+					else if(controller->channels[ch] > 1150 && controller->channels[ch] < 2000)
 						controller->throttle_lvl[ch] = THROTTLE_LVL_HIGH ;
 
 

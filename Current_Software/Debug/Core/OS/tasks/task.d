@@ -41,6 +41,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/tasks/../../Sensors/acc.h \
  ../Core/OS/tasks/../../Sensors/ms5611.h \
+ ../Core/OS/tasks/../../sensors/batterie.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/acc.h \
@@ -58,8 +59,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Regulation/Regu_position.h \
  ../Core/OS/tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h \
- ../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h \
- ../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/OS/tasks/../../Telemetry/Telemetry.h \
+ ../Core/OS/tasks/../../Ihm/Ihm.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Motors.h \
  ../Core/OS/tasks/../../config.h \
@@ -76,7 +77,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../events/flags.h \
  ../Core/OS/tasks/../events/../system_d.h \
  ../Core/Inc/../Flight_mode/Flight_mode.h \
- ../Core/Inc/../Flight_mode/../OS/system_d.h
+ ../Core/Inc/../Flight_mode/../OS/system_d.h ../Core/Inc/../OS/time.h
 
 ../Core/OS/tasks/task.h:
 
@@ -166,6 +167,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Core/OS/tasks/../../Sensors/ms5611.h:
 
+../Core/OS/tasks/../../sensors/batterie.h:
+
 ../Core/OS/tasks/../../Estimators/orientation.h:
 
 ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h:
@@ -200,9 +203,9 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h:
 
-../Core/OS/tasks/../../../Drivers/Inc/Sequence_led.h:
+../Core/OS/tasks/../../Telemetry/Telemetry.h:
 
-../Core/OS/tasks/../../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/OS/tasks/../../Ihm/Ihm.h:
 
 ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h:
 
@@ -237,3 +240,5 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/Inc/../Flight_mode/Flight_mode.h:
 
 ../Core/Inc/../Flight_mode/../OS/system_d.h:
+
+../Core/Inc/../OS/time.h:

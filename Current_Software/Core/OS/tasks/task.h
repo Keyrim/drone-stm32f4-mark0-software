@@ -16,11 +16,11 @@
 
 
 typedef enum task_priority{
-	PRIORITY_REAL_TIME 	= -1 ,
 	//Priorité toujours positives
 	PRIORITY_LOW		= 1 ,
 	PRIORITY_MEDIUM	 	= 5 ,
 	PRIORITY_HIGH		= 10,
+	PRIORITY_REAL_TIME	= 15,
 	PRIORITY_SCHEDULER	= 100,
 	PRIORITY_EVENT	= 101
 }task_priority_t;
@@ -42,7 +42,8 @@ typedef enum task_ids {
 	TASK_ORIENTATION_UPDATE,
 	TASK_CONTROLLER_CHANNEL_UPDATE,
 	TASK_CONTROLLER_CHANNEL_ANALYSIS,
-	TASK_MOTORS_UPDATE,
+	TASK_HIGH_LVL,
+	TASK_TELEMETRIE,
 	TASK_COUNT
 }task_ids_t;
 

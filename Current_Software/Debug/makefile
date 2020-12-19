@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include Drivers/Src/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
+-include Core/Telemetry/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/Sensors/subdir.mk
@@ -21,6 +22,7 @@ RM := rm -rf
 -include Core/OS/events/subdir.mk
 -include Core/OS/debug/subdir.mk
 -include Core/OS/subdir.mk
+-include Core/Ihm/subdir.mk
 -include Core/Flight_mode/subdir.mk
 -include Core/Estimators/subdir.mk
 -include subdir.mk

@@ -42,6 +42,7 @@ Core/Flight_mode/Flight_mode.o: ../Core/Flight_mode/Flight_mode.c \
  ../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Flight_mode/../OS/../Sensors/acc.h \
  ../Core/Flight_mode/../OS/../Sensors/ms5611.h \
+ ../Core/Flight_mode/../OS/../sensors/batterie.h \
  ../Core/Flight_mode/../OS/../Estimators/orientation.h \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h \
@@ -59,8 +60,8 @@ Core/Flight_mode/Flight_mode.o: ../Core/Flight_mode/Flight_mode.c \
  ../Core/Flight_mode/../OS/../Regulation/Regu_position.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
  ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/Sequence_led.h \
- ../Core/Flight_mode/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Flight_mode/../OS/../Telemetry/Telemetry.h \
+ ../Core/Flight_mode/../OS/../Ihm/Ihm.h \
  ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h \
  ../Core/Flight_mode/../OS/../../Drivers/Inc/Motors.h \
  ../Core/Flight_mode/../OS/../config.h
@@ -153,6 +154,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Sensors/ms5611.h:
 
+../Core/Flight_mode/../OS/../sensors/batterie.h:
+
 ../Core/Flight_mode/../OS/../Estimators/orientation.h:
 
 ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h:
@@ -187,9 +190,9 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h:
 
-../Core/Flight_mode/../OS/../../Drivers/Inc/Sequence_led.h:
+../Core/Flight_mode/../OS/../Telemetry/Telemetry.h:
 
-../Core/Flight_mode/../OS/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Core/Flight_mode/../OS/../Ihm/Ihm.h:
 
 ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h:
 
