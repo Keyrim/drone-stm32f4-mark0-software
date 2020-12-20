@@ -27,7 +27,8 @@ static void mask_def_ibus_data_rdy(Event_t * event);
 // ----------------	Flight Modes ------------------------
 static void mask_def_on_the_ground(Event_t * event);
 static void mask_def_manual_accro(Event_t * event);
-
+static void mask_def_arming(Event_t * event);
+static void mask_def_gyro_acc_calibration(Event_t * event);
 
 
 
@@ -45,6 +46,8 @@ void mask_def_events_init(Event_t * event){
 	//Flight_modes
 	mask_def_on_the_ground(&event[EVENT_ON_THE_GROUND]);
 	mask_def_manual_accro(&event[EVENT_MANUAL_ACCRO]);
+	mask_def_arming(&event[EVENT_ARMING]);
+	mask_def_gyro_acc_calibration(&event[EVENT_GYRO_ACC_CALIBRATION]);
 
 }
 
@@ -96,21 +99,42 @@ static void mask_def_ibus_data_rdy(Event_t * event){
 
 // ----------------	Flight Modes ------------------------
 static void mask_def_on_the_ground(Event_t * event){
-	MASK_set_flag(&event->mask_and[MASK_ON_THE_GROUND_MANUAL], FLAG_FLIGHT_MODE_MANUAL_ACCRO);
+	MASK_set_flag(&event->mask_and[MASK_ON_THE_GROUND_FLYING], FLAG_FLYING);
+	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_FLYING], FLAG_CHAN_5_POS_1);
 
-	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_MANUAL], FLAG_THROTTLE_NULL);
-	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_MANUAL], FLAG_CHAN_5_POS_1);
+	MASK_set_flag(&event->mask_and[MASK_ON_THE_GROUND_ARMING], FLAG_ARMING);
+	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_ARMING], FLAG_CHAN_5_POS_1);
+
+	MASK_set_flag(&event->mask_and[MASK_ON_THE_GROUND_CALIBRATION], FLAG_GYRO_CALI_IN_PROGRESS);
+	MASK_set_flag(&event->mask_or[MASK_ON_THE_GROUND_CALIBRATION], FLAG_GYRO_CALI_DONE);
+
 
 }
 
 static void mask_def_manual_accro(Event_t * event){
-	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_FLIGHT_MODE_ON_THE_GROUND);
-	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_CHAN_5_POS_3);
+	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_ARMED);
+	MASK_set_flag(&event->mask_or[MASK_MANUAL_ON_THE_GROUND], FLAG_ARMED);
+}
 
-	MASK_set_flag(&event->mask_or[MASK_MANUAL_ON_THE_GROUND], FLAG_THROTTLE_LOW);
+static void mask_def_arming(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_ARMING_ON_THE_GROUND], FLAG_GYRO_OK);
+
+	MASK_set_flag(&event->mask_or[MASK_ARMING_ON_THE_GROUND], FLAG_CHAN_5_POS_3);
+
+	MASK_set_flag(&event->mask_not[MASK_ARMING_ON_THE_GROUND], FLAG_FLYING);
+	MASK_set_flag(&event->mask_not[MASK_ARMING_ON_THE_GROUND], FLAG_BUSY);
+
 
 }
 
+static void mask_def_gyro_acc_calibration(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_GYRO_ACC_CALIBRATION], FLAG_GYRO_OK);
+
+	MASK_set_flag(&event->mask_or[MASK_GYRO_ACC_CALIBRATION], FLAG_CHAN_9_PUSH);
+
+	MASK_set_flag(&event->mask_not[MASK_GYRO_ACC_CALIBRATION], FLAG_BUSY);
+	MASK_set_flag(&event->mask_not[MASK_GYRO_ACC_CALIBRATION], FLAG_FLYING);
+}
 
 
 

@@ -47,7 +47,34 @@ void GYRO_update(gyro_t * gyro){
 			break;
 	}
 }
+bool_e GYRO_calibrate(gyro_t * gyro, uint16_t iteration){
+	static uint16_t compteur = 0;
 
+	static float sum[3] = {0};
+
+	if(!compteur){
+		sum[0] = 0 ;
+		sum[1] = 0 ;
+		sum[2] = 0 ;
+	}
+
+	sum[0] += gyro->raw[0] + gyro->offsets[0];
+	sum[1] += gyro->raw[1] + gyro->offsets[1];
+	sum[2] += gyro->raw[2] + gyro->offsets[2];
+
+	compteur ++;
+
+	if(compteur == iteration){
+		gyro->offsets[0] = sum[0] / (float)iteration;
+		gyro->offsets[1] = sum[1] / (float)iteration;
+		gyro->offsets[2] = sum[2] / (float)iteration;
+		compteur = 0;
+		return TRUE;
+	}
+
+	return FALSE;
+
+}
 void GYRO_ACC_update(gyro_t * gyro){
 	switch(MPU_update_all(gyro->mpu)){
 		case SENSOR_REQUEST_OK:
@@ -89,9 +116,15 @@ void GYRO_ACC_update_dma(gyro_t * gyro){
 }
 
 void GYRO_process_lpf(gyro_t * gyro){
+	//Offset correction first
+	gyro->raw[GYRO_AXE_X] -= gyro->offsets[GYRO_AXE_X];
+	gyro->raw[GYRO_AXE_Y] -= gyro->offsets[GYRO_AXE_Y];
+	gyro->raw[GYRO_AXE_Z] -= gyro->offsets[GYRO_AXE_Z];
+	//Then the actual low pass filter
 	gyro->filtered[GYRO_AXE_X] =  FILTER_process(&gyro->filters[GYRO_AXE_X], gyro->raw[GYRO_AXE_X]);
 	gyro->filtered[GYRO_AXE_Y] =  FILTER_process(&gyro->filters[GYRO_AXE_Y], gyro->raw[GYRO_AXE_Y]);
 	gyro->filtered[GYRO_AXE_Z] =  FILTER_process(&gyro->filters[GYRO_AXE_Z], gyro->raw[GYRO_AXE_Z]);
+	//We warn the system that we ve got new data ready to be used :)
 	EVENT_Set_flag(FLAG_GYRO_FILTERED_DATA_READY);
 }
 

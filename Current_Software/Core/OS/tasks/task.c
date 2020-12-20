@@ -112,7 +112,7 @@ void process_controller_channel_analysis(uint32_t current_time_us){
 
 void process_high_lvl(uint32_t current_time_us){
 	EVENT_process(TRUE);
-	FLIGHT_MODE_Main();
+	FLIGHT_MODE_Main(current_time_us);
 }
 
 void process_telemetry(uint32_t current_time_us){

@@ -3,7 +3,7 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
  ../Core/Regulation/../Estimators/orientation.h \
  ../Core/Regulation/../Estimators/../Sensors/gyro.h \
  ../Core/Regulation/../Estimators/../Sensors/sensors.h \
- ../Core/Regulation/../Estimators/../Sensors/../../Drivers/Inc/Filters.h \
+ d:\github\f4_flight_controller\current_software\drivers\inc\filters.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -37,7 +37,7 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Regulation/../Estimators/../Sensors/mpu.h \
  ../Core/Regulation/../Estimators/../Sensors/../OS/macro_types.h \
  ../Core/Regulation/../Estimators/../Sensors/acc.h \
@@ -46,7 +46,7 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
  ../Core/Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Regulation/../Propulsion/Propulsion.h \
  ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h \
- ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h
+ d:\github\f4_flight_controller\current_software\core\os\macro_types.h
 
 ../Core/Regulation/Regu_orientation.h:
 
@@ -56,7 +56,7 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
 
 ../Core/Regulation/../Estimators/../Sensors/sensors.h:
 
-../Core/Regulation/../Estimators/../Sensors/../../Drivers/Inc/Filters.h:
+d:\github\f4_flight_controller\current_software\drivers\inc\filters.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -124,7 +124,7 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Regulation/../Estimators/../Sensors/mpu.h:
 
@@ -142,4 +142,4 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h:
 
-../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h:
+d:\github\f4_flight_controller\current_software\core\os\macro_types.h:

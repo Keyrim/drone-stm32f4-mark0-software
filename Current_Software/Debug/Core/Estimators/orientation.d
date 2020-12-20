@@ -35,7 +35,7 @@ Core/Estimators/orientation.o: ../Core/Estimators/orientation.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Estimators/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Estimators/../Sensors/mpu.h \
  ../Core/Estimators/../Sensors/../OS/macro_types.h \
  ../Core/Estimators/../Sensors/acc.h
@@ -114,7 +114,7 @@ Core/Estimators/orientation.o: ../Core/Estimators/orientation.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Estimators/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
+d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Estimators/../Sensors/mpu.h:
 

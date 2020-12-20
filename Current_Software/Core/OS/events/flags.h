@@ -50,9 +50,14 @@ typedef enum Flags_e{
 	FLAG_THROTTLE_LOW,
 	FLAG_THROTTLE_NULL,
 
-	//Flight mode
-	FLAG_FLIGHT_MODE_ON_THE_GROUND,
-	FLAG_FLIGHT_MODE_MANUAL_ACCRO,
+	//Overall drone's state description
+	FLAG_ARMING,
+	FLAG_ARMED,
+	FLAG_BUSY, 		//ex: calibrating gyro => no take off etc
+	FLAG_GYRO_CALI_IN_PROGRESS,
+	FLAG_GYRO_CALI_DONE,
+	FLAG_FLYING,
+	FLAG_MANUAL,
 
 	FLAG_COUNT
 }Flags_e;

@@ -23,14 +23,18 @@ typedef struct gyro_t{
 	float * raw ;
 	//Filtered angles
 	float filtered[3];
+	//Calibration values
+	float offsets[3];
 	//Filters
 	Filter_t filters[3];
+
 
 }gyro_t;
 
 void GYRO_init(gyro_t * gyro, mpu_t * mpu);
 void GYRO_update(gyro_t * gyro);
 void GYRO_update_dma(gyro_t * gyro);
+bool_e GYRO_calibrate(gyro_t * gyro, uint16_t iteration);
 void GYRO_process_lpf(gyro_t * gyro);
 
 

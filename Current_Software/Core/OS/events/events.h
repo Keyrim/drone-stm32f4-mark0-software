@@ -33,6 +33,8 @@ typedef enum events_id_main_e{
 	//	Flights modes transition
 	EVENT_ON_THE_GROUND = EVENT_LOW_LVL_COUNT,
 	EVENT_MANUAL_ACCRO,
+	EVENT_ARMING,
+	EVENT_GYRO_ACC_CALIBRATION,
 
 	//Count
 	EVENT_COUNT
