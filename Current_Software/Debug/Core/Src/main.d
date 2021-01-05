@@ -77,7 +77,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/events/../macro_types.h \
  ../Core/Src/../OS/events/flags.h ../Core/Src/../OS/events/../system_d.h \
  ../Core/Src/../Flight_mode/Flight_mode.h \
- ../Core/Src/../Flight_mode/../OS/system_d.h
+ ../Core/Src/../Flight_mode/../OS/system_d.h \
+ ../Core/Src/../Data_Logger/Data_logger.h \
+ ../Core/Src/../Data_Logger/../OS/system_d.h
 
 ../Core/Inc/main.h:
 
@@ -260,3 +262,7 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Src/../Flight_mode/Flight_mode.h:
 
 ../Core/Src/../Flight_mode/../OS/system_d.h:
+
+../Core/Src/../Data_Logger/Data_logger.h:
+
+../Core/Src/../Data_Logger/../OS/system_d.h:

@@ -9,6 +9,7 @@
 #include "../scheduler/scheduler.h"
 #include "../events/events.h"
 #include "../Flight_mode/Flight_mode.h"
+#include "../Data_Logger/Data_logger.h"
 #include "../OS/time.h"
 
 
@@ -36,6 +37,7 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_CONTROLLER_CHANNEL_ANALYSIS, TRUE);
 	SCHEDULER_enable_task(TASK_HIGH_LVL, TRUE);
 	SCHEDULER_enable_task(TASK_TELEMETRIE, TRUE);
+	SCHEDULER_enable_task(TASK_LOGGER, TRUE);
 
 }
 
@@ -54,10 +56,9 @@ void process_print_f(uint32_t current_time_us){
 
 
 void process_led(uint32_t current_time_us){
-	uint8_t data[2];
-	data[0] = (uint8_t)(sys->orientation.angular_position[ORIENTATION_ROLL] + 100);
-	data[1] = SCHEDULER_get_cpu_load();
-	TELEMETRY_Send_Data(&sys->radio.telemetry, data, 1);
+//	uint8_t data[2];
+//	uint8_t len = DATA_LOGGER_Get_Data(DATA_ID_ROLL_GYRO, data);
+//	TELEMETRY_Send_Data(&sys->radio.telemetry, data, len);
 	IHM_Update();
 }
 
@@ -116,7 +117,11 @@ void process_high_lvl(uint32_t current_time_us){
 }
 
 void process_telemetry(uint32_t current_time_us){
-	TELEMETRY_Process(&sys->radio.telemetry, current_time_us);
+	TELEMETRY_Process(current_time_us);
+}
+
+void process_logger(uint32_t current_time_us){
+	DATA_LOGGER_Main();
 }
 
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
@@ -134,7 +139,7 @@ task_t tasks [TASK_COUNT] ={
 	[TASK_SCHEDULER] = 		DEFINE_TASK(TASK_SCHEDULER, 		PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
 
 	[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_TIME),
-	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_HIGH,	 		process_led, 				PERIOD_US_FROM_HERTZ(200), 				TASK_MODE_TIME),
+	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_MEDIUM,	 		process_led, 				PERIOD_US_FROM_HERTZ(200), 					TASK_MODE_TIME),
 
 	[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_REAL_TIME,	 	process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_FREQUENCY), 		TASK_MODE_TIME),
 	[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_REAL_TIME,	 	process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
@@ -142,8 +147,8 @@ task_t tasks [TASK_COUNT] ={
 	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_LOW,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
 	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_REAL_TIME,	 	process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
 	[TASK_HIGH_LVL] = 		DEFINE_TASK(TASK_HIGH_LVL, 			PRIORITY_MEDIUM,	 	process_high_lvl, 			PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
-	[TASK_TELEMETRIE] = 	DEFINE_TASK(TASK_TELEMETRIE, 		PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 					TASK_MODE_TIME),
-
+	[TASK_TELEMETRIE] = 	DEFINE_TASK(TASK_TELEMETRIE, 		PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
+	[TASK_LOGGER] = 		DEFINE_TASK(TASK_LOGGER, 			PRIORITY_MEDIUM,	 	process_logger, 			PERIOD_US_FROM_HERTZ(5), 					TASK_MODE_TIME),
 
 	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,	process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),

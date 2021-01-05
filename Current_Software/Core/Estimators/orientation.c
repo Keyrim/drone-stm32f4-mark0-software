@@ -8,7 +8,7 @@
 
 #include "orientation.h"
 
-#define ORIENTATION_ALPHA 0.99f
+#define ORIENTATION_ALPHA 0.9998f
 
 static bool_e first_use = TRUE ;
 

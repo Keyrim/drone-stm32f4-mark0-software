@@ -25,6 +25,7 @@ RM := rm -rf
 -include Core/Ihm/subdir.mk
 -include Core/Flight_mode/subdir.mk
 -include Core/Estimators/subdir.mk
+-include Core/Data_Logger/subdir.mk
 -include subdir.mk
 -include objects.mk
 

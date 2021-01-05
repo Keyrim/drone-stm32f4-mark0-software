@@ -77,7 +77,9 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../events/flags.h \
  ../Core/OS/tasks/../events/../system_d.h \
  ../Core/Inc/../Flight_mode/Flight_mode.h \
- ../Core/Inc/../Flight_mode/../OS/system_d.h ../Core/Inc/../OS/time.h
+ ../Core/Inc/../Flight_mode/../OS/system_d.h \
+ ../Core/Inc/../Data_Logger/Data_logger.h \
+ ../Core/Inc/../Data_Logger/../OS/system_d.h ../Core/Inc/../OS/time.h
 
 ../Core/OS/tasks/task.h:
 
@@ -240,5 +242,9 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Inc/../Flight_mode/Flight_mode.h:
 
 ../Core/Inc/../Flight_mode/../OS/system_d.h:
+
+../Core/Inc/../Data_Logger/Data_logger.h:
+
+../Core/Inc/../Data_Logger/../OS/system_d.h:
 
 ../Core/Inc/../OS/time.h:

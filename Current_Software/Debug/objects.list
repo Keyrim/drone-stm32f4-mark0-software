@@ -1,3 +1,4 @@
+"Core/Data_Logger/Data_logger.o"
 "Core/Estimators/orientation.o"
 "Core/Flight_mode/Arming.o"
 "Core/Flight_mode/Flight_mode.o"

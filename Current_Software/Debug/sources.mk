@@ -19,6 +19,7 @@ OBJCOPY_BIN :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Data_Logger \
 Core/Estimators \
 Core/Flight_mode \
 Core/Ihm \

@@ -1,4 +1,6 @@
-Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
+Core/Data_Logger/Data_logger.o: ../Core/Data_Logger/Data_logger.c \
+ ../Core/Data_Logger/Data_logger.h ../Core/Data_Logger/../OS/system_d.h \
+ ../Core/Data_Logger/../OS/macro_types.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,40 +34,51 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/../OS/system_d.h ../Core/Inc/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Sensors/sensors.h \
- ../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h \
+ ../Core/Data_Logger/../OS/../Sensors/gyro.h \
+ ../Core/Data_Logger/../OS/../Sensors/sensors.h \
+ ../Core/Data_Logger/../OS/../Sensors/../../Drivers/Inc/Filters.h \
  d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Inc/../OS/../Sensors/mpu.h \
- ../Core/Inc/../OS/../Sensors/../OS/macro_types.h \
- ../Core/Inc/../OS/../Sensors/acc.h ../Core/Inc/../OS/../Sensors/ms5611.h \
- ../Core/Inc/../OS/../sensors/batterie.h \
- ../Core/Inc/../OS/../Estimators/orientation.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
- ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
- ../Core/Inc/../OS/../Radio/controller.h \
- ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
+ ../Core/Data_Logger/../OS/../Sensors/mpu.h \
+ ../Core/Data_Logger/../OS/../Sensors/../OS/macro_types.h \
+ ../Core/Data_Logger/../OS/../Sensors/acc.h \
+ ../Core/Data_Logger/../OS/../Sensors/ms5611.h \
+ ../Core/Data_Logger/../OS/../sensors/batterie.h \
+ ../Core/Data_Logger/../OS/../Estimators/orientation.h \
+ ../Core/Data_Logger/../OS/../Estimators/../Sensors/gyro.h \
+ ../Core/Data_Logger/../OS/../Estimators/../Sensors/acc.h \
+ ../Core/Data_Logger/../OS/../Radio/controller.h \
+ ../Core/Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Inc/../OS/../Propulsion/Propulsion.h \
- ../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/Motors.h \
+ ../Core/Data_Logger/../OS/../Propulsion/Propulsion.h \
+ ../Core/Data_Logger/../OS/../Propulsion/../../Drivers/Inc/Motors.h \
  d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
- ../Core/Inc/../OS/../Regulation/../Estimators/orientation.h \
- ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h \
+ ../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h \
+ ../Core/Data_Logger/../OS/../Regulation/../Estimators/orientation.h \
+ ../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
- ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h \
- ../Core/Inc/../OS/../Regulation/Regu_position.h \
- ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
- ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h \
- ../Core/Inc/../OS/../Telemetry/Telemetry.h \
- ../Core/Inc/../OS/../Ihm/Ihm.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h \
- ../Core/Inc/../OS/../../Drivers/Inc/Motors.h \
- ../Core/Inc/../OS/../config.h ../Core/Inc/stm32f4xx_it.h \
- ../Core/Src/../Telemetry/Telemetry.h
+ ../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Data_Logger/../OS/../Regulation/Regu_position.h \
+ ../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h \
+ ../Core/Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Data_Logger/../OS/../Telemetry/Telemetry.h \
+ ../Core/Data_Logger/../OS/../Ihm/Ihm.h \
+ ../Core/Data_Logger/../OS/../../Drivers/Inc/Ibus.h \
+ ../Core/Data_Logger/../OS/../../Drivers/Inc/Motors.h \
+ ../Core/Data_Logger/../OS/../config.h \
+ ../Core/Data_Logger/../OS/tasks/task.h \
+ ../Core/Data_Logger/../OS/tasks/../system_d.h \
+ ../Core/Data_Logger/../OS/scheduler/scheduler.h \
+ ../Core/Data_Logger/../OS/scheduler/../tasks/task.h \
+ ../Core/Data_Logger/../OS/scheduler/../macro_types.h \
+ ../Core/Data_Logger/../OS/scheduler/../debug/debug.h \
+ ../Core/Data_Logger/../OS/scheduler/../debug/retarget.h \
+ ../Core/Data_Logger/../OS/scheduler/../system_d.h
 
-../Core/Inc/main.h:
+../Core/Data_Logger/Data_logger.h:
+
+../Core/Data_Logger/../OS/system_d.h:
+
+../Core/Data_Logger/../OS/macro_types.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -133,72 +146,80 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Inc/../OS/system_d.h:
+../Core/Data_Logger/../OS/../Sensors/gyro.h:
 
-../Core/Inc/../OS/macro_types.h:
+../Core/Data_Logger/../OS/../Sensors/sensors.h:
 
-../Core/Inc/../OS/../Sensors/gyro.h:
-
-../Core/Inc/../OS/../Sensors/sensors.h:
-
-../Core/Inc/../OS/../Sensors/../../Drivers/Inc/Filters.h:
+../Core/Data_Logger/../OS/../Sensors/../../Drivers/Inc/Filters.h:
 
 d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Inc/../OS/../Sensors/mpu.h:
+../Core/Data_Logger/../OS/../Sensors/mpu.h:
 
-../Core/Inc/../OS/../Sensors/../OS/macro_types.h:
+../Core/Data_Logger/../OS/../Sensors/../OS/macro_types.h:
 
-../Core/Inc/../OS/../Sensors/acc.h:
+../Core/Data_Logger/../OS/../Sensors/acc.h:
 
-../Core/Inc/../OS/../Sensors/ms5611.h:
+../Core/Data_Logger/../OS/../Sensors/ms5611.h:
 
-../Core/Inc/../OS/../sensors/batterie.h:
+../Core/Data_Logger/../OS/../sensors/batterie.h:
 
-../Core/Inc/../OS/../Estimators/orientation.h:
+../Core/Data_Logger/../OS/../Estimators/orientation.h:
 
-../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
+../Core/Data_Logger/../OS/../Estimators/../Sensors/gyro.h:
 
-../Core/Inc/../OS/../Estimators/../Sensors/acc.h:
+../Core/Data_Logger/../OS/../Estimators/../Sensors/acc.h:
 
-../Core/Inc/../OS/../Radio/controller.h:
+../Core/Data_Logger/../OS/../Radio/controller.h:
 
-../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h:
-
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
-
-../Core/Inc/../OS/../Propulsion/Propulsion.h:
-
-../Core/Inc/../OS/../Propulsion/../../Drivers/Inc/Motors.h:
+../Core/Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h:
 
 d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Inc/../OS/../Regulation/Regu_orientation.h:
+../Core/Data_Logger/../OS/../Propulsion/Propulsion.h:
 
-../Core/Inc/../OS/../Regulation/../Estimators/orientation.h:
-
-../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h:
+../Core/Data_Logger/../OS/../Propulsion/../../Drivers/Inc/Motors.h:
 
 d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
-../Core/Inc/../OS/../Regulation/Regu_position.h:
+../Core/Data_Logger/../OS/../Regulation/../Estimators/orientation.h:
 
-../Core/Inc/../OS/../Regulation/Regu_orientation.h:
+../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Pid.h:
 
-../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h:
+d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
-../Core/Inc/../OS/../Telemetry/Telemetry.h:
+../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Filters.h:
 
-../Core/Inc/../OS/../Ihm/Ihm.h:
+../Core/Data_Logger/../OS/../Regulation/Regu_position.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
+../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
-../Core/Inc/../OS/../../Drivers/Inc/Motors.h:
+../Core/Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h:
 
-../Core/Inc/../OS/../config.h:
+../Core/Data_Logger/../OS/../Telemetry/Telemetry.h:
 
-../Core/Inc/stm32f4xx_it.h:
+../Core/Data_Logger/../OS/../Ihm/Ihm.h:
 
-../Core/Src/../Telemetry/Telemetry.h:
+../Core/Data_Logger/../OS/../../Drivers/Inc/Ibus.h:
+
+../Core/Data_Logger/../OS/../../Drivers/Inc/Motors.h:
+
+../Core/Data_Logger/../OS/../config.h:
+
+../Core/Data_Logger/../OS/tasks/task.h:
+
+../Core/Data_Logger/../OS/tasks/../system_d.h:
+
+../Core/Data_Logger/../OS/scheduler/scheduler.h:
+
+../Core/Data_Logger/../OS/scheduler/../tasks/task.h:
+
+../Core/Data_Logger/../OS/scheduler/../macro_types.h:
+
+../Core/Data_Logger/../OS/scheduler/../debug/debug.h:
+
+../Core/Data_Logger/../OS/scheduler/../debug/retarget.h:
+
+../Core/Data_Logger/../OS/scheduler/../system_d.h:

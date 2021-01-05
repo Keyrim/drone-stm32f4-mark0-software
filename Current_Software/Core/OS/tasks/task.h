@@ -44,6 +44,7 @@ typedef enum task_ids {
 	TASK_CONTROLLER_CHANNEL_ANALYSIS,
 	TASK_HIGH_LVL,
 	TASK_TELEMETRIE,
+	TASK_LOGGER,
 	TASK_COUNT
 }task_ids_t;
 

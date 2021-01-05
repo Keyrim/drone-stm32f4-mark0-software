@@ -23,6 +23,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "../Telemetry/Telemetry.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -319,7 +320,10 @@ void USART2_IRQHandler(void)
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-
+	if(__HAL_UART_GET_FLAG(&huart2, UART_FLAG_IDLE)){
+	  TELEMETRY_Idle_Line_Detection();
+	  __HAL_UART_CLEAR_IDLEFLAG(&huart2);
+	}
   /* USER CODE END USART2_IRQn 1 */
 }
 

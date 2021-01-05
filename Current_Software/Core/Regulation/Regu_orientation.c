@@ -17,7 +17,7 @@ float filter_pid_velocity_yaw[3] = {1.0f, 0.0f, 0.0f};
 
 float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.6f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
 float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.6f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
-float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {0.6f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
+float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 200};
 
 
 //	------------------------------	Angular Pos Regulation settings	-----------------------------------------

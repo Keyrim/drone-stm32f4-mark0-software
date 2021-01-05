@@ -33,6 +33,7 @@
 #include "../OS/scheduler/scheduler.h"
 #include "../OS/events/events.h"
 #include "../Flight_mode/Flight_mode.h"
+#include "../Data_Logger/Data_logger.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,7 +90,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  HAL_Delay(100);	//Let the time to the components to start
+  HAL_Delay(500);	//Let the time to the components to start
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -105,7 +106,7 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(100);	//Let the time for the components to start
+  HAL_Delay(500);	//Let the time for the components to start
 
   //Init du baromètre
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
@@ -140,6 +141,8 @@ int main(void)
 
   SCHEDULER_init(&sys);
   EVENT_init(&sys);
+
+  DATA_LOGGER_Init(&sys);
 
   /* USER CODE END 2 */
 

@@ -17,10 +17,10 @@ typedef enum state_arming_e{
 	ARMING_VROUM_VOUM
 }state_arming_e;
 
-#define MOTORS_HIGH_POWER 	100
+#define MOTORS_HIGH_POWER 	200
 #define MOTORS_LOW_POWER	40
 
-#define PERIODE_1 	200000
+#define PERIODE_1 	400000
 #define PERIODE_2 	300000
 #define PERIODE_3 	200000
 #define PERIODE_4 	500000
@@ -29,6 +29,7 @@ typedef enum state_arming_e{
 static state_arming_e state = 0;
 static uint8_t state_vroum_vroum = 0;
 static uint32_t next_change = 0 ;
+static float elapsed = 0 ;
 
 void arming_entrance(system_t * sys){
 	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
@@ -40,6 +41,8 @@ void arming_entrance(system_t * sys){
 }
 
 void arming_main(system_t * sys, uint32_t time_us){
+
+
 
 	switch(state){
 		case ARMING_THROTTLE_LOW :
@@ -62,6 +65,9 @@ void arming_main(system_t * sys, uint32_t time_us){
 					state_vroum_vroum++;
 					break;
 				case 1:
+					elapsed = (float)time_us - (float)(next_change-PERIODE_1);
+					elapsed /= (float)PERIODE_1;
+					sys->regulation.position.consigne = MOTORS_LOW_POWER + (uint32_t)((float)(MOTORS_HIGH_POWER - MOTORS_LOW_POWER) * elapsed);
 					if(time_us > next_change){
 						next_change = time_us + PERIODE_2;
 						sys->regulation.position.consigne = MOTORS_LOW_POWER;
