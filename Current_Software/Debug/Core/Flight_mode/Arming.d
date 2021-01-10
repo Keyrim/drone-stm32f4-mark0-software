@@ -37,7 +37,7 @@ Core/Flight_mode/Arming.o: ../Core/Flight_mode/Arming.c \
  ../Core/Flight_mode/../OS/../Sensors/gyro.h \
  ../Core/Flight_mode/../OS/../Sensors/sensors.h \
  ../Core/Flight_mode/../OS/../Sensors/../../Drivers/Inc/Filters.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Flight_mode/../OS/../Sensors/mpu.h \
  ../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Flight_mode/../OS/../Sensors/acc.h \
@@ -48,14 +48,14 @@ Core/Flight_mode/Arming.o: ../Core/Flight_mode/Arming.c \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h \
  ../Core/Flight_mode/../OS/../Radio/controller.h \
  ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Flight_mode/../OS/../Propulsion/Propulsion.h \
  ../Core/Flight_mode/../OS/../Propulsion/../../Drivers/Inc/Motors.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
  ../Core/Flight_mode/../OS/../Regulation/../Estimators/orientation.h \
  ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Pid.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_position.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
@@ -151,7 +151,7 @@ Core/Flight_mode/Arming.o: ../Core/Flight_mode/Arming.c \
 
 ../Core/Flight_mode/../OS/../Sensors/../../Drivers/Inc/Filters.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Sensors/mpu.h:
 
@@ -173,13 +173,13 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Propulsion/Propulsion.h:
 
 ../Core/Flight_mode/../OS/../Propulsion/../../Drivers/Inc/Motors.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h:
 
@@ -187,7 +187,7 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Pid.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h:
 

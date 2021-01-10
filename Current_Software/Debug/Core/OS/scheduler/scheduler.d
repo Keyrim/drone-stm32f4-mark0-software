@@ -37,8 +37,8 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/gyro.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/sensors.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\filters.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../Sensors/../../Drivers/Inc/Filters.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/mpu.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/acc.h \
@@ -49,13 +49,15 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../Radio/controller.h \
  ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Propulsion/Propulsion.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\motors.h \
+ ../Core/OS/scheduler/../tasks/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/orientation.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\pid.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_position.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Propulsion/Propulsion.h \
@@ -147,9 +149,9 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
 
 ../Core/OS/scheduler/../tasks/../../Sensors/sensors.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\filters.h:
+../Core/OS/scheduler/../tasks/../../Sensors/../../Drivers/Inc/Filters.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Sensors/mpu.h:
 
@@ -171,19 +173,23 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Propulsion/Propulsion.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\motors.h:
+../Core/OS/scheduler/../tasks/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/orientation.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\pid.h:
+../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Pid.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/Regu_position.h:
 

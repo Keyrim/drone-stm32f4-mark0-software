@@ -38,27 +38,29 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/gyro.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/sensors.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\filters.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Sensors/../../Drivers/Inc/Filters.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/mpu.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/acc.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/ms5611.h \
  ../Core/Telemetry/../Data_Logger/../OS/../sensors/batterie.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h \
- d:\github\f4_flight_controller\current_software\core\sensors\gyro.h \
- d:\github\f4_flight_controller\current_software\core\sensors\acc.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/gyro.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/acc.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Radio/controller.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\ibus.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Propulsion/Propulsion.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\drivers\inc\motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h \
- d:\github\f4_flight_controller\current_software\core\estimators\orientation.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\pid.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Estimators/orientation.h \
+ c:\workspace\github\f4_flight_controller\current_software\drivers\inc\pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\drivers\inc\Filters.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_position.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h \
- d:\github\f4_flight_controller\current_software\core\propulsion\propulsion.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Ihm/Ihm.h \
  ../Core/Telemetry/../Data_Logger/../OS/../../Drivers/Inc/Ibus.h \
@@ -143,9 +145,9 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
 
 ../Core/Telemetry/../Data_Logger/../OS/../Sensors/sensors.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\filters.h:
+../Core/Telemetry/../Data_Logger/../OS/../Sensors/../../Drivers/Inc/Filters.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Sensors/mpu.h:
 
@@ -159,31 +161,35 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h:
 
-d:\github\f4_flight_controller\current_software\core\sensors\gyro.h:
+../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/gyro.h:
 
-d:\github\f4_flight_controller\current_software\core\sensors\acc.h:
+../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/acc.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Radio/controller.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\ibus.h:
+../Core/Telemetry/../Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Propulsion/Propulsion.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\motors.h:
+c:\workspace\github\f4_flight_controller\current_software\drivers\inc\motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
-d:\github\f4_flight_controller\current_software\core\estimators\orientation.h:
+../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Estimators/orientation.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\pid.h:
+c:\workspace\github\f4_flight_controller\current_software\drivers\inc\pid.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
+c:\workspace\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_position.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
-d:\github\f4_flight_controller\current_software\core\propulsion\propulsion.h:
+../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h:
 

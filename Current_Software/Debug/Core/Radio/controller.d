@@ -44,7 +44,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Sensors/gyro.h \
  ../Core/Radio/../OS/events/../../Sensors/sensors.h \
  ../Core/Radio/../OS/events/../../Sensors/../../Drivers/Inc/Filters.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Radio/../OS/events/../../Sensors/mpu.h \
  ../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/Radio/../OS/events/../../Sensors/acc.h \
@@ -55,12 +55,13 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/Radio/../OS/events/../../Radio/controller.h \
  ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\motors.h \
- d:\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Radio/../OS/events/../../Regulation/../Estimators/orientation.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\pid.h \
- d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h \
+ ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
@@ -162,7 +163,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
 
 ../Core/Radio/../OS/events/../../Sensors/../../Drivers/Inc/Filters.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Sensors/mpu.h:
 
@@ -184,17 +185,19 @@ d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\motors.h:
+../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h:
 
-d:\github\f4_flight_controller\current_software\core\os\macro_types.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h:
 
 ../Core/Radio/../OS/events/../../Regulation/../Estimators/orientation.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\pid.h:
+../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h:
 
-d:\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
 
 ../Core/Radio/../OS/events/../../Regulation/Regu_position.h:
 
