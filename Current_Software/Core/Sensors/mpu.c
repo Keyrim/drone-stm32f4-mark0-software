@@ -111,6 +111,12 @@ sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * 
 	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, wakeup_data, 2, 2);
 	MPU_cs_unlock(mpu);
 
+	uint8_t set_dlpf[] = {MPU6050_CONFIG, 0x00};
+
+	MPU_cs_lock(mpu);
+	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, set_dlpf, 2, 2);
+	MPU_cs_unlock(mpu);
+
 	//Pour l'init on ne s'occupe pas des cas HAL busy etc, c'est bon ou c'est pas bon c est tout^^
 	if(mpu->hal_state != HAL_OK){
 		mpu->state = SENSOR_ERROR ;

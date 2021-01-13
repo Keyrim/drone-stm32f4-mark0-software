@@ -90,7 +90,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  HAL_Delay(100);	//Let the time to the components to start
+  HAL_Delay(200);	//Let the time to the components to start
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -106,14 +106,16 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(100);	//Let the time for the components to start
+  HAL_Delay(200);	//Let the time for the components to start
 
   //Init du baromètre
   //MS5611_init(&sys.sensors.ms5611, &hi2c1);
 
   //Init du GYRO et de l ACC en utilisant un MPU6000
   MPU_init(&sys.sensors.mpu, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
+  HAL_Delay(200);	//Let the time for the components to start
   GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
+  HAL_Delay(200);	//Let the time for the components to start
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
 

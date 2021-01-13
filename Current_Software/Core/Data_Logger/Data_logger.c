@@ -78,7 +78,7 @@ void DATA_LOGGER_Init(system_t * sys_){
 
 	//	-----------------------------------------------	Définitions des data	-----------------------------------------------------------------
 	//Angle
-	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle, 		sizeof(name_roll_angle)-1, 							TRUE);
+	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle, 		sizeof(name_roll_angle)-1, 							FALSE);
 	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle, 		sizeof(name_pitch_angle)-1, 						FALSE);
 
 	//Consignes angles
@@ -112,7 +112,7 @@ void DATA_LOGGER_Init(system_t * sys_){
 
 
 	//Others
-	DEFINE_DATA(DATA_ID_FLIGHT_MODE, sys->soft.flight_mode, 																	DATA_FORMAT_8B, 			name_flight_mode, 		sizeof(name_flight_mode)-1, 						TRUE);
+	DEFINE_DATA(DATA_ID_FLIGHT_MODE, sys->soft.flight_mode, 																	DATA_FORMAT_8B, 			name_flight_mode, 		sizeof(name_flight_mode)-1, 						FALSE);
 
 
 }

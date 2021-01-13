@@ -9,16 +9,16 @@
 #include "gyro.h"
 #include "../OS/events/events.h"
 
-float filter[3] = {0.1f, 0.9f, 0};
+float filter[3] = {0.01918976546f, 1.833688699f, -0.8528784648f};
 
 static void gyro_data_callback(void);
 
 void GYRO_init(gyro_t * gyro, mpu_t * mpu){
 
 	//Filters init
-	FILTER_init(&gyro->filters[GYRO_AXE_X], filter, FILTER_FIRST_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Y], filter, FILTER_FIRST_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Z], filter, FILTER_FIRST_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_X], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_Y], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[GYRO_AXE_Z], filter, FILTER_SECOND_ORDER);
 
 	gyro->mpu = mpu ;
 	gyro->raw = gyro->mpu->gyro ;
