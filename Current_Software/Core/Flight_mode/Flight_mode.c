@@ -25,6 +25,7 @@ static flight_modes_names_e next_flight_mode = FLIGHT_MODE_ON_THE_GROUND;
 static flight_mode_t flights_modes[FLIGHT_MODE_COUNT] = {
 		[FLIGHT_MODE_ON_THE_GROUND] = 			DEF_FLIGHT_MODE(FLIGHT_MODE_ON_THE_GROUND, 				on_the_ground_entrance, 		on_the_ground_main),
 		[FLIGHT_MODE_MANUAL_ACCRO] = 			DEF_FLIGHT_MODE(FLIGHT_MODE_MANUAL_ACCRO, 				manual_accro_entrance, 			manual_accro_main),
+		[FLIGHT_MODE_MANUAL_ANGLE] = 			DEF_FLIGHT_MODE(FLIGHT_MODE_MANUAL_ANGLE, 				manual_angle_entrance, 			manual_angle_main),
 		[FLIGHT_MODE_ARMING] = 					DEF_FLIGHT_MODE(FLIGHT_MODE_ARMING, 					arming_entrance, 				arming_main),
 		[FLIGHT_MODE_GYRO_ACC_CALIBRATION] = 	DEF_FLIGHT_MODE(FLIGHT_MODE_GYRO_ACC_CALIBRATION, 		gyro_acc_calibration_entrance, 	gyro_acc_calibration_main),
 
@@ -33,6 +34,7 @@ static flight_mode_t flights_modes[FLIGHT_MODE_COUNT] = {
 //	-------------------------	Public functions	-------------------------
 void FLIGHT_MODE_Init(system_t * sys_){
 	sys = sys_;
+	sys->soft.flight_mode = &current_flight_mode;
 }
 
 //Dont call it from an it plz for now ..

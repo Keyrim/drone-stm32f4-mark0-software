@@ -40,35 +40,65 @@ static bool_e stop_flag = FALSE;
 static uint8_t tmp[20];
 static uint8_t tmp_len ;
 static uint8_t id_init_counter = 0;
-static uint8_t id_counter_send = 0 ;
 static bool_e is_any_data_used = FALSE;
 
 //Data name def
 static uint8_t name_roll_angle[] = "Angle ROLL";
 static uint8_t name_pitch_angle[] = "Angle PITCH";
+
+static uint8_t name_consigne_angle_roll[] = "Target ROLL";
+static uint8_t name_consigne_angle_pitch[] = "Target PITCH";
+
 static uint8_t name_roll_gyro [] = "Gyro ROLL";
 static uint8_t name_pitch_gyro[] = "Gyro PITCH";
 static uint8_t name_yaw_gyro[] = "Gyro YAW";
+
+static uint8_t name_target_roll_gyro[] = "Tar Gyro ROLL";
+static uint8_t name_target_pitch_gyro[] = "Tar Gyro PITCH";
+static uint8_t name_target_yaw_gyro[] = "Tar Gyro YAW";
+
+
 static uint8_t name_roll_gyro_raw [] = "Gyro raw ROLL";
 static uint8_t name_pitch_gyro_raw[] = "Gyro raw PITCH";
 static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
-static uint8_t name_config_request[] = "Send Config";
 
+static uint8_t name_config_request[] = "Send Config";
+static uint8_t name_flight_mode[] = "Flight Mode";
 
 void DATA_LOGGER_Init(system_t * sys_){
 
 	sys = sys_;
 
-	//Définitions des data
-	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle, 		sizeof(name_roll_angle)-1, 		FALSE);
-	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle, 		sizeof(name_pitch_angle)-1, 	FALSE);
-	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 			DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 		sizeof(name_roll_gyro)-1, 		TRUE);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 			DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 		sizeof(name_pitch_gyro)-1, 		FALSE);
-	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 				DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			sizeof(name_yaw_gyro)-1, 		FALSE);
-	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 				DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 	sizeof(name_roll_gyro_raw)-1, 	TRUE);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 			DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,	sizeof(name_pitch_gyro_raw)-1, 	FALSE);
-	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 				DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 		sizeof(name_yaw_gyro_raw)-1, 	FALSE);
-	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 															DATA_FORMAT_0B_BUTTON, 		name_config_request, 	sizeof(name_config_request)-1, 	FALSE);
+	//	-----------------------------------------------	Définitions des data	-----------------------------------------------------------------
+	//Angle
+	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle, 		sizeof(name_roll_angle)-1, 							TRUE);
+	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle, 		sizeof(name_pitch_angle)-1, 						FALSE);
+
+	//Consignes angles
+	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_roll, 		sizeof(name_consigne_angle_roll)-1, 		FALSE);
+	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_PITCH, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_pitch, 		sizeof(name_consigne_angle_pitch)-1, 		FALSE);
+
+	//Angle rate
+	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 		sizeof(name_roll_gyro)-1, 							TRUE);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 		sizeof(name_pitch_gyro)-1, 							FALSE);
+	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			sizeof(name_yaw_gyro)-1, 							FALSE);
+
+	//Consignes angles rates
+	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_roll_gyro, 		sizeof(name_target_roll_gyro)-1, 				FALSE);
+	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_PITCH, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_pitch_gyro, 	sizeof(name_target_pitch_gyro)-1, 				FALSE);
+	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_YAW, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_YAW], 		DATA_FORMAT_16B_FLOAT_1D, 	name_target_yaw_gyro, 		sizeof(name_target_yaw_gyro)-1, 				FALSE);
+
+	//Angle Rate raw
+	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 	sizeof(name_roll_gyro_raw)-1, 						TRUE);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,	sizeof(name_pitch_gyro_raw)-1, 						FALSE);
+	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 		sizeof(name_yaw_gyro_raw)-1, 						FALSE);
+
+	//Buttons
+	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 	sizeof(name_config_request)-1, 						FALSE);
+
+	//Others
+	DEFINE_DATA(DATA_ID_FLIGHT_MODE, sys->soft.flight_mode, 																	DATA_FORMAT_8B, 			name_flight_mode, 		sizeof(name_flight_mode)-1, 						TRUE);
+
 
 }
 
@@ -147,7 +177,7 @@ void DATA_LOGGER_Main(void){
 
 		case LOGGER_LOG:
 			if(entrance)
-				SCHEDULER_reschedule_task(TASK_LOGGER, 5000);	//On reprend une fréquence plus importante pour l'envoit en flux continu
+				SCHEDULER_reschedule_task(TASK_LOGGER, 10000);	//On reprend une fréquence plus importante pour l'envoit en flux continu
 
 			for(uint8_t d = 0; d < DATA_ID_COUNT; d++)
 			{
@@ -222,6 +252,16 @@ uint8_t DATA_LOGGER_Get_Data_Value(data_id_e id, uint8_t * buffer){
 		case DATA_FORMAT_16B_FLOAT_1D:
 			tmp_float = *(float*)data_list[id].data;
 			tmp_16 = tmp_float * 10;
+			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
+			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
+			break;
+		case DATA_FORMAT_16B_UINT16:
+			tmp_16 = *(uint16_t*)data_list[id].data ;
+			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
+			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
+			break;
+		case DATA_FORMAT_16B_INT16:
+			tmp_16 = *(int16_t*)data_list[id].data ;
 			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
 			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
 			break;

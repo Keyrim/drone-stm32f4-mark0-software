@@ -93,6 +93,10 @@ typedef enum MPU_dma_state_e{
 	MPU_DMA_ACC_AND_GYRO_IN_PROGRESS
 }MPU_dma_state_e;
 
+typedef enum MPU_spi_speed{
+	MPU_SPI_SLOW,		//PSC spi equals 64	~600kB/s
+	MPU_SPI_FAST		//PSC spi equals 4	~10Mb/s
+}MPU_spi_speed;
 
 typedef struct{
 	//Hal periph
@@ -131,6 +135,8 @@ typedef struct{
 	//Read register
 	uint8_t request_bytes[8];
 
+	// spi speed
+	MPU_spi_speed spi_speed ;
 
 	uint32_t start_time_dma ;
 	uint32_t end_time_dma ;

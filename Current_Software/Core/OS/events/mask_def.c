@@ -29,6 +29,7 @@ static void mask_def_on_the_ground(Event_t * event);
 static void mask_def_manual_accro(Event_t * event);
 static void mask_def_arming(Event_t * event);
 static void mask_def_gyro_acc_calibration(Event_t * event);
+static void mask_def_manual_angle(Event_t * event);
 
 
 
@@ -48,6 +49,7 @@ void mask_def_events_init(Event_t * event){
 	mask_def_manual_accro(&event[EVENT_MANUAL_ACCRO]);
 	mask_def_arming(&event[EVENT_ARMING]);
 	mask_def_gyro_acc_calibration(&event[EVENT_GYRO_ACC_CALIBRATION]);
+	mask_def_manual_angle(&event[EVENT_MANUAL_ANGLE]);
 
 }
 
@@ -112,8 +114,13 @@ static void mask_def_on_the_ground(Event_t * event){
 }
 
 static void mask_def_manual_accro(Event_t * event){
-	MASK_set_flag(&event->mask_and[MASK_MANUAL_ON_THE_GROUND], FLAG_ARMED);
-	MASK_set_flag(&event->mask_or[MASK_MANUAL_ON_THE_GROUND], FLAG_ARMED);
+	MASK_set_flag(&event->mask_and[MASK_MANUAL_ACCRO_ON_THE_GROUND], FLAG_CHAN_6_POS_1);
+	MASK_set_flag(&event->mask_or[MASK_MANUAL_ACCRO_ON_THE_GROUND], FLAG_ARMED);
+}
+
+static void mask_def_manual_angle(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_MANUAL_ANGLE_ON_THE_GROUND], FLAG_CHAN_6_POS_2);
+	MASK_set_flag(&event->mask_or[MASK_MANUAL_ANGLE_ON_THE_GROUND], FLAG_ARMED);
 }
 
 static void mask_def_arming(Event_t * event){

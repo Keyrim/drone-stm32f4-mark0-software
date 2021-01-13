@@ -27,6 +27,8 @@ static void convert_acc(mpu_t * mpu);
 static void MPU_cs_lock(mpu_t * mpu);
 static void MPU_cs_unlock(mpu_t * mpu);
 
+static void MPU_spi_slow(mpu_t * mpu);
+static void MPU_spi_fast(mpu_t * mpu);
 
 //Private functions def
 static void convert_gyro(mpu_t * mpu){
@@ -57,6 +59,20 @@ static void MPU_cs_unlock(mpu_t * mpu){
 	HAL_GPIO_WritePin(mpu->pin_cs_gpio, mpu->pin_cs, SET);
 }
 
+static void MPU_spi_slow(mpu_t * mpu){
+	mpu->spi_speed = MPU_SPI_SLOW;
+	mpu->hspi->Init.BaudRatePrescaler = 64 ;
+	mpu->hal_state = HAL_SPI_Init(mpu->hspi);
+	HAL_Delay(10);
+}
+static void MPU_spi_fast(mpu_t * mpu){
+	mpu->spi_speed = MPU_SPI_FAST;
+	mpu->hspi->Init.BaudRatePrescaler = 4 ;
+	mpu->hal_state = HAL_SPI_Init(mpu->hspi);
+	HAL_Delay(10);
+}
+
+
 /*
  *
  */
@@ -64,6 +80,11 @@ sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * 
 
 	//Etat par default
 	mpu->state = SENSOR_NOT_INIT ;
+
+	//SPI slow pdt l'init, max si 1Mhz for the mpu
+	if(mpu->spi_speed ==  MPU_SPI_FAST)
+		MPU_spi_slow(mpu);
+
 
 	//Définit d'après la doc pour les registres du mpu
 	mpu->gyro_data = &mpu->data[8] ;
@@ -111,6 +132,9 @@ sensor_request_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range, void (*
 	//Si mpu non utilisable
 	if(mpu->state != SENSOR_IDDLE)
 		return SENSOR_REQUEST_FAIL ;
+
+	if(mpu->spi_speed ==  MPU_SPI_FAST)
+		MPU_spi_slow(mpu);
 
 	//Configuration de la sensi du gyro dans le mpu
 	//On lit
@@ -169,6 +193,8 @@ sensor_request_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range, void (*
 			mpu->gyro_sensi = (float)1 / MPU6050_GYRO_SENS_2000 ;
 			break;
 	}
+
+	MPU_spi_fast(mpu);
 	return SENSOR_REQUEST_OK;
 }
 
@@ -182,6 +208,8 @@ sensor_request_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range, void (*acc
 	if(mpu->state != SENSOR_IDDLE)
 		return SENSOR_REQUEST_FAIL ;
 
+	if(mpu->spi_speed ==  MPU_SPI_FAST)
+			MPU_spi_slow(mpu);
 
 	//Configuration de la sensi de l'acc dans le mpu
 	//On lit
@@ -233,6 +261,7 @@ sensor_request_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range, void (*acc
 			mpu->acc_sensi = (float)1 / MPU6050_ACCE_SENS_16 ;
 			break;
 	}
+	MPU_spi_fast(mpu);
 	return SENSOR_REQUEST_OK;
 }
 

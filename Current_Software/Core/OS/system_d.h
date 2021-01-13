@@ -52,6 +52,9 @@ typedef struct radio_t{
 	telemetry_t telemetry ;
 }radio_t;
 
+typedef struct soft_t{
+	uint8_t * flight_mode ;
+}soft_t;
 
 
 typedef struct{
@@ -61,6 +64,7 @@ typedef struct{
 	radio_t	radio;
 	propulsion_t propulsion ;
 	regulation_t regulation ;
+	soft_t soft;
 }system_t;
 
 

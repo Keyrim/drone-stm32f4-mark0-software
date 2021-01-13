@@ -24,6 +24,7 @@ typedef struct regu_orientation_t{
 	orientation_t * orientation ;
 	regulation_orientation_mode_e mode ;
 	PID_t pid_angular_speed [ORIENTATION_AXES_COUNT];
+	PID_t pid_angular_pos [ORIENTATION_AXES_COUNT];
 	float consigne_angular_pos[ORIENTATION_AXES_COUNT] ;
 	float consigne_angular_speed[ORIENTATION_AXES_COUNT];
 	int16_t  * outputs;		//Outputs for the motors
