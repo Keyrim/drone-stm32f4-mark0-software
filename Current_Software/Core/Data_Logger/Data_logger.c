@@ -63,6 +63,9 @@ static uint8_t name_pitch_gyro_raw[] = "Gyro raw PITCH";
 static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
 
 static uint8_t name_config_request[] = "Send Config";
+static uint8_t name_enable_asser_orientation[] = "En Asser Ori";
+static uint8_t name_disable_asser_orientation[] = "Dis Asser Ori";
+
 static uint8_t name_flight_mode[] = "Flight Mode";
 
 void DATA_LOGGER_Init(system_t * sys_){
@@ -94,7 +97,9 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 		sizeof(name_yaw_gyro_raw)-1, 						FALSE);
 
 	//Buttons
-	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 	sizeof(name_config_request)-1, 						FALSE);
+	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 			sizeof(name_config_request)-1, 				FALSE);
+	DEFINE_DATA(DATA_ID_DISABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_disable_asser_orientation, sizeof(name_disable_asser_orientation)-1, 	TRUE);
+	DEFINE_DATA(DATA_ID_ENABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_enable_asser_orientation, 	sizeof(name_enable_asser_orientation)-1, 	TRUE);
 
 	//Others
 	DEFINE_DATA(DATA_ID_FLIGHT_MODE, sys->soft.flight_mode, 																	DATA_FORMAT_8B, 			name_flight_mode, 		sizeof(name_flight_mode)-1, 						TRUE);
@@ -181,7 +186,7 @@ void DATA_LOGGER_Main(void){
 
 			for(uint8_t d = 0; d < DATA_ID_COUNT; d++)
 			{
-				if(data_list[d].used)
+				if(data_list[d].used && data_list[d].format != DATA_FORMAT_0B_BUTTON);
 					{
 						tmp_len = DATA_LOGGER_Get_Data_Value(d, tmp);
 						TELEMETRY_Send_Data(tmp, tmp_len);
@@ -204,6 +209,12 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 					break;
 				case DATA_ID_CONFIG_REQUEST:
 					start_flag = TRUE;
+					break;
+				case DATA_ID_ENABLE_ASSER_ORIENTATION:
+					REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_ACCRO);
+					break;
+				case DATA_ID_DISABLE_ASSER_ORIENTATION:
+					REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
 					break;
 			}
 			break;

@@ -1,8 +1,8 @@
-Data_logger.c:68:6:DATA_LOGGER_Init	16	static
-Data_logger.c:105:6:DATA_LOGGER_Start	4	static
-Data_logger.c:109:6:DATA_LOGGER_Stop	4	static
-Data_logger.c:113:6:DATA_LOGGER_Main	16	static
-Data_logger.c:195:6:DATA_LOGGER_Reception	24	static
-Data_logger.c:228:9:DATA_LOGGER_Get_Data_Value	32	static
-Data_logger.c:277:9:DATA_LOGGER_Get_Data_Config	24	static
-Data_logger.c:293:10:DATA_LOGGER_Get_Data	16	static
+Data_logger.c:71:6:DATA_LOGGER_Init	16	static
+Data_logger.c:110:6:DATA_LOGGER_Start	4	static
+Data_logger.c:114:6:DATA_LOGGER_Stop	4	static
+Data_logger.c:118:6:DATA_LOGGER_Main	16	static
+Data_logger.c:200:6:DATA_LOGGER_Reception	24	static
+Data_logger.c:239:9:DATA_LOGGER_Get_Data_Value	32	static
+Data_logger.c:288:9:DATA_LOGGER_Get_Data_Config	24	static
+Data_logger.c:304:10:DATA_LOGGER_Get_Data	16	static

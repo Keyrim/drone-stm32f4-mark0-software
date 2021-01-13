@@ -33,7 +33,12 @@ typedef enum data_id_e{
 	DATA_ID_CONSIGNE_ANGLE_ROLL,
 	DATA_ID_CONSIGNE_ANGLE_PITCH,
 
+	DATA_ID_PROP_THRUST,
+
+	//Buttons
 	DATA_ID_CONFIG_REQUEST,		//Si je reçois ça, j'envoit la configuration des données
+	DATA_ID_DISABLE_ASSER_ORIENTATION,
+	DATA_ID_ENABLE_ASSER_ORIENTATION,
 
 	DATA_ID_COUNT
 }data_id_e;
