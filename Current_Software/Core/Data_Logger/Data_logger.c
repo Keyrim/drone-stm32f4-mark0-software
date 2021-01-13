@@ -62,9 +62,13 @@ static uint8_t name_roll_gyro_raw [] = "Gyro raw ROLL";
 static uint8_t name_pitch_gyro_raw[] = "Gyro raw PITCH";
 static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
 
+static uint8_t name_prop_thrust[] = "PROP Thrust";
+
 static uint8_t name_config_request[] = "Send Config";
 static uint8_t name_enable_asser_orientation[] = "En Asser Ori";
 static uint8_t name_disable_asser_orientation[] = "Dis Asser Ori";
+static uint8_t name_start_transfer[] = "Start Transfer";
+static uint8_t name_stop_transfer[] = "Stop Transfer";
 
 static uint8_t name_flight_mode[] = "Flight Mode";
 
@@ -100,6 +104,12 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 			sizeof(name_config_request)-1, 				FALSE);
 	DEFINE_DATA(DATA_ID_DISABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_disable_asser_orientation, sizeof(name_disable_asser_orientation)-1, 	TRUE);
 	DEFINE_DATA(DATA_ID_ENABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_enable_asser_orientation, 	sizeof(name_enable_asser_orientation)-1, 	TRUE);
+	DEFINE_DATA(DATA_ID_START_TRANSFER, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_start_transfer, 		sizeof(name_start_transfer)-1, 					TRUE);
+	DEFINE_DATA(DATA_ID_STOP_TRANSFER, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_stop_transfer, 		sizeof(name_stop_transfer)-1, 					TRUE);
+
+	//Propulsion
+	DEFINE_DATA(DATA_ID_PROP_THRUST, (uint8_t*)&sys->propulsion.consigne[PROP_CONSIGNE_THRUST], 								DATA_FORMAT_16B_UINT16,  	name_prop_thrust, 		sizeof(name_prop_thrust)-1, 						TRUE);
+
 
 	//Others
 	DEFINE_DATA(DATA_ID_FLIGHT_MODE, sys->soft.flight_mode, 																	DATA_FORMAT_8B, 			name_flight_mode, 		sizeof(name_flight_mode)-1, 						TRUE);
@@ -143,7 +153,6 @@ void DATA_LOGGER_Main(void){
 					state = LOGGER_TRANSMIT_CONFIG;
 
 				}
-
 				else
 					state = LOGGER_LOG;
 			}
@@ -184,13 +193,16 @@ void DATA_LOGGER_Main(void){
 			if(entrance)
 				SCHEDULER_reschedule_task(TASK_LOGGER, 10000);	//On reprend une fréquence plus importante pour l'envoit en flux continu
 
+			if(stop_flag)
+				state = LOGGER_IDDLE;
+
 			for(uint8_t d = 0; d < DATA_ID_COUNT; d++)
 			{
-				if(data_list[d].used && data_list[d].format != DATA_FORMAT_0B_BUTTON);
-					{
-						tmp_len = DATA_LOGGER_Get_Data_Value(d, tmp);
-						TELEMETRY_Send_Data(tmp, tmp_len);
-					}
+				if(data_list[d].used && (data_list[d].format != DATA_FORMAT_0B_BUTTON))
+				{
+					tmp_len = DATA_LOGGER_Get_Data_Value(d, tmp);
+					TELEMETRY_Send_Data(tmp, tmp_len);
+				}
 			}
 			break;
 	}
@@ -215,6 +227,12 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 					break;
 				case DATA_ID_DISABLE_ASSER_ORIENTATION:
 					REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
+					break;
+				case DATA_ID_START_TRANSFER:
+					DATA_LOGGER_Start();
+					break;
+				case DATA_ID_STOP_TRANSFER:
+					DATA_LOGGER_Stop();
 					break;
 			}
 			break;
