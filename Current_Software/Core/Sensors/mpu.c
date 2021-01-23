@@ -78,6 +78,17 @@ static void MPU_spi_fast(mpu_t * mpu){
  */
 sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * pin_cs_gpio, uint16_t pin_cs){
 
+
+	//Requiert un SPI pour fonctionner
+	if(hspi == NULL)
+		return SENSOR_REQUEST_FAIL ;
+
+
+	//CS pin must be high by default
+	MPU_cs_unlock(mpu);
+	HAL_Delay(1);
+	TIME_delay_us_blocking(1);
+
 	//Etat par default
 	mpu->state = SENSOR_NOT_INIT ;
 
@@ -91,10 +102,6 @@ sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * 
 	mpu->acc_data = &mpu->data[0] ;
 
 
-	//Requiert un I2C ou SPI pour fonctionner
-	if(hspi == NULL)
-		return SENSOR_REQUEST_FAIL ;
-
 	//Application des paramètres de connexion
 	mpu->hspi = hspi ;
 	mpu->pin_cs = pin_cs ;
@@ -105,17 +112,35 @@ sensor_request_e MPU_init(mpu_t * mpu, SPI_HandleTypeDef * hspi, GPIO_TypeDef * 
 	mpu_handlers[mpu_init_compteur] = mpu ;
 	SPI_handlers[mpu_init_compteur++] = hspi ;
 
-	uint8_t wakeup_data[] = {MPU6050_PWR_MGMT_1, 0x00} ;
-
+	//Wakeup mpu
+	uint8_t wakeup_data[] = {MPU6050_PWR_MGMT_1, 0x80} ;
 	MPU_cs_lock(mpu);
 	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, wakeup_data, 2, 2);
 	MPU_cs_unlock(mpu);
 
-	uint8_t set_dlpf[] = {MPU6050_CONFIG, 0x00};
+	HAL_Delay(150);
 
+	//Clock select
+	uint8_t mpu_clock_sel_pll_gyroz[] = {MPU6050_PWR_MGMT_1, 0x03};
 	MPU_cs_lock(mpu);
-	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, set_dlpf, 2, 2);
+	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, mpu_clock_sel_pll_gyroz, 2, 2);
 	MPU_cs_unlock(mpu);
+
+	HAL_Delay(15);
+
+	//Disable I2C
+	uint8_t mpu_disable_i2c[] = {MPU6050_USER_CTRL, 0x10};
+	MPU_cs_lock(mpu);
+	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, mpu_disable_i2c, 2, 2);
+	MPU_cs_unlock(mpu);
+
+	TIME_delay_us_blocking(2);
+
+	//Digital low pass filter config
+//	uint8_t set_dlpf[] = {MPU6050_CONFIG, 0x00};
+//	MPU_cs_lock(mpu);
+//	mpu->hal_state = HAL_SPI_Transmit(mpu->hspi, set_dlpf, 2, 2);
+//	MPU_cs_unlock(mpu);
 
 	//Pour l'init on ne s'occupe pas des cas HAL busy etc, c'est bon ou c'est pas bon c est tout^^
 	if(mpu->hal_state != HAL_OK){
@@ -200,7 +225,6 @@ sensor_request_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range, void (*
 			break;
 	}
 
-	MPU_spi_fast(mpu);
 	return SENSOR_REQUEST_OK;
 }
 

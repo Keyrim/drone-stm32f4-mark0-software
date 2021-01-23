@@ -11,6 +11,7 @@
 #include "../OS/system_d.h"
 
 typedef enum data_id_e{
+
 	DATA_ID_ROLL_ANGLE,
 	DATA_ID_PITCH_ANGLE,
 

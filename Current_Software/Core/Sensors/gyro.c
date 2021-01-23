@@ -9,8 +9,8 @@
 #include "gyro.h"
 #include "../OS/events/events.h"
 
-float filter[3] = {0.01918976546f, 1.833688699f, -0.8528784648f};
-
+//float filter[3] = {0.01234567901f, 1.777777778f, -0.7901234568f};
+float filter[3] = {0.1f, 0.9f, 0.0f};
 static void gyro_data_callback(void);
 
 void GYRO_init(gyro_t * gyro, mpu_t * mpu){

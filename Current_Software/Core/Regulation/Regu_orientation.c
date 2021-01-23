@@ -15,17 +15,17 @@ static orientation_t * orientation ;
 float filter_pid_velocity_roll_pitch[3] = {1.0f, 0.0f, 0.0f};
 float filter_pid_velocity_yaw[3] = {1.0f, 0.0f, 0.0f};
 
-float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.6f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
+float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.5f, 0.5f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
 float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.6f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
-float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 400};
+float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
 
 
 
 //	------------------------------	Angular Pos Regulation settings	-----------------------------------------
 float filter_pid_angle_roll_pitch[3] = {1.0f, 0.0f, 0.0f};
 
-float pid_angle_settings_roll[PID_NB_SETTINGS] = {10.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
-float pid_angle_settings_pitch[PID_NB_SETTINGS] = {1.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
+float pid_angle_settings_roll[PID_NB_SETTINGS] = {4.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
+float pid_angle_settings_pitch[PID_NB_SETTINGS] = {5.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
 
 
 void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, int16_t * output){
@@ -68,7 +68,7 @@ void REGULATION_ORIENTATION_Process(void){
 		case REGULATION_ORIENTATION_MODE_ANGLE:
 			//Calculs des consignes de vitesses angulaire avec les pids angular_pos
 			regu_orientation->consigne_angular_speed[ORIENTATION_ROLL] = -PID_compute(&regu_orientation->pid_angular_pos[ORIENTATION_ROLL], regu_orientation->consigne_angular_pos[ORIENTATION_ROLL], orientation->angular_position[ORIENTATION_ROLL]);
-			regu_orientation->consigne_angular_speed[ORIENTATION_PITCH] = PID_compute(&regu_orientation->pid_angular_pos[ORIENTATION_PITCH], regu_orientation->consigne_angular_pos[ORIENTATION_PITCH], orientation->angular_position[ORIENTATION_PITCH]);
+			regu_orientation->consigne_angular_speed[ORIENTATION_PITCH] = -PID_compute(&regu_orientation->pid_angular_pos[ORIENTATION_PITCH], regu_orientation->consigne_angular_pos[ORIENTATION_PITCH], orientation->angular_position[ORIENTATION_PITCH]);
 
 			//Calculs sorties pour les moteurs avec les pids angular_speed
 			regu_orientation->outputs[PROP_CONSIGNE_ROLL] = (int16_t)PID_compute(&regu_orientation->pid_angular_speed[ORIENTATION_ROLL], regu_orientation->consigne_angular_speed[ORIENTATION_ROLL], orientation->angular_velocity[ORIENTATION_ROLL]);

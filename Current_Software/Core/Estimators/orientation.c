@@ -8,12 +8,12 @@
 
 #include "orientation.h"
 
-#define ORIENTATION_ALPHA 0.9998f
+#define ORIENTATION_ALPHA 0.998f
 
 static bool_e first_use = TRUE ;
 
 static float absolu(float x);
-static float acc_correction(float x);
+//static float acc_correction(float x);
 static float angle_180(float x);
 
 
@@ -31,10 +31,10 @@ static float absolu(float x){
 	else
 		return -x ;
 }
-static float acc_correction(float x){
-	x = ( x > 0) ? 180 - x : -180 -x ;
-	return x ;
-}
+//static float acc_correction(float x){
+//	x = ( x > 0) ? 180 - x : -180 -x ;
+//	return x ;
+//}
 
 void ORIENTATION_Init(orientation_t * orientation, gyro_t * gyro, acc_t * acc, int32_t frequency){
 	//Link data structures
@@ -76,11 +76,11 @@ void ORIENTATION_Update(orientation_t * orientation){
 			orientation->acc_angles[ACC_AXE_Y] = -asinf(acc->filtered[ACC_AXE_X] / acc_total) * 57.32f;
 		if(absolu(acc->filtered[ACC_AXE_Y]) < acc_total) 	//To avoid asin x with x greater than 1
 			orientation->acc_angles[ACC_AXE_X] = asinf(acc->filtered[ACC_AXE_Y] / acc_total) * 57.32f;
-		if(acc->filtered[ACC_AXE_Z] < 0)
-		{
-			orientation->acc_angles[ACC_AXE_X] = acc_correction(orientation->acc_angles[ACC_AXE_X]);
-			orientation->acc_angles[ACC_AXE_Y] = acc_correction(orientation->acc_angles[ACC_AXE_Y]);
-		}
+//		if(acc->filtered[ACC_AXE_Z] < 0)
+//		{
+//			orientation->acc_angles[ACC_AXE_X] = acc_correction(orientation->acc_angles[ACC_AXE_X]);
+//			orientation->acc_angles[ACC_AXE_Y] = acc_correction(orientation->acc_angles[ACC_AXE_Y]);
+//		}
 	}
 
 	//If it's our first use, we dont use the gyro
@@ -101,6 +101,11 @@ void ORIENTATION_Update(orientation_t * orientation){
 		orientation->angular_position[GYRO_AXE_X] += dx ;
 		orientation->angular_position[GYRO_AXE_Y] += dy ;
 		orientation->angular_position[GYRO_AXE_Z] += dz ;
+
+		//On prend en compte le transfert d'angle lors d'une rotation sur l'axe YAW
+		float sin_dz = sinf(0.017f * dz);
+		orientation->angular_position[GYRO_AXE_X] += sin_dz * orientation->angular_position[GYRO_AXE_Y] ;
+		orientation->angular_position[GYRO_AXE_Y] -= sin_dz * orientation->angular_position[GYRO_AXE_X] ;
 
 
 		orientation->angular_position[GYRO_AXE_X] = angle_180(orientation->angular_position[GYRO_AXE_X]);
