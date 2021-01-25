@@ -58,6 +58,7 @@ Core/Flight_mode/Gyro_Acc_Calibration.o: \
  ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Flight_mode/../OS/../Regulation/../config.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_position.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
  ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h \
@@ -191,6 +192,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Flight_mode/../OS/../Regulation/../config.h:
 
 ../Core/Flight_mode/../OS/../Regulation/Regu_position.h:
 

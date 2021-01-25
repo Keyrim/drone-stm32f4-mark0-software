@@ -12,11 +12,11 @@ static regu_orientation_t * regu_orientation ;
 static orientation_t * orientation ;
 
 //	------------------------------	Angular Speed Regulation settings	-----------------------------------------
-float filter_pid_velocity_roll_pitch[3] = {1.0f, 0.0f, 0.0f};
+float filter_pid_velocity_roll_pitch[3] = {0.04f, 1.6f, -0.64f};
 float filter_pid_velocity_yaw[3] = {1.0f, 0.0f, 0.0f};
 
-float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.5f, 0.5f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
-float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.6f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
+float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.6f, 0.2f, 0.008f, REGU_ORIENTATION_FREQUENCY, 300};
+float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.7f, 0.3f, 0.01f, REGU_ORIENTATION_FREQUENCY, 300};
 float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
 
 
@@ -24,8 +24,8 @@ float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIEN
 //	------------------------------	Angular Pos Regulation settings	-----------------------------------------
 float filter_pid_angle_roll_pitch[3] = {1.0f, 0.0f, 0.0f};
 
-float pid_angle_settings_roll[PID_NB_SETTINGS] = {4.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
-float pid_angle_settings_pitch[PID_NB_SETTINGS] = {5.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
+float pid_angle_settings_roll[PID_NB_SETTINGS] = {6.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
+float pid_angle_settings_pitch[PID_NB_SETTINGS] = {7.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
 
 
 void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, int16_t * output){
@@ -36,8 +36,8 @@ void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orienta
 
 
 	//Init PIDs angular speed
-	PID_init(&regu_orientation->pid_angular_speed[ORIENTATION_ROLL], pid_velocity_settings_roll, FILTER_FIRST_ORDER, filter_pid_velocity_roll_pitch);
-	PID_init(&regu_orientation->pid_angular_speed[ORIENTATION_PITCH], pid_velocity_settings_pitch, FILTER_FIRST_ORDER, filter_pid_velocity_roll_pitch);
+	PID_init(&regu_orientation->pid_angular_speed[ORIENTATION_ROLL], pid_velocity_settings_roll, FILTER_SECOND_ORDER, filter_pid_velocity_roll_pitch);
+	PID_init(&regu_orientation->pid_angular_speed[ORIENTATION_PITCH], pid_velocity_settings_pitch, FILTER_SECOND_ORDER, filter_pid_velocity_roll_pitch);
 	PID_init(&regu_orientation->pid_angular_speed[ORIENTATION_YAW], pid_velocity_settings_yaw, FILTER_FIRST_ORDER, filter_pid_velocity_yaw);
 
 

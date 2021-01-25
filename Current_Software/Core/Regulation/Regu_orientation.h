@@ -10,8 +10,9 @@
 
 #include "../Estimators/orientation.h"
 #include "../../Drivers/Inc/Pid.h"
+#include "../config.h"
 
-#define REGU_ORIENTATION_FREQUENCY 2500
+#define REGU_ORIENTATION_FREQUENCY GYRO_FREQUENCY
 
 typedef enum regulation_orientation_mode_e{
 	REGULATION_ORIENTATION_MODE_OFF,

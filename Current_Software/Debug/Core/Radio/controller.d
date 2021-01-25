@@ -62,6 +62,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Radio/../OS/events/../../Regulation/../config.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
@@ -198,6 +199,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Radio/../OS/events/../../Regulation/../config.h:
 
 ../Core/Radio/../OS/events/../../Regulation/Regu_position.h:
 

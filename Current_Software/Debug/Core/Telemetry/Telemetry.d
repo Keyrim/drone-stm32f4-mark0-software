@@ -58,6 +58,7 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Estimators/orientation.h \
  c:\workspace\github\f4_flight_controller\current_software\drivers\inc\pid.h \
  c:\workspace\github\f4_flight_controller\current_software\drivers\inc\Filters.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../config.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_position.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h \
@@ -184,6 +185,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\drivers\inc\pid.h:
 
 c:\workspace\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Regulation/../config.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_position.h:
 

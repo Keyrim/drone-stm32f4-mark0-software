@@ -45,6 +45,7 @@ typedef enum task_ids {
 	TASK_HIGH_LVL,
 	TASK_TELEMETRIE,
 	TASK_LOGGER,
+	TASK_SELF_TEST,
 	TASK_COUNT
 }task_ids_t;
 

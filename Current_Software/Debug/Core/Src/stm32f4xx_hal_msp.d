@@ -55,6 +55,7 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Inc/../OS/../Regulation/../config.h \
  ../Core/Inc/../OS/../Regulation/Regu_position.h \
  ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
  ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h \
@@ -181,6 +182,8 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Inc/../OS/../Regulation/../config.h:
 
 ../Core/Inc/../OS/../Regulation/Regu_position.h:
 

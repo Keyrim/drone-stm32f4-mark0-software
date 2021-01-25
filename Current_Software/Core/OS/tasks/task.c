@@ -38,6 +38,7 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_HIGH_LVL, TRUE);
 	SCHEDULER_enable_task(TASK_TELEMETRIE, TRUE);
 	SCHEDULER_enable_task(TASK_LOGGER, TRUE);
+	SCHEDULER_enable_task(TASK_SELF_TEST, TRUE);
 
 }
 
@@ -124,6 +125,10 @@ void process_logger(uint32_t current_time_us){
 	DATA_LOGGER_Main();
 }
 
+void process_self_test(uint32_t current_time_us){
+	sys->soft.cpu_load = SCHEDULER_get_cpu_load();
+}
+
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
 	.id = id_param,										\
 	.static_priority = priority_param,					\
@@ -150,9 +155,11 @@ task_t tasks [TASK_COUNT] ={
 	[TASK_TELEMETRIE] = 	DEFINE_TASK(TASK_TELEMETRIE, 		PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
 	[TASK_LOGGER] = 		DEFINE_TASK(TASK_LOGGER, 			PRIORITY_MEDIUM,	 	process_logger, 			PERIOD_US_FROM_HERTZ(5), 					TASK_MODE_TIME),
 
-	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,	process_orientation_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
-	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,	process_orientation_update, 			PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
 	[TASK_CONTROLLER_CHANNEL_ANALYSIS] = 	DEFINE_TASK(TASK_CONTROLLER_CHANNEL_ANALYSIS, 	PRIORITY_MEDIUM,	process_controller_channel_analysis, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_SELF_TEST] = 						DEFINE_TASK(TASK_SELF_TEST, 					PRIORITY_MEDIUM,	process_self_test, 						PERIOD_US_FROM_HERTZ(50), 	TASK_MODE_TIME),
+
 };
 
 

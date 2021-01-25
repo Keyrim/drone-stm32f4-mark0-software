@@ -45,6 +45,7 @@ Core/Regulation/Regu_position.o: ../Core/Regulation/Regu_position.c \
  ../Core/Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Regulation/../config.h \
  ../Core/Regulation/../Propulsion/Propulsion.h \
  ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h \
  ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h
@@ -140,6 +141,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Regulation/../config.h:
 
 ../Core/Regulation/../Propulsion/Propulsion.h:
 

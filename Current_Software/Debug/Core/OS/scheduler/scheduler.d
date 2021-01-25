@@ -58,6 +58,7 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Pid.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../config.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_position.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Propulsion/Propulsion.h \
@@ -190,6 +191,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../config.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/Regu_position.h:
 

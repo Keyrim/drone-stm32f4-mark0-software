@@ -55,6 +55,7 @@ Core/Src/gpio.o: ../Core/Src/gpio.c ../Core/Inc/gpio.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Inc/../OS/../Regulation/../config.h \
  ../Core/Inc/../OS/../Regulation/Regu_position.h \
  ../Core/Inc/../OS/../Regulation/Regu_orientation.h \
  ../Core/Inc/../OS/../Regulation/../Propulsion/Propulsion.h \
@@ -183,6 +184,8 @@ Core/Src/gpio.o: ../Core/Src/gpio.c ../Core/Inc/gpio.h ../Core/Inc/main.h \
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Inc/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Inc/../OS/../Regulation/../config.h:
 
 ../Core/Inc/../OS/../Regulation/Regu_position.h:
 

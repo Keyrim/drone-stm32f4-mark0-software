@@ -62,6 +62,7 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../config.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
@@ -202,6 +203,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../config.h:
 
 ../Core/Sensors/../OS/events/../../Regulation/Regu_position.h:
 

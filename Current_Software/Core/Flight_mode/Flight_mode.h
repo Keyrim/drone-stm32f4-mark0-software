@@ -17,6 +17,7 @@ typedef enum flight_modes_names_e{
 	FLIGHT_MODE_MANUAL_ANGLE,
 	FLIGHT_MODE_ARMING,
 	FLIGHT_MODE_GYRO_ACC_CALIBRATION,
+	FLIGHT_MODE_PID_SETTINGS,
 	FLIGHT_MODE_COUNT
 }flight_modes_names_e;
 
@@ -49,4 +50,6 @@ void arming_main(system_t * sys, uint32_t time_us);
 void gyro_acc_calibration_entrance(system_t * sys);
 void gyro_acc_calibration_main(system_t * sys, uint32_t time_us);
 
+void pid_settings_entrance(system_t * sys);
+void pid_settings_main(system_t * sys, uint32_t time_us);
 #endif /* FLIGHT_MODE_FLIGHT_MODE_H_ */

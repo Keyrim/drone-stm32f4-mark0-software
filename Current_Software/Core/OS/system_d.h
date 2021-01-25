@@ -54,7 +54,9 @@ typedef struct radio_t{
 
 typedef struct soft_t{
 	uint8_t * flight_mode ;
+	float cpu_load ;
 }soft_t;
+
 
 
 typedef struct{

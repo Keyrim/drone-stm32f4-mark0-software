@@ -10,7 +10,7 @@
 #include "../OS/events/events.h"
 
 //float filter[3] = {0.01234567901f, 1.777777778f, -0.7901234568f};
-float filter[3] = {0.1f, 0.9f, 0.0f};
+float filter[3] = {0.04f, 1.6f, -0.64f};
 static void gyro_data_callback(void);
 
 void GYRO_init(gyro_t * gyro, mpu_t * mpu){

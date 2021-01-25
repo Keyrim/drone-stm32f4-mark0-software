@@ -57,6 +57,7 @@ Core/Data_Logger/Data_logger.o: ../Core/Data_Logger/Data_logger.c \
  ../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Pid.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Data_Logger/../OS/../Regulation/../config.h \
  ../Core/Data_Logger/../OS/../Regulation/Regu_position.h \
  ../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h \
  ../Core/Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h \
@@ -191,6 +192,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Data_Logger/../OS/../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Data_Logger/../OS/../Regulation/../config.h:
 
 ../Core/Data_Logger/../OS/../Regulation/Regu_position.h:
 

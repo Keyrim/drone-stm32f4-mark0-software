@@ -25,6 +25,6 @@ void SCHEDULER_reschedule_task(task_ids_t id, uint32_t new_period_us);
 
 void SCHEDULER_task(void);
 
-uint32_t SCHEDULER_get_cpu_load(void);
+float SCHEDULER_get_cpu_load(void);
 
 #endif /* SCHEDULER_SCHEDULER_H_ */
