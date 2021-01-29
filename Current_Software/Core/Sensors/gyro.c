@@ -23,6 +23,9 @@ void GYRO_init(gyro_t * gyro, mpu_t * mpu){
 	gyro->mpu = mpu ;
 	gyro->raw = gyro->mpu->gyro ;
 
+	gyro->offsets[GYRO_AXE_Y] = - 0.7f ;
+	gyro->offsets[GYRO_AXE_X] = - 5.5f ;
+
 	//Raise the flag "ok" if the gyro get succesfully initiated
 	switch(MPU_init_gyro(gyro->mpu, MPU_GYRO_2000s, gyro_data_callback)){
 		case SENSOR_REQUEST_OK:
