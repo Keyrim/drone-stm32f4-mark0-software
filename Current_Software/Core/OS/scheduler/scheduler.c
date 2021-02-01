@@ -53,7 +53,7 @@ void SCHEDULER_run(void){
 			case TASK_MODE_TIME :
 				if(current_time_us >= task->desired_next_start_us){
 					current_time_us = task_process(task, current_time_us);
-					task->desired_next_start_us += task->desired_period_us ;
+					task->desired_next_start_us = task->desired_period_us + current_time_us ;
 					task_executed = TRUE ;
 				}
 				break;
@@ -153,7 +153,8 @@ void SCHEDULER_task_set_mode(task_ids_t id, task_mode_e mode){
 }
 
 void SCHEDULER_reschedule_task(task_ids_t id, uint32_t new_period_us){
-	TASK_get_task(id)->desired_period_us = new_period_us ;
+	task_t * task = TASK_get_task(id);
+	task->desired_period_us = new_period_us ;
 }
 
 

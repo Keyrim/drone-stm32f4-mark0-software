@@ -68,11 +68,17 @@ static uint8_t name_pid_gyro_roll_d[] = "PID Gyro Ro D";
 
 static uint8_t name_prop_thrust[] = "PROP Thrust";
 
+static uint8_t name_temperature[] = "Temperature";
+static uint8_t name_pressure[] = "Pressure";
+static uint8_t name_altitude[] = "Altitude";
+
 static uint8_t name_config_request[] = "Send Config";
 static uint8_t name_enable_asser_orientation[] = "En Asser Ori";
 static uint8_t name_disable_asser_orientation[] = "Dis Asser Ori";
 static uint8_t name_start_transfer[] = "Start Transfer";
 static uint8_t name_stop_transfer[] = "Stop Transfer";
+
+
 
 static uint8_t name_flight_mode[] = "Flight Mode";
 
@@ -86,7 +92,7 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							FALSE);
 
 	//Consignes angles
-	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_roll,					TRUE);
+	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_roll,					FALSE);
 	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_PITCH, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_pitch,					FALSE);
 
 	//Pid gyro roll
@@ -95,12 +101,12 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL_D, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].D, 			DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll_d, 						FALSE);
 
 	//Angle rate
-	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 								TRUE);
+	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 								FALSE);
 	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 								FALSE);
 	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 						FALSE);
 
 	//Consignes angles rates
-	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_roll_gyro, 							TRUE);
+	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_roll_gyro, 							FALSE);
 	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_PITCH, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_pitch_gyro, 						FALSE);
 	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_YAW, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_YAW], 		DATA_FORMAT_16B_FLOAT_1D, 	name_target_yaw_gyro, 		 					FALSE);
 
@@ -108,6 +114,11 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 							FALSE);
 	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,							FALSE);
 	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 								FALSE);
+
+	//Barometer
+	DEFINE_DATA(DATA_ID_PRESSURE, 		(uint8_t*)&sys->sensors.ms5611.pressure, 												DATA_FORMAT_16B_FLOAT_1D, 	name_pressure, 									TRUE);
+	DEFINE_DATA(DATA_ID_TEMPERATURE, 	(uint8_t*)&sys->sensors.ms5611.temperature, 											DATA_FORMAT_16B_FLOAT_1D, 	name_temperature, 								TRUE);
+	DEFINE_DATA(DATA_ID_ALTITUDE, 		(uint8_t*)&sys->sensors.ms5611.altitude, 												DATA_FORMAT_16B_FLOAT_1D, 	name_altitude, 									TRUE);
 
 	//Buttons
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 							FALSE);

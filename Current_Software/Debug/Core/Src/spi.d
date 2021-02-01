@@ -40,6 +40,8 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Sensors/mpu.h \
  ../Core/Inc/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Inc/../OS/../Sensors/acc.h ../Core/Inc/../OS/../Sensors/ms5611.h \
+ ../Core/Inc/../OS/../Sensors/baro.h \
+ ../Core/Inc/../OS/../Sensors/ms5611.h \
  ../Core/Inc/../OS/../sensors/batterie.h \
  ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
@@ -152,6 +154,10 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 ../Core/Inc/../OS/../Sensors/../OS/macro_types.h:
 
 ../Core/Inc/../OS/../Sensors/acc.h:
+
+../Core/Inc/../OS/../Sensors/ms5611.h:
+
+../Core/Inc/../OS/../Sensors/baro.h:
 
 ../Core/Inc/../OS/../Sensors/ms5611.h:
 

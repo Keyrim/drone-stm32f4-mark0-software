@@ -13,6 +13,7 @@
 #include "../Sensors/gyro.h"
 #include "../Sensors/acc.h"
 #include "../Sensors/ms5611.h"
+#include "../Sensors/baro.h"
 #include "../sensors/batterie.h"
 #include "../Estimators/orientation.h"
 #include "../Radio/controller.h"
@@ -30,6 +31,7 @@ typedef struct sensors_t{
 	gyro_t gyro ;
 	acc_t acc ;
 	batterie_t batterie ;
+	baro_t baro;
 
 
 	//Sensors list

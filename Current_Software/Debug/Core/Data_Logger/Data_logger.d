@@ -42,6 +42,8 @@ Core/Data_Logger/Data_logger.o: ../Core/Data_Logger/Data_logger.c \
  ../Core/Data_Logger/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Data_Logger/../OS/../Sensors/acc.h \
  ../Core/Data_Logger/../OS/../Sensors/ms5611.h \
+ ../Core/Data_Logger/../OS/../Sensors/baro.h \
+ ../Core/Data_Logger/../OS/../Sensors/ms5611.h \
  ../Core/Data_Logger/../OS/../sensors/batterie.h \
  ../Core/Data_Logger/../OS/../Estimators/orientation.h \
  ../Core/Data_Logger/../OS/../Estimators/../Sensors/gyro.h \
@@ -160,6 +162,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Data_Logger/../OS/../Sensors/../OS/macro_types.h:
 
 ../Core/Data_Logger/../OS/../Sensors/acc.h:
+
+../Core/Data_Logger/../OS/../Sensors/ms5611.h:
+
+../Core/Data_Logger/../OS/../Sensors/baro.h:
 
 ../Core/Data_Logger/../OS/../Sensors/ms5611.h:
 

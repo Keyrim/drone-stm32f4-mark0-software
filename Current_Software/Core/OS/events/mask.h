@@ -14,7 +14,7 @@
 #include "flags.h"
 
 typedef struct{
-	uint32_t array[2] ;
+	uint32_t array[NB_ARRAY_MASK] ;
 }Mask_t;
 
 //Fonctions qui g�rent les bits / les flags sur les masques

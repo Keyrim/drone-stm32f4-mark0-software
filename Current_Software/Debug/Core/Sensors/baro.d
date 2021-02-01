@@ -33,7 +33,45 @@ Core/Sensors/baro.o: ../Core/Sensors/baro.c ../Core/Sensors/baro.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h
+ ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Sensors/ms5611.h ../Core/Sensors/../OS/events/events.h \
+ ../Core/Sensors/../OS/events/mask_def_enum.h \
+ ../Core/Sensors/../OS/events/mask.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/flags.h \
+ ../Core/Sensors/../OS/events/../system_d.h \
+ ../Core/Sensors/../OS/events/../macro_types.h \
+ ../Core/Sensors/../OS/events/../../Sensors/gyro.h \
+ ../Core/Sensors/../OS/events/../../Sensors/sensors.h \
+ ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
+ ../Core/Sensors/../OS/events/../../Sensors/../OS/macro_types.h \
+ ../Core/Sensors/../OS/events/../../Sensors/acc.h \
+ ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Sensors/../OS/events/../../Sensors/baro.h \
+ ../Core/Sensors/../OS/events/../../sensors/batterie.h \
+ ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
+ ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h \
+ ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h \
+ ../Core/Sensors/../OS/events/../../Radio/controller.h \
+ ../Core/Sensors/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Sensors/../OS/events/../../Propulsion/Propulsion.h \
+ ../Core/Sensors/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../Estimators/orientation.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../config.h \
+ ../Core/Sensors/../OS/events/../../Regulation/Regu_position.h \
+ ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h \
+ ../Core/Sensors/../OS/events/../../Ihm/Ihm.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h \
+ ../Core/Sensors/../OS/events/../../../Drivers/Inc/Motors.h \
+ ../Core/Sensors/../OS/events/../../config.h
 
 ../Core/Sensors/baro.h:
 
@@ -108,3 +146,81 @@ Core/Sensors/baro.o: ../Core/Sensors/baro.c ../Core/Sensors/baro.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
 ../Core/Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Sensors/ms5611.h:
+
+../Core/Sensors/../OS/events/events.h:
+
+../Core/Sensors/../OS/events/mask_def_enum.h:
+
+../Core/Sensors/../OS/events/mask.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/flags.h:
+
+../Core/Sensors/../OS/events/../system_d.h:
+
+../Core/Sensors/../OS/events/../macro_types.h:
+
+../Core/Sensors/../OS/events/../../Sensors/gyro.h:
+
+../Core/Sensors/../OS/events/../../Sensors/sensors.h:
+
+../Core/Sensors/../OS/events/../../Sensors/mpu.h:
+
+../Core/Sensors/../OS/events/../../Sensors/../OS/macro_types.h:
+
+../Core/Sensors/../OS/events/../../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Sensors/../OS/events/../../Sensors/baro.h:
+
+../Core/Sensors/../OS/events/../../sensors/batterie.h:
+
+../Core/Sensors/../OS/events/../../Estimators/orientation.h:
+
+../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h:
+
+../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Radio/controller.h:
+
+../Core/Sensors/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Sensors/../OS/events/../../Propulsion/Propulsion.h:
+
+../Core/Sensors/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../Estimators/orientation.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../config.h:
+
+../Core/Sensors/../OS/events/../../Regulation/Regu_position.h:
+
+../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h:
+
+../Core/Sensors/../OS/events/../../Ihm/Ihm.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h:
+
+../Core/Sensors/../OS/events/../../../Drivers/Inc/Motors.h:
+
+../Core/Sensors/../OS/events/../../config.h:

@@ -37,6 +37,7 @@ static void on_the_ground(mask_def_ids_t mask_id);
 static void manual_accro(mask_def_ids_t mask_id);
 static void gyro_data_ready_func(mask_def_ids_t mask_id);
 static void acc_data_ready_func(mask_def_ids_t mask_id);
+static void baro_data_ready_func(mask_def_ids_t mask_id);
 static void orientation_update(mask_def_ids_t mask_id);
 static void arming(mask_def_ids_t mask_id);
 static void gyro_acc_calibration(mask_def_ids_t mask_id);
@@ -51,11 +52,14 @@ static Event_t events_main[EVENT_COUNT] ={
 		[EVENT_ACC_DATA_READY] = 		DEFINE_EVENT(acc_data_ready_func, 	MASK_ACC_DATA_READY_COUNT, 		EVENT_ENABLED),
 		[EVENT_ORIENTATION_UPDATE] = 	DEFINE_EVENT(orientation_update, 	MASK_ORIENTATION_UPDATE_COUNT,	EVENT_ENABLED),
 		[EVENT_IBUS_DATA_RDY] = 		DEFINE_EVENT(ibus_data_rdy, 		MASK_IBUS_DATA_RDY_COUNT, 		EVENT_ENABLED),
+		[EVENT_BARO_DATA_RDY] = 		DEFINE_EVENT(baro_data_ready_func, 	MASK_BARO_DATA_READY_COUNT, 	EVENT_ENABLED),
+
 		[EVENT_ON_THE_GROUND] = 		DEFINE_EVENT(on_the_ground, 		MASK_ON_THE_GROUND_COUNT, 		EVENT_ENABLED),
 		[EVENT_MANUAL_ACCRO] = 			DEFINE_EVENT(manual_accro, 			MASK_MANUAL_ACCRO_COUNT, 		EVENT_ENABLED),
 		[EVENT_MANUAL_ANGLE] = 			DEFINE_EVENT(manual_angle, 			MASK_MANUAL_ANGLE_COUNT, 		EVENT_ENABLED),
 		[EVENT_ARMING] = 				DEFINE_EVENT(arming, 				MASK_ARMING_COUNT, 				EVENT_ENABLED),
 		[EVENT_GYRO_ACC_CALIBRATION] = 	DEFINE_EVENT(gyro_acc_calibration, 	MASK_GYRO_ACC_COUNT, 			EVENT_ENABLED),
+
 
 
 };
@@ -83,6 +87,26 @@ static void ibus_data_rdy(mask_def_ids_t mask_id){
 	__enable_irq();
 	//On déclenche la tâche de traitement des octets pour l ibus
 	SCHEDULER_task_set_mode(TASK_CONTROLLER_CHANNEL_UPDATE, TASK_MODE_EVENT);
+}
+
+static void baro_data_ready_func(mask_def_ids_t mask_id){
+	switch(mask_id){
+		case MASK_BARO_DATA_READY_TEMP_RAW:
+			EVENT_Clean_flag(FLAG_BARO_TEMP_RAW_RDY);
+			SCHEDULER_task_set_mode(TASK_BARO_TEMP, TASK_MODE_EVENT);
+			break;
+		case MASK_BARO_DATA_READY_PRESSURE_RAW:
+			EVENT_Clean_flag(FLAG_BARO_PRESSURE_RAW_RDY);
+			SCHEDULER_task_set_mode(TASK_BARO_PRESSURE, TASK_MODE_EVENT);
+			break;
+		case MASK_BARO_DATA_READY_PRESSURE:
+			EVENT_Clean_flag(FLAG_BARO_PRESSURE_RDY);
+			SCHEDULER_task_set_mode(TASK_BARO_ALTITUDE, TASK_MODE_EVENT);
+			break;
+		default:
+			break;
+
+	}
 }
 
 static void on_the_ground(mask_def_ids_t mask_id){

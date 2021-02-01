@@ -44,6 +44,8 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
  ../Core/OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/OS/events/../../Sensors/acc.h \
  ../Core/OS/events/../../Sensors/ms5611.h \
+ ../Core/OS/events/../../Sensors/baro.h \
+ ../Core/OS/events/../../Sensors/ms5611.h \
  ../Core/OS/events/../../sensors/batterie.h \
  ../Core/OS/events/../../Estimators/orientation.h \
  ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
@@ -173,6 +175,10 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
 ../Core/OS/events/../../Sensors/../OS/macro_types.h:
 
 ../Core/OS/events/../../Sensors/acc.h:
+
+../Core/OS/events/../../Sensors/ms5611.h:
+
+../Core/OS/events/../../Sensors/baro.h:
 
 ../Core/OS/events/../../Sensors/ms5611.h:
 

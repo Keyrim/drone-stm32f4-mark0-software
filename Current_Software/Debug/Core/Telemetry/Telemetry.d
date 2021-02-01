@@ -44,6 +44,8 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/acc.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Sensors/ms5611.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Sensors/baro.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Sensors/ms5611.h \
  ../Core/Telemetry/../Data_Logger/../OS/../sensors/batterie.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/gyro.h \
@@ -155,6 +157,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Telemetry/../Data_Logger/../OS/../Sensors/../OS/macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Sensors/acc.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Sensors/ms5611.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Sensors/baro.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Sensors/ms5611.h:
 

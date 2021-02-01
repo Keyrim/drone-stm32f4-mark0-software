@@ -108,8 +108,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_Delay(200);	//Let the time for the components to start
 
-  //Init du baromètre
-  //MS5611_init(&sys.sensors.ms5611, &hi2c1);
+
 
   //Init du GYRO et de l ACC en utilisant un MPU6000
   MPU_init(&sys.sensors.mpu, &hspi2, PIN_CS_MPU_GPIO_Port, PIN_CS_MPU_Pin);
@@ -118,7 +117,8 @@ int main(void)
   HAL_Delay(200);	//Let the time for the components to start
   ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
 
-
+  //Init du baromètre
+  BARO_init(&sys.sensors.baro, &sys.sensors.ms5611, &hi2c1);
 
   IHM_Init(&sys.ihm);
   IHM_Led_Init(LED_HIGH_LVL, 30, PIN_LED_RGB_1_Pin, LED_OUTPUT_NEGATIVE);

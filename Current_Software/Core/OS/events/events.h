@@ -25,6 +25,7 @@ typedef enum events_id_main_e{
 	EVENT_IBUS_DATA_RDY,
 	EVENT_GYRO_INIT_OK,
 	EVENT_ACC_INIT_OK,
+	EVENT_BARO_DATA_RDY,
 	//Low lvl event's count
 	EVENT_LOW_LVL_COUNT,
 

@@ -42,6 +42,8 @@ Core/Flight_mode/Arming.o: ../Core/Flight_mode/Arming.c \
  ../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h \
  ../Core/Flight_mode/../OS/../Sensors/acc.h \
  ../Core/Flight_mode/../OS/../Sensors/ms5611.h \
+ ../Core/Flight_mode/../OS/../Sensors/baro.h \
+ ../Core/Flight_mode/../OS/../Sensors/ms5611.h \
  ../Core/Flight_mode/../OS/../sensors/batterie.h \
  ../Core/Flight_mode/../OS/../Estimators/orientation.h \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h \
@@ -159,6 +161,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Flight_mode/../OS/../Sensors/../OS/macro_types.h:
 
 ../Core/Flight_mode/../OS/../Sensors/acc.h:
+
+../Core/Flight_mode/../OS/../Sensors/ms5611.h:
+
+../Core/Flight_mode/../OS/../Sensors/baro.h:
 
 ../Core/Flight_mode/../OS/../Sensors/ms5611.h:
 

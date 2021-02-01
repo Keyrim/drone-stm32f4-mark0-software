@@ -24,6 +24,9 @@ static void mask_def_orientation_update(Event_t * event);
 // ----------------	Radio ------------------------
 static void mask_def_ibus_data_rdy(Event_t * event);
 
+// ----------------	Baro ------------------------
+static void mask_def_baro_data_rdy(Event_t * event);
+
 // ----------------	Flight Modes ------------------------
 static void mask_def_on_the_ground(Event_t * event);
 static void mask_def_manual_accro(Event_t * event);
@@ -43,6 +46,8 @@ void mask_def_events_init(Event_t * event){
 	//Ibus
 	mask_def_ibus_data_rdy(&event[EVENT_IBUS_DATA_RDY]);
 	//Orientation
+	mask_def_baro_data_rdy(&event[EVENT_BARO_DATA_RDY]);
+	//Baro
 	mask_def_orientation_update(&event[EVENT_ORIENTATION_UPDATE]);
 	//Flight_modes
 	mask_def_on_the_ground(&event[EVENT_ON_THE_GROUND]);
@@ -92,11 +97,22 @@ static void mask_def_orientation_update(Event_t * event){
 }
 
 // ----------------	Radio ------------------------
-
 static void mask_def_ibus_data_rdy(Event_t * event){
 	//Si flag data rdy on y go
 	MASK_set_flag(&event->mask_and[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
 	MASK_set_flag(&event->mask_or[MASK_IBUS_DATA_RDY], FLAG_IBUS_DATA_RDY);
+}
+
+// ----------------	BAaro ------------------------
+static void mask_def_baro_data_rdy(Event_t * event){
+	MASK_set_flag(&event->mask_and[MASK_BARO_DATA_READY_TEMP_RAW], FLAG_BARO_OK);
+	MASK_set_flag(&event->mask_or[MASK_BARO_DATA_READY_TEMP_RAW], FLAG_BARO_TEMP_RAW_RDY);
+
+	MASK_set_flag(&event->mask_and[MASK_BARO_DATA_READY_PRESSURE_RAW], FLAG_BARO_OK);
+	MASK_set_flag(&event->mask_or[MASK_BARO_DATA_READY_PRESSURE_RAW], FLAG_BARO_PRESSURE_RAW_RDY);
+
+	MASK_set_flag(&event->mask_and[MASK_BARO_DATA_READY_PRESSURE], FLAG_BARO_OK);
+	MASK_set_flag(&event->mask_or[MASK_BARO_DATA_READY_PRESSURE], FLAG_BARO_PRESSURE_RDY);
 }
 
 // ----------------	Flight Modes ------------------------

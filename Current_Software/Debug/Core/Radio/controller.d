@@ -49,6 +49,8 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/Radio/../OS/events/../../Sensors/acc.h \
  ../Core/Radio/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Radio/../OS/events/../../Sensors/baro.h \
+ ../Core/Radio/../OS/events/../../Sensors/ms5611.h \
  ../Core/Radio/../OS/events/../../sensors/batterie.h \
  ../Core/Radio/../OS/events/../../Estimators/orientation.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h \
@@ -171,6 +173,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Radio/../OS/events/../../Sensors/../OS/macro_types.h:
 
 ../Core/Radio/../OS/events/../../Sensors/acc.h:
+
+../Core/Radio/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Radio/../OS/events/../../Sensors/baro.h:
 
 ../Core/Radio/../OS/events/../../Sensors/ms5611.h:
 

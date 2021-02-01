@@ -47,6 +47,8 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Sensors/mpu.h \
  ../Core/Sensors/../OS/events/../../Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Sensors/../OS/events/../../Sensors/baro.h \
+ ../Core/Sensors/../OS/events/../../Sensors/ms5611.h \
  ../Core/Sensors/../OS/events/../../sensors/batterie.h \
  ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h \
@@ -171,6 +173,10 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
 ../Core/Sensors/../OS/events/../../Sensors/mpu.h:
 
 ../Core/Sensors/../OS/events/../../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Sensors/../OS/events/../../Sensors/baro.h:
 
 ../Core/Sensors/../OS/events/../../Sensors/ms5611.h:
 

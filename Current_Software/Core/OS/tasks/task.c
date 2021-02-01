@@ -39,6 +39,10 @@ void tasks_init(system_t * sys_){
 	SCHEDULER_enable_task(TASK_TELEMETRIE, TRUE);
 	SCHEDULER_enable_task(TASK_LOGGER, TRUE);
 	SCHEDULER_enable_task(TASK_SELF_TEST, TRUE);
+	SCHEDULER_enable_task(TASK_BARO_UPDATE, TRUE);
+	SCHEDULER_enable_task(TASK_BARO_TEMP, TRUE);
+	SCHEDULER_enable_task(TASK_BARO_PRESSURE, TRUE);
+	SCHEDULER_enable_task(TASK_BARO_ALTITUDE, TRUE);
 
 }
 
@@ -129,36 +133,63 @@ void process_self_test(uint32_t current_time_us){
 	sys->soft.cpu_load = SCHEDULER_get_cpu_load();
 }
 
+void process_baro_update(uint32_t current_time_us){
+	SCHEDULER_reschedule_task(TASK_BARO_UPDATE, BARO_Main(&sys->sensors.baro));
+}
+
+void process_baro_temp(uint32_t current_time_us){
+	BARO_compute_temp(&sys->sensors.baro);
+}
+
+void process_baro_pressure(uint32_t current_time_us){
+	BARO_compute_pressure(&sys->sensors.baro);
+	EVENT_Set_flag(FLAG_BARO_PRESSURE_RDY);
+}
+
+void process_baro_altitude(uint32_t current_time_us){
+	BARO_compute_altitude(&sys->sensors.baro);
+}
+
+#define TASKS_START_TIME_US 2000000
 #define DEFINE_TASK(id_param, priority_param,  task_function_param, desired_period_us_param, mode_param) { 	\
 	.id = id_param,										\
 	.static_priority = priority_param,					\
 	.process = task_function_param,						\
 	.desired_period_us = desired_period_us_param,		\
-	.mode = mode_param									\
+	.mode = mode_param,									\
+	.last_execution_us = TASKS_START_TIME_US,			\
+	.desired_next_start_us = TASKS_START_TIME_US + desired_period_us_param	\
 }
 
 #define PERIOD_US_FROM_HERTZ(hertz_param) (1000000 / hertz_param)
 
 task_t tasks [TASK_COUNT] ={
-	[TASK_EVENT_CHECK] = 	DEFINE_TASK(TASK_EVENT_CHECK, 		PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
-	[TASK_SCHEDULER] = 		DEFINE_TASK(TASK_SCHEDULER, 		PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
+	[TASK_EVENT_CHECK] = 					DEFINE_TASK(TASK_EVENT_CHECK, 					PRIORITY_EVENT, 		process_event_main, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
+	[TASK_SCHEDULER] = 						DEFINE_TASK(TASK_SCHEDULER, 					PRIORITY_SCHEDULER, 	process_task_scheduler, 	PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_ALWAYS),
 
-	[TASK_PRINTF] = 		DEFINE_TASK(TASK_PRINTF, 			PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_TIME),
-	[TASK_LED] = 			DEFINE_TASK(TASK_LED, 				PRIORITY_MEDIUM,	 		process_led, 				PERIOD_US_FROM_HERTZ(200), 					TASK_MODE_TIME),
+	[TASK_PRINTF] = 						DEFINE_TASK(TASK_PRINTF, 						PRIORITY_LOW, 			process_print_f, 			PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_TIME),
+	[TASK_LED] = 							DEFINE_TASK(TASK_LED, 							PRIORITY_MEDIUM,	 	process_led, 				PERIOD_US_FROM_HERTZ(200), 					TASK_MODE_TIME),
 
-	[TASK_GYRO_UPDATE] = 	DEFINE_TASK(TASK_GYRO_UPDATE, 		PRIORITY_REAL_TIME,	 	process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_FREQUENCY), 		TASK_MODE_TIME),
-	[TASK_GYRO_FILTER] = 	DEFINE_TASK(TASK_GYRO_FILTER, 		PRIORITY_REAL_TIME,	 	process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_GYRO_UPDATE] = 					DEFINE_TASK(TASK_GYRO_UPDATE, 					PRIORITY_REAL_TIME,	 	process_gyro_update, 		PERIOD_US_FROM_HERTZ(GYRO_FREQUENCY), 		TASK_MODE_TIME),
+	[TASK_GYRO_FILTER] = 					DEFINE_TASK(TASK_GYRO_FILTER, 					PRIORITY_REAL_TIME,	 	process_gyro_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
 
-	[TASK_ACC_UPDATE] = 	DEFINE_TASK(TASK_ACC_UPDATE, 		PRIORITY_LOW,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
-	[TASK_ACC_FILTER] = 	DEFINE_TASK(TASK_ACC_FILTER, 		PRIORITY_REAL_TIME,	 	process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
-	[TASK_HIGH_LVL] = 		DEFINE_TASK(TASK_HIGH_LVL, 			PRIORITY_HIGH,	 	process_high_lvl, 			PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
-	[TASK_TELEMETRIE] = 	DEFINE_TASK(TASK_TELEMETRIE, 		PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
-	[TASK_LOGGER] = 		DEFINE_TASK(TASK_LOGGER, 			PRIORITY_MEDIUM,	 	process_logger, 			PERIOD_US_FROM_HERTZ(5), 					TASK_MODE_TIME),
+	[TASK_ACC_UPDATE] = 					DEFINE_TASK(TASK_ACC_UPDATE, 					PRIORITY_LOW,	 		process_acc_update, 		PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
+	[TASK_ACC_FILTER] = 					DEFINE_TASK(TASK_ACC_FILTER, 					PRIORITY_REAL_TIME,	 	process_acc_filter, 		PERIOD_US_FROM_HERTZ(1), 					TASK_MODE_EVENT),
+	[TASK_HIGH_LVL] = 						DEFINE_TASK(TASK_HIGH_LVL, 						PRIORITY_HIGH,	 		process_high_lvl, 			PERIOD_US_FROM_HERTZ(500), 					TASK_MODE_TIME),
+	[TASK_TELEMETRIE] = 					DEFINE_TASK(TASK_TELEMETRIE, 					PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
+	[TASK_LOGGER] = 						DEFINE_TASK(TASK_LOGGER, 						PRIORITY_MEDIUM,	 	process_logger, 			PERIOD_US_FROM_HERTZ(5), 					TASK_MODE_TIME),
 
-	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,	process_orientation_update, 			PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
-	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_MEDIUM,	process_controller_channel_update, 		PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
-	[TASK_CONTROLLER_CHANNEL_ANALYSIS] = 	DEFINE_TASK(TASK_CONTROLLER_CHANNEL_ANALYSIS, 	PRIORITY_MEDIUM,	process_controller_channel_analysis, 	PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
-	[TASK_SELF_TEST] = 						DEFINE_TASK(TASK_SELF_TEST, 					PRIORITY_MEDIUM,	process_self_test, 						PERIOD_US_FROM_HERTZ(50), 	TASK_MODE_TIME),
+	[TASK_ORIENTATION_UPDATE] = 			DEFINE_TASK(TASK_ORIENTATION_UPDATE, 			PRIORITY_REAL_TIME,		process_orientation_update, 			PERIOD_US_FROM_HERTZ(1), 		TASK_MODE_EVENT),
+	[TASK_CONTROLLER_CHANNEL_UPDATE] = 		DEFINE_TASK(TASK_CONTROLLER_CHANNEL_UPDATE, 	PRIORITY_HIGH,			process_controller_channel_update, 		PERIOD_US_FROM_HERTZ(1), 		TASK_MODE_EVENT),
+	[TASK_CONTROLLER_CHANNEL_ANALYSIS] = 	DEFINE_TASK(TASK_CONTROLLER_CHANNEL_ANALYSIS, 	PRIORITY_HIGH,			process_controller_channel_analysis, 	PERIOD_US_FROM_HERTZ(1), 		TASK_MODE_EVENT),
+	[TASK_SELF_TEST] = 						DEFINE_TASK(TASK_SELF_TEST, 					PRIORITY_MEDIUM,		process_self_test, 						PERIOD_US_FROM_HERTZ(50), 		TASK_MODE_TIME),
+
+	[TASK_BARO_UPDATE] = 					DEFINE_TASK(TASK_BARO_UPDATE, 					PRIORITY_MEDIUM,		process_baro_update, 						PERIOD_US_FROM_HERTZ(100), 	TASK_MODE_TIME),
+	[TASK_BARO_TEMP] = 						DEFINE_TASK(TASK_BARO_TEMP, 					PRIORITY_MEDIUM,		process_baro_temp, 							PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_BARO_PRESSURE] = 					DEFINE_TASK(TASK_BARO_PRESSURE, 				PRIORITY_MEDIUM,		process_baro_pressure, 						PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+	[TASK_BARO_ALTITUDE] = 					DEFINE_TASK(TASK_BARO_ALTITUDE, 				PRIORITY_MEDIUM,		process_baro_altitude, 						PERIOD_US_FROM_HERTZ(1), 	TASK_MODE_EVENT),
+
+
 
 };
 

@@ -41,6 +41,10 @@ typedef enum data_id_e{
 
 	DATA_ID_PROP_THRUST,
 
+	DATA_ID_PRESSURE,
+	DATA_ID_TEMPERATURE,
+	DATA_ID_ALTITUDE,
+
 	//Buttons
 	DATA_ID_CONFIG_REQUEST,		//Si je reçois ça, j'envoit la configuration des données
 	DATA_ID_DISABLE_ASSER_ORIENTATION,

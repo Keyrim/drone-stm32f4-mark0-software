@@ -44,6 +44,8 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../../Sensors/../OS/macro_types.h \
  ../Core/OS/events/../../Sensors/acc.h \
  ../Core/OS/events/../../Sensors/ms5611.h \
+ ../Core/OS/events/../../Sensors/baro.h \
+ ../Core/OS/events/../../Sensors/ms5611.h \
  ../Core/OS/events/../../sensors/batterie.h \
  ../Core/OS/events/../../Estimators/orientation.h \
  ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
@@ -164,6 +166,10 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 ../Core/OS/events/../../Sensors/../OS/macro_types.h:
 
 ../Core/OS/events/../../Sensors/acc.h:
+
+../Core/OS/events/../../Sensors/ms5611.h:
+
+../Core/OS/events/../../Sensors/baro.h:
 
 ../Core/OS/events/../../Sensors/ms5611.h:
 

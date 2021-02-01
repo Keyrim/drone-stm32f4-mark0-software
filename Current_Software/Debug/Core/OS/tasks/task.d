@@ -41,6 +41,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/tasks/../../Sensors/acc.h \
  ../Core/OS/tasks/../../Sensors/ms5611.h \
+ ../Core/OS/tasks/../../Sensors/baro.h \
+ ../Core/OS/tasks/../../Sensors/ms5611.h \
  ../Core/OS/tasks/../../sensors/batterie.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h \
@@ -167,6 +169,10 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Sensors/../OS/macro_types.h:
 
 ../Core/OS/tasks/../../Sensors/acc.h:
+
+../Core/OS/tasks/../../Sensors/ms5611.h:
+
+../Core/OS/tasks/../../Sensors/baro.h:
 
 ../Core/OS/tasks/../../Sensors/ms5611.h:
 

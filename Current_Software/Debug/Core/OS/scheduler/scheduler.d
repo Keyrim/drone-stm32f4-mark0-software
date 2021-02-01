@@ -43,6 +43,8 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Sensors/../OS/macro_types.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h \
+ ../Core/OS/scheduler/../tasks/../../Sensors/baro.h \
+ ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h \
  ../Core/OS/scheduler/../tasks/../../sensors/batterie.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h \
@@ -159,6 +161,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/OS/scheduler/../tasks/../../Sensors/../OS/macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Sensors/acc.h:
+
+../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h:
+
+../Core/OS/scheduler/../tasks/../../Sensors/baro.h:
 
 ../Core/OS/scheduler/../tasks/../../Sensors/ms5611.h:
 
