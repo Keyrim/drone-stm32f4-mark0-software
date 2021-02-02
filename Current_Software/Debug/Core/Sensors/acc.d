@@ -53,6 +53,8 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h \
+ ../Core/Sensors/../OS/events/../../Estimators/position.h \
+ ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
  ../Core/Sensors/../OS/events/../../Radio/controller.h \
  ../Core/Sensors/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -187,6 +189,10 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
 ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h:
 
 ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h:
+
+../Core/Sensors/../OS/events/../../Estimators/position.h:
+
+../Core/Sensors/../OS/events/../../Estimators/orientation.h:
 
 ../Core/Sensors/../OS/events/../../Radio/controller.h:
 

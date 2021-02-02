@@ -96,10 +96,11 @@ void process_event_main(uint32_t current_time_us){
 void process_orientation_update(uint32_t current_time_us){
 
 	ORIENTATION_Update(&sys->orientation);
-
 	REGULATION_POSITION_Process();
 	REGULATION_ORIENTATION_Process();
 	PROPULSION_Update_Motors();
+
+	POSITION_Update(&sys->position);
 	//delta_1 = (TIME_us() - start_time_gyro) ;
 }
 

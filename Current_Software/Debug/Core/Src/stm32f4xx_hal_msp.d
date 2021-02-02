@@ -46,6 +46,8 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
  ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
+ ../Core/Inc/../OS/../Estimators/position.h \
+ ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Radio/controller.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -166,6 +168,10 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
 
 ../Core/Inc/../OS/../Estimators/../Sensors/acc.h:
+
+../Core/Inc/../OS/../Estimators/position.h:
+
+../Core/Inc/../OS/../Estimators/orientation.h:
 
 ../Core/Inc/../OS/../Radio/controller.h:
 

@@ -50,6 +50,8 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/acc.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Estimators/position.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Radio/controller.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -171,6 +173,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/gyro.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Estimators/../Sensors/acc.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Estimators/position.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Radio/controller.h:
 

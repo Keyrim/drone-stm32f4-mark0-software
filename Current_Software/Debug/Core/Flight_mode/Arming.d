@@ -48,6 +48,8 @@ Core/Flight_mode/Arming.o: ../Core/Flight_mode/Arming.c \
  ../Core/Flight_mode/../OS/../Estimators/orientation.h \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h \
+ ../Core/Flight_mode/../OS/../Estimators/position.h \
+ ../Core/Flight_mode/../OS/../Estimators/orientation.h \
  ../Core/Flight_mode/../OS/../Radio/controller.h \
  ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -175,6 +177,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Flight_mode/../OS/../Estimators/../Sensors/gyro.h:
 
 ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h:
+
+../Core/Flight_mode/../OS/../Estimators/position.h:
+
+../Core/Flight_mode/../OS/../Estimators/orientation.h:
 
 ../Core/Flight_mode/../OS/../Radio/controller.h:
 

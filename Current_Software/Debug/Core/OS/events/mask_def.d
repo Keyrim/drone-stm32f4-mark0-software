@@ -50,6 +50,8 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../../Estimators/orientation.h \
  ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/events/../../Estimators/../Sensors/acc.h \
+ ../Core/OS/events/../../Estimators/position.h \
+ ../Core/OS/events/../../Estimators/orientation.h \
  ../Core/OS/events/../../Radio/controller.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -180,6 +182,10 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 ../Core/OS/events/../../Estimators/../Sensors/gyro.h:
 
 ../Core/OS/events/../../Estimators/../Sensors/acc.h:
+
+../Core/OS/events/../../Estimators/position.h:
+
+../Core/OS/events/../../Estimators/orientation.h:
 
 ../Core/OS/events/../../Radio/controller.h:
 

@@ -49,6 +49,8 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/position.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
  ../Core/OS/scheduler/../tasks/../../Radio/controller.h \
  ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -175,6 +177,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h:
 
 ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h:
+
+../Core/OS/scheduler/../tasks/../../Estimators/position.h:
+
+../Core/OS/scheduler/../tasks/../../Estimators/orientation.h:
 
 ../Core/OS/scheduler/../tasks/../../Radio/controller.h:
 

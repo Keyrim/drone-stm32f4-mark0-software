@@ -15,8 +15,8 @@
 #include "math.h"
 
 typedef enum Orientation_Axes_e{
-	ORIENTATION_PITCH = 0x00,
-	ORIENTATION_ROLL,
+	ORIENTATION_ROLL = 0x00,
+	ORIENTATION_PITCH,
 	ORIENTATION_YAW,
 	ORIENTATION_AXES_COUNT
 }Orientation_Axes_e;
@@ -25,6 +25,7 @@ typedef struct orientation_t{
 	float angular_position [ORIENTATION_AXES_COUNT];
 	float * angular_velocity;
 	float acc_angles[ORIENTATION_AXES_COUNT];
+
 	bool_e is_ok ;
 
 	gyro_t * gyro ;

@@ -55,6 +55,8 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Estimators/orientation.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
+ ../Core/Radio/../OS/events/../../Estimators/position.h \
+ ../Core/Radio/../OS/events/../../Estimators/orientation.h \
  ../Core/Radio/../OS/events/../../Radio/controller.h \
  ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h \
  ../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
@@ -187,6 +189,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Radio/../OS/events/../../Estimators/../Sensors/gyro.h:
 
 ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h:
+
+../Core/Radio/../OS/events/../../Estimators/position.h:
+
+../Core/Radio/../OS/events/../../Estimators/orientation.h:
 
 ../Core/Radio/../OS/events/../../Radio/controller.h:
 

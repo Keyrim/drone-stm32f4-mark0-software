@@ -46,6 +46,8 @@ Core/Src/i2c.o: ../Core/Src/i2c.c ../Core/Inc/i2c.h ../Core/Inc/main.h \
  ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Inc/../OS/../Estimators/../Sensors/acc.h \
+ ../Core/Inc/../OS/../Estimators/position.h \
+ ../Core/Inc/../OS/../Estimators/orientation.h \
  ../Core/Inc/../OS/../Radio/controller.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/Inc/../OS/../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -168,6 +170,10 @@ Core/Src/i2c.o: ../Core/Src/i2c.c ../Core/Inc/i2c.h ../Core/Inc/main.h \
 ../Core/Inc/../OS/../Estimators/../Sensors/gyro.h:
 
 ../Core/Inc/../OS/../Estimators/../Sensors/acc.h:
+
+../Core/Inc/../OS/../Estimators/position.h:
+
+../Core/Inc/../OS/../Estimators/orientation.h:
 
 ../Core/Inc/../OS/../Radio/controller.h:
 

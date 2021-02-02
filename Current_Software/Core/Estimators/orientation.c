@@ -58,24 +58,24 @@ void ORIENTATION_Init(orientation_t * orientation, gyro_t * gyro, acc_t * acc, i
 }
 
 void ORIENTATION_Update(orientation_t * orientation){
-	//Just to make the code lighter
+	//Just to make the code shorter
 	acc_t * acc = orientation->acc ;
 	gyro_t * gyro = orientation->gyro ;
 
 	//Guess our angular position using the accelerometer
 
 	//Total acceleration
-	float acc_total = acc->filtered[ACC_AXE_X] * acc->filtered[ACC_AXE_X] ;
-	acc_total += acc->filtered[ACC_AXE_Y] * acc->filtered[ACC_AXE_Y] ;
-	acc_total += acc->filtered[ACC_AXE_Z] * acc->filtered[ACC_AXE_Z] ;
+	float acc_total = acc->filtered[ORIENTATION_ROLL] * acc->filtered[ORIENTATION_ROLL] ;
+	acc_total += acc->filtered[ORIENTATION_PITCH] * acc->filtered[ORIENTATION_PITCH] ;
+	acc_total += acc->filtered[ORIENTATION_YAW] * acc->filtered[ORIENTATION_YAW] ;
 	acc_total = sqrtf(acc_total);
 
 	if(acc_total)	//To avoid /0
 	{
-		if(absolu(acc->filtered[ACC_AXE_X]) < acc_total)	//To avoid asin x with x greater than 1
-			orientation->acc_angles[ACC_AXE_Y] = -asinf(acc->filtered[ACC_AXE_X] / acc_total) * 57.32f;
-		if(absolu(acc->filtered[ACC_AXE_Y]) < acc_total) 	//To avoid asin x with x greater than 1
-			orientation->acc_angles[ACC_AXE_X] = asinf(acc->filtered[ACC_AXE_Y] / acc_total) * 57.32f;
+		if(absolu(acc->filtered[ORIENTATION_ROLL]) < acc_total)	//To avoid asin x with x greater than 1
+			orientation->acc_angles[ORIENTATION_PITCH] = -asinf(acc->filtered[ORIENTATION_ROLL] / acc_total) * 57.32f;
+		if(absolu(acc->filtered[ORIENTATION_PITCH]) < acc_total) 	//To avoid asin x with x greater than 1
+			orientation->acc_angles[ORIENTATION_ROLL] = asinf(acc->filtered[ORIENTATION_PITCH] / acc_total) * 57.32f;
 //		if(acc->filtered[ACC_AXE_Z] < 0)
 //		{
 //			orientation->acc_angles[ACC_AXE_X] = acc_correction(orientation->acc_angles[ACC_AXE_X]);
@@ -86,33 +86,33 @@ void ORIENTATION_Update(orientation_t * orientation){
 	//If it's our first use, we dont use the gyro
 	if(first_use)
 	{
-		orientation->angular_position[GYRO_AXE_X] = orientation->acc_angles[ACC_AXE_X] ;
-		orientation->angular_position[GYRO_AXE_Y] = orientation->acc_angles[ACC_AXE_Y] ;
-		orientation->angular_position[GYRO_AXE_Z] = 0 ;
+		orientation->angular_position[ORIENTATION_ROLL] = orientation->acc_angles[ORIENTATION_ROLL] ;
+		orientation->angular_position[ORIENTATION_PITCH] = orientation->acc_angles[ORIENTATION_PITCH] ;
+		orientation->angular_position[ORIENTATION_YAW] = 0 ;
 		first_use = FALSE ;
 	}
 	else
 	{
 		//Angular distance according to our angular velocities
-		float dx = gyro->filtered[GYRO_AXE_X] * orientation->periode ;
-		float dy = gyro->filtered[GYRO_AXE_Y] * orientation->periode ;
-		float dz = gyro->filtered[GYRO_AXE_Z] * orientation->periode ;
+		float dx = gyro->filtered[ORIENTATION_ROLL] * orientation->periode ;
+		float dy = gyro->filtered[ORIENTATION_PITCH] * orientation->periode ;
+		float dz = gyro->filtered[ORIENTATION_YAW] * orientation->periode ;
 
-		orientation->angular_position[GYRO_AXE_X] += dx ;
-		orientation->angular_position[GYRO_AXE_Y] += dy ;
-		orientation->angular_position[GYRO_AXE_Z] += dz ;
+		orientation->angular_position[ORIENTATION_ROLL] += dx ;
+		orientation->angular_position[ORIENTATION_PITCH] += dy ;
+		orientation->angular_position[ORIENTATION_YAW] += dz ;
 
 		//On prend en compte le transfert d'angle lors d'une rotation sur l'axe YAW
-		float sin_dz = sinf(0.017f * dz);
-		orientation->angular_position[GYRO_AXE_X] += sin_dz * orientation->angular_position[GYRO_AXE_Y] ;
-		orientation->angular_position[GYRO_AXE_Y] -= sin_dz * orientation->angular_position[GYRO_AXE_X] ;
+		float sin_dz = sinf(0.01745329251f * dz);
+		orientation->angular_position[ORIENTATION_ROLL] += sin_dz * orientation->angular_position[ORIENTATION_PITCH] ;
+		orientation->angular_position[ORIENTATION_PITCH] -= sin_dz * orientation->angular_position[ORIENTATION_ROLL] ;
 
 
-		orientation->angular_position[GYRO_AXE_X] = angle_180(orientation->angular_position[GYRO_AXE_X]);
-		orientation->angular_position[GYRO_AXE_Y] = angle_180(orientation->angular_position[GYRO_AXE_Y]);
+		orientation->angular_position[ORIENTATION_ROLL] = angle_180(orientation->angular_position[ORIENTATION_ROLL]);
+		orientation->angular_position[ORIENTATION_PITCH] = angle_180(orientation->angular_position[ORIENTATION_PITCH]);
 
-		orientation->angular_position[GYRO_AXE_X] = orientation->alpha * orientation->angular_position[GYRO_AXE_X] + (1.0f - orientation->alpha) * orientation->acc_angles[ACC_AXE_X];
-		orientation->angular_position[GYRO_AXE_Y] = orientation->alpha * orientation->angular_position[GYRO_AXE_Y] + (1.0f - orientation->alpha) * orientation->acc_angles[ACC_AXE_Y];
+		orientation->angular_position[ORIENTATION_ROLL] = orientation->alpha * orientation->angular_position[ORIENTATION_ROLL] + (1.0f - orientation->alpha) * orientation->acc_angles[ORIENTATION_ROLL];
+		orientation->angular_position[ORIENTATION_PITCH] = orientation->alpha * orientation->angular_position[ORIENTATION_PITCH] + (1.0f - orientation->alpha) * orientation->acc_angles[ORIENTATION_PITCH];
 
 
 

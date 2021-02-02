@@ -32,7 +32,7 @@ static void MPU_spi_fast(mpu_t * mpu);
 
 //Private functions def
 static void convert_gyro(mpu_t * mpu){
-	mpu->gyro_raw[GYRO_AXE_X] = (int16_t)(mpu->gyro_data[1] << 8 | mpu->gyro_data[0]);
+	mpu->gyro_raw[GYRO_AXE_X] = -(int16_t)(mpu->gyro_data[1] << 8 | mpu->gyro_data[0]);
 	mpu->gyro_raw[GYRO_AXE_Y] = (int16_t)(mpu->gyro_data[3] << 8 | mpu->gyro_data[2]);
 	mpu->gyro_raw[GYRO_AXE_Z] = (int16_t)(mpu->gyro_data[5] << 8 | mpu->gyro_data[4]);
 
@@ -42,7 +42,7 @@ static void convert_gyro(mpu_t * mpu){
 	mpu->gyro[GYRO_AXE_Z] = (float)mpu->gyro_raw[GYRO_AXE_Z] * mpu->gyro_sensi ;
 }
 static void convert_acc(mpu_t * mpu){
-	mpu->acc_raw[ACC_AXE_X] = (int16_t)(mpu->acc_data[1] << 8 | mpu->acc_data[0]);
+	mpu->acc_raw[ACC_AXE_X] = -(int16_t)(mpu->acc_data[1] << 8 | mpu->acc_data[0]);
 	mpu->acc_raw[ACC_AXE_Y] = (int16_t)(mpu->acc_data[3] << 8 | mpu->acc_data[2]);
 	mpu->acc_raw[ACC_AXE_Z] = (int16_t)(mpu->acc_data[5] << 8 | mpu->acc_data[4]);
 

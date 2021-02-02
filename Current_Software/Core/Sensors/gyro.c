@@ -16,15 +16,15 @@ static void gyro_data_callback(void);
 void GYRO_init(gyro_t * gyro, mpu_t * mpu){
 
 	//Filters init
-	FILTER_init(&gyro->filters[GYRO_AXE_X], filter, FILTER_SECOND_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Y], filter, FILTER_SECOND_ORDER);
-	FILTER_init(&gyro->filters[GYRO_AXE_Z], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[ORIENTATION_ROLL], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[ORIENTATION_PITCH], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[ORIENTATION_YAW], filter, FILTER_SECOND_ORDER);
 
 	gyro->mpu = mpu ;
 	gyro->raw = gyro->mpu->gyro ;
 
-	gyro->offsets[GYRO_AXE_Y] = - 0.7f ;
-	gyro->offsets[GYRO_AXE_X] = - 5.5f ;
+	gyro->offsets[ORIENTATION_ROLL] = 0.0f ;
+	gyro->offsets[ORIENTATION_PITCH] = 0.0f ;
 
 	//Raise the flag "ok" if the gyro get succesfully initiated
 	switch(MPU_init_gyro(gyro->mpu, MPU_GYRO_2000s, gyro_data_callback)){
@@ -120,13 +120,13 @@ void GYRO_ACC_update_dma(gyro_t * gyro){
 
 void GYRO_process_lpf(gyro_t * gyro){
 	//Offset correction first
-	gyro->raw[GYRO_AXE_X] -= gyro->offsets[GYRO_AXE_X];
-	gyro->raw[GYRO_AXE_Y] -= gyro->offsets[GYRO_AXE_Y];
-	gyro->raw[GYRO_AXE_Z] -= gyro->offsets[GYRO_AXE_Z];
+	gyro->raw[0] -= gyro->offsets[0];
+	gyro->raw[1] -= gyro->offsets[1];
+	gyro->raw[2] -= gyro->offsets[2];
 	//Then the actual low pass filter
-	gyro->filtered[GYRO_AXE_X] =  FILTER_process(&gyro->filters[GYRO_AXE_X], gyro->raw[GYRO_AXE_X]);
-	gyro->filtered[GYRO_AXE_Y] =  FILTER_process(&gyro->filters[GYRO_AXE_Y], gyro->raw[GYRO_AXE_Y]);
-	gyro->filtered[GYRO_AXE_Z] =  FILTER_process(&gyro->filters[GYRO_AXE_Z], gyro->raw[GYRO_AXE_Z]);
+	gyro->filtered[0] =  FILTER_process(&gyro->filters[0], gyro->raw[0]);
+	gyro->filtered[1] =  FILTER_process(&gyro->filters[1], gyro->raw[1]);
+	gyro->filtered[2] =  FILTER_process(&gyro->filters[2], gyro->raw[2]);
 	//We warn the system that we ve got new data ready to be used :)
 	EVENT_Set_flag(FLAG_GYRO_FILTERED_DATA_READY);
 }

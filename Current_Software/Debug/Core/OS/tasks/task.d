@@ -47,6 +47,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/acc.h \
+ ../Core/OS/tasks/../../Estimators/position.h \
+ ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Radio/controller.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -183,6 +185,10 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h:
 
 ../Core/OS/tasks/../../Estimators/../Sensors/acc.h:
+
+../Core/OS/tasks/../../Estimators/position.h:
+
+../Core/OS/tasks/../../Estimators/orientation.h:
 
 ../Core/OS/tasks/../../Radio/controller.h:
 

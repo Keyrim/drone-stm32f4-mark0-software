@@ -24,10 +24,10 @@ void PROPULSION_Init(propulsion_t * prop_, TIM_HandleTypeDef * htim){
 void PROPULSION_Update_Motors(void){
 
 	//Mixage des sorties
-	int16_t m1 = THRUST - PITCH - ROLL + YAW;
-	int16_t m2 = THRUST - PITCH + ROLL - YAW ;
-	int16_t m3 = THRUST + PITCH + ROLL + YAW ;
-	int16_t m4 = THRUST + PITCH - ROLL - YAW ;
+	int16_t m1 = THRUST + PITCH - ROLL + YAW;
+	int16_t m2 = THRUST + PITCH + ROLL - YAW ;
+	int16_t m3 = THRUST - PITCH + ROLL + YAW ;
+	int16_t m4 = THRUST - PITCH - ROLL - YAW ;
 	prop->motors_outputs[MOTOR_FL] = (uint16_t)((m1 > 0) ? m1 : 0);
 	prop->motors_outputs[MOTOR_FR] = (uint16_t)((m2 > 0) ? m2 : 0);
 	prop->motors_outputs[MOTOR_BR] = (uint16_t)((m3 > 0) ? m3 : 0);

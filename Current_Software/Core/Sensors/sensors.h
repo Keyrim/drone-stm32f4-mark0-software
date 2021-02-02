@@ -34,14 +34,14 @@ typedef enum sensor_state_e{
 
 
 typedef enum gyro_axe_e{
-	GYRO_AXE_X = 0x00,
-	GYRO_AXE_Y,
+	GYRO_AXE_Y = 0x00,
+	GYRO_AXE_X,
 	GYRO_AXE_Z
 }gyro_axe_e;
 
 typedef enum acc_axe_e{
-	ACC_AXE_X = 0x00,
-	ACC_AXE_Y,
+	ACC_AXE_Y = 0x00,
+	ACC_AXE_X,
 	ACC_AXE_Z
 }acc_axe_e;
 

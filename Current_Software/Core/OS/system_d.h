@@ -16,6 +16,7 @@
 #include "../Sensors/baro.h"
 #include "../sensors/batterie.h"
 #include "../Estimators/orientation.h"
+#include "../Estimators/position.h"
 #include "../Radio/controller.h"
 #include "../Propulsion/Propulsion.h"
 #include "../Regulation/Regu_orientation.h"
@@ -65,6 +66,7 @@ typedef struct{
 	Ihm_t ihm ;
 	sensors_t sensors ;
 	orientation_t orientation ;
+	position_t position ;
 	radio_t	radio;
 	propulsion_t propulsion ;
 	regulation_t regulation ;
