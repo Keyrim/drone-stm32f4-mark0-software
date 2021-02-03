@@ -57,6 +57,10 @@ static uint8_t name_roll_acc[] = "Acc ROLL";
 static uint8_t name_pitch_acc[] = "Acc PITCH";
 static uint8_t name_yaw_acc[] = "Acc YAW";
 
+static uint8_t name_x_acc[] = "Acc X";
+static uint8_t name_y_acc[] = "Acc Y";
+static uint8_t name_z_acc[] = "Acc Z";
+
 static uint8_t name_target_roll_gyro[] = "Tar Gyro ROLL";
 static uint8_t name_target_pitch_gyro[] = "Tar Gyro PITCH";
 static uint8_t name_target_yaw_gyro[] = "Tar Gyro YAW";
@@ -92,8 +96,8 @@ void DATA_LOGGER_Init(system_t * sys_){
 
 	//	-----------------------------------------------	Définitions des data	-----------------------------------------------------------------
 	//Angle
-	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle,							TRUE);
-	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							TRUE);
+	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle,							FALSE);
+	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							FALSE);
 
 	//Consignes angles
 	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_roll,					FALSE);
@@ -105,14 +109,19 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL_D, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].D, 			DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll_d, 						FALSE);
 
 	//Angle rate
-	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							TRUE);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							TRUE);
+	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							FALSE);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							FALSE);
 	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 					FALSE);
 
 	//Acceleration
-	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_acc, 								FALSE);
-	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_acc, 							FALSE);
-	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_acc, 								FALSE);
+	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc, 							TRUE);
+	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc, 								TRUE);
+
+	//Acceleration dans le ref de la terre
+	DEFINE_DATA(DATA_ID_ACC_X, (uint8_t*)&sys->position.acceleration[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_3D, 	name_x_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_ACC_Y, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_3D, 	name_y_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_ACC_Z, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_3D, 	name_z_acc, 								TRUE);
 
 	//Consignes angles rates
 	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_roll_gyro, 							FALSE);
@@ -310,6 +319,18 @@ uint8_t DATA_LOGGER_Get_Data_Value(data_id_e id, uint8_t * buffer){
 		case DATA_FORMAT_16B_FLOAT_1D:
 			tmp_float = *(float*)data_list[id].data;
 			tmp_16 = tmp_float * 10;
+			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
+			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
+			break;
+		case DATA_FORMAT_16B_FLOAT_2D:
+			tmp_float = *(float*)data_list[id].data;
+			tmp_16 = tmp_float * 100;
+			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
+			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
+			break;
+		case DATA_FORMAT_16B_FLOAT_3D:
+			tmp_float = *(float*)data_list[id].data;
+			tmp_16 = tmp_float * 1000;
 			buffer[1] = (uint8_t)((tmp_16 >> 8) & 0b11111111) ;
 			buffer[2] = (uint8_t)(tmp_16 & 0b11111111);
 			break;
