@@ -132,8 +132,11 @@ void MS5611_calculate_pressure(ms5611_t * ms5611){
 void MS5611_calculate_altitude(ms5611_t * ms5611){
 	ms5611->altitude = 44330.0f * (1.0 - powf((float)ms5611->pressure * 0.00000986923f, 0.190294957f)) - ms5611->altitude_shift ;	// 260 µs lel
 	//Si on a le shift en altitude qui est nul, on l'init
-	if(!ms5611->altitude_shift)
+	if(!ms5611->altitude_shift){
 		ms5611->altitude_shift = ms5611->altitude ;
+		ms5611->altitude = 0;
+	}
+
 }
 
 

@@ -8,6 +8,8 @@
 #include "baro.h"
 #include "../OS/events/events.h"
 
+//For 1 mesure of temp we do RATIO_PRESSURE_TEMP mesures of pressure
+#define RATIO_PRESSURE_TEMP 9
 
 static void ms5611_raw_temp_rdy();
 static void ms5611_raw_pressure_rdy();
@@ -21,6 +23,7 @@ static void ms5611_raw_pressure_rdy(){
 
 void BARO_init(baro_t * baro, ms5611_t * ms5611, I2C_HandleTypeDef * hi2c){
 	baro->ms5611 = ms5611 ;
+	baro->altitude = &ms5611->altitude;
 
 	switch(MS5611_init(baro->ms5611, hi2c, ms5611_raw_temp_rdy, ms5611_raw_pressure_rdy))
 	{
@@ -55,7 +58,15 @@ uint32_t BARO_Main(baro_t * baro){
 			break;
 		case BARO_STATE_READ_PRESSURE :
 			MS5611_read_pressure(baro->ms5611);
-			baro->state = BARO_STATE_ASK_TEMP ;
+
+			baro->counter_pressure_mesure ++ ;
+			baro->counter_pressure_mesure = baro->counter_pressure_mesure % RATIO_PRESSURE_TEMP ;
+
+			if(!baro->counter_pressure_mesure)
+				baro->state = BARO_STATE_ASK_TEMP ;
+			else
+				baro->state = BARO_STATE_ASK_PRESSURE ;
+
 			to_return = 400 ;
 			break;
 	}

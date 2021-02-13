@@ -51,6 +51,7 @@ Core/Flight_mode/Gyro_Acc_Calibration.o: \
  ../Core/Flight_mode/../OS/../Estimators/../Sensors/acc.h \
  ../Core/Flight_mode/../OS/../Estimators/position.h \
  ../Core/Flight_mode/../OS/../Estimators/orientation.h \
+ ../Core/Flight_mode/../OS/../Estimators/../Sensors/baro.h \
  ../Core/Flight_mode/../OS/../Radio/controller.h \
  ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -66,6 +67,7 @@ Core/Flight_mode/Gyro_Acc_Calibration.o: \
  ../Core/Flight_mode/../OS/../Regulation/Regu_position.h \
  ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h \
  ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Flight_mode/../OS/../Regulation/../Estimators/position.h \
  ../Core/Flight_mode/../OS/../Telemetry/Telemetry.h \
  ../Core/Flight_mode/../OS/../Ihm/Ihm.h \
  ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h \
@@ -183,6 +185,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Flight_mode/../OS/../Estimators/orientation.h:
 
+../Core/Flight_mode/../OS/../Estimators/../Sensors/baro.h:
+
 ../Core/Flight_mode/../OS/../Radio/controller.h:
 
 ../Core/Flight_mode/../OS/../Radio/../../Drivers/Inc/Ibus.h:
@@ -212,6 +216,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Flight_mode/../OS/../Regulation/Regu_orientation.h:
 
 ../Core/Flight_mode/../OS/../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Flight_mode/../OS/../Regulation/../Estimators/position.h:
 
 ../Core/Flight_mode/../OS/../Telemetry/Telemetry.h:
 

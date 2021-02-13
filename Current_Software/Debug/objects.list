@@ -5,6 +5,7 @@
 "Core/Flight_mode/Flight_mode.o"
 "Core/Flight_mode/Gyro_Acc_Calibration.o"
 "Core/Flight_mode/Manual_Acro.o"
+"Core/Flight_mode/Manual_alti_auto.o"
 "Core/Flight_mode/Manual_angle.o"
 "Core/Flight_mode/On_the_ground.o"
 "Core/Ihm/Ihm.o"

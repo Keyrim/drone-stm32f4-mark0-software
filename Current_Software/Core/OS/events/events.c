@@ -42,23 +42,25 @@ static void orientation_update(mask_def_ids_t mask_id);
 static void arming(mask_def_ids_t mask_id);
 static void gyro_acc_calibration(mask_def_ids_t mask_id);
 static void manual_angle(mask_def_ids_t mask_id);
+static void manual_angle_altitude_auto(mask_def_ids_t mask_id);
 
 //Attention !!!! nb_mask <= EVENT_NB_MASK_PER_EVENT_MAX else failure :)
 static Event_t events_main[EVENT_COUNT] ={
 		//Events array
-		[EVENT_GYRO_INIT_OK] = 			DEFINE_EVENT(gyro_init_ok_func, 	MASK_GYRO_INIT_COUNT, 			EVENT_ENABLED),
-		[EVENT_ACC_INIT_OK] = 			DEFINE_EVENT(acc_init_ok_func, 		MASK_ACC_INIT_COUNT, 			EVENT_DISABLED),
-		[EVENT_GYRO_DATA_READY] = 		DEFINE_EVENT(gyro_data_ready_func, 	MASK_GYRO_DATA_READY_COUNT, 	EVENT_ENABLED),
-		[EVENT_ACC_DATA_READY] = 		DEFINE_EVENT(acc_data_ready_func, 	MASK_ACC_DATA_READY_COUNT, 		EVENT_ENABLED),
-		[EVENT_ORIENTATION_UPDATE] = 	DEFINE_EVENT(orientation_update, 	MASK_ORIENTATION_UPDATE_COUNT,	EVENT_ENABLED),
-		[EVENT_IBUS_DATA_RDY] = 		DEFINE_EVENT(ibus_data_rdy, 		MASK_IBUS_DATA_RDY_COUNT, 		EVENT_ENABLED),
-		[EVENT_BARO_DATA_RDY] = 		DEFINE_EVENT(baro_data_ready_func, 	MASK_BARO_DATA_READY_COUNT, 	EVENT_ENABLED),
+		[EVENT_GYRO_INIT_OK] = 									DEFINE_EVENT(gyro_init_ok_func, 					MASK_GYRO_INIT_COUNT, 							EVENT_ENABLED),
+		[EVENT_ACC_INIT_OK] = 									DEFINE_EVENT(acc_init_ok_func, 						MASK_ACC_INIT_COUNT, 							EVENT_DISABLED),
+		[EVENT_GYRO_DATA_READY] = 								DEFINE_EVENT(gyro_data_ready_func, 					MASK_GYRO_DATA_READY_COUNT, 					EVENT_ENABLED),
+		[EVENT_ACC_DATA_READY] = 								DEFINE_EVENT(acc_data_ready_func, 					MASK_ACC_DATA_READY_COUNT, 						EVENT_ENABLED),
+		[EVENT_ORIENTATION_UPDATE] = 							DEFINE_EVENT(orientation_update, 					MASK_ORIENTATION_UPDATE_COUNT,					EVENT_ENABLED),
+		[EVENT_IBUS_DATA_RDY] = 								DEFINE_EVENT(ibus_data_rdy, 						MASK_IBUS_DATA_RDY_COUNT, 						EVENT_ENABLED),
+		[EVENT_BARO_DATA_RDY] = 								DEFINE_EVENT(baro_data_ready_func, 					MASK_BARO_DATA_READY_COUNT, 					EVENT_ENABLED),
 
-		[EVENT_ON_THE_GROUND] = 		DEFINE_EVENT(on_the_ground, 		MASK_ON_THE_GROUND_COUNT, 		EVENT_ENABLED),
-		[EVENT_MANUAL_ACCRO] = 			DEFINE_EVENT(manual_accro, 			MASK_MANUAL_ACCRO_COUNT, 		EVENT_ENABLED),
-		[EVENT_MANUAL_ANGLE] = 			DEFINE_EVENT(manual_angle, 			MASK_MANUAL_ANGLE_COUNT, 		EVENT_ENABLED),
-		[EVENT_ARMING] = 				DEFINE_EVENT(arming, 				MASK_ARMING_COUNT, 				EVENT_ENABLED),
-		[EVENT_GYRO_ACC_CALIBRATION] = 	DEFINE_EVENT(gyro_acc_calibration, 	MASK_GYRO_ACC_COUNT, 			EVENT_ENABLED),
+		[EVENT_ON_THE_GROUND] = 								DEFINE_EVENT(on_the_ground, 						MASK_ON_THE_GROUND_COUNT, 						EVENT_ENABLED),
+		[EVENT_MANUAL_ACCRO] = 									DEFINE_EVENT(manual_accro, 							MASK_MANUAL_ACCRO_COUNT, 						EVENT_ENABLED),
+		[EVENT_MANUAL_ANGLE] = 									DEFINE_EVENT(manual_angle, 							MASK_MANUAL_ANGLE_COUNT, 						EVENT_ENABLED),
+		[EVENT_MANUAL_ANGLE_ALTITUDE_AUTO] = 					DEFINE_EVENT(manual_angle_altitude_auto, 			MASK_MANUAL_ANGLE_ALTI_AUTO_COUNT, 				EVENT_ENABLED),
+		[EVENT_ARMING] = 										DEFINE_EVENT(arming, 								MASK_ARMING_COUNT, 								EVENT_ENABLED),
+		[EVENT_GYRO_ACC_CALIBRATION] = 							DEFINE_EVENT(gyro_acc_calibration, 					MASK_GYRO_ACC_COUNT, 							EVENT_ENABLED),
 
 
 
@@ -133,6 +135,14 @@ static void manual_angle(mask_def_ids_t mask_id){
 	MASK_set_flag(&flags, FLAG_MANUAL);
 	__enable_irq();
 	FLIGHT_MODE_Set_Flight_Mode(FLIGHT_MODE_MANUAL_ANGLE);
+}
+
+static void manual_angle_altitude_auto(mask_def_ids_t mask_id){
+	__disable_irq();
+	MASK_set_flag(&flags, FLAG_FLYING);
+	MASK_set_flag(&flags, FLAG_MANUAL);
+	__enable_irq();
+	FLIGHT_MODE_Set_Flight_Mode(FLIGHT_MODE_MANUAL_ALTI_AUTO);
 }
 
 static void gyro_data_ready_func(mask_def_ids_t mask_id){
@@ -225,6 +235,10 @@ void EVENT_process(bool_e test_all){
 
 		}
 	}
+}
+
+bool_e EVENT_Check_flag(Flags_e flag){
+	return Mask_test_and(MASK_create_single(flag), flags);
 }
 
 

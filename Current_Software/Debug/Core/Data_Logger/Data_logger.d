@@ -50,6 +50,7 @@ Core/Data_Logger/Data_logger.o: ../Core/Data_Logger/Data_logger.c \
  ../Core/Data_Logger/../OS/../Estimators/../Sensors/acc.h \
  ../Core/Data_Logger/../OS/../Estimators/position.h \
  ../Core/Data_Logger/../OS/../Estimators/orientation.h \
+ ../Core/Data_Logger/../OS/../Estimators/../Sensors/baro.h \
  ../Core/Data_Logger/../OS/../Radio/controller.h \
  ../Core/Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -65,6 +66,7 @@ Core/Data_Logger/Data_logger.o: ../Core/Data_Logger/Data_logger.c \
  ../Core/Data_Logger/../OS/../Regulation/Regu_position.h \
  ../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h \
  ../Core/Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Data_Logger/../OS/../Regulation/../Estimators/position.h \
  ../Core/Data_Logger/../OS/../Telemetry/Telemetry.h \
  ../Core/Data_Logger/../OS/../Ihm/Ihm.h \
  ../Core/Data_Logger/../OS/../../Drivers/Inc/Ibus.h \
@@ -183,6 +185,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Data_Logger/../OS/../Estimators/orientation.h:
 
+../Core/Data_Logger/../OS/../Estimators/../Sensors/baro.h:
+
 ../Core/Data_Logger/../OS/../Radio/controller.h:
 
 ../Core/Data_Logger/../OS/../Radio/../../Drivers/Inc/Ibus.h:
@@ -212,6 +216,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
 ../Core/Data_Logger/../OS/../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Data_Logger/../OS/../Regulation/../Estimators/position.h:
 
 ../Core/Data_Logger/../OS/../Telemetry/Telemetry.h:
 

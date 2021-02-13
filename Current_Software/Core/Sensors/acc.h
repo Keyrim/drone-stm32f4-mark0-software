@@ -22,12 +22,15 @@ typedef struct acc_t{
 	float * raw ;
 	//filtered accelerations
 	float filtered[3];
+	//Calibration values
+	float offsets[3];
 	//Filters
 	Filter_t filters[3];
 
 }acc_t;
 
 void ACC_init(acc_t * acc, mpu_t * mpu);
+bool_e ACC_calibrate(acc_t * acc, uint16_t iteration);
 void ACC_update(acc_t * acc);
 void ACC_update_dma(acc_t * acc);
 void ACC_process_lpf(acc_t * acc);

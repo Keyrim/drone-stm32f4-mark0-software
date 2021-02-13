@@ -49,6 +49,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/acc.h \
  ../Core/OS/tasks/../../Estimators/position.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
+ ../Core/OS/tasks/../../Estimators/../Sensors/baro.h \
  ../Core/OS/tasks/../../Radio/controller.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/tasks/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -64,6 +65,7 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Regulation/Regu_position.h \
  ../Core/OS/tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/OS/tasks/../../Regulation/../Estimators/position.h \
  ../Core/OS/tasks/../../Telemetry/Telemetry.h \
  ../Core/OS/tasks/../../Ihm/Ihm.h \
  ../Core/OS/tasks/../../../Drivers/Inc/Ibus.h \
@@ -190,6 +192,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 
 ../Core/OS/tasks/../../Estimators/orientation.h:
 
+../Core/OS/tasks/../../Estimators/../Sensors/baro.h:
+
 ../Core/OS/tasks/../../Radio/controller.h:
 
 ../Core/OS/tasks/../../Radio/../../Drivers/Inc/Ibus.h:
@@ -219,6 +223,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
 ../Core/OS/tasks/../../Regulation/Regu_orientation.h:
 
 ../Core/OS/tasks/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/OS/tasks/../../Regulation/../Estimators/position.h:
 
 ../Core/OS/tasks/../../Telemetry/Telemetry.h:
 

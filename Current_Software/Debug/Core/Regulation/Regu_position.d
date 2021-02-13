@@ -1,5 +1,5 @@
 Core/Regulation/Regu_position.o: ../Core/Regulation/Regu_position.c \
- ../Core/Regulation/Regu_position.h \
+ ../Core/Regulation/Regu_position.h ../Core/Regulation/../config.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -45,12 +45,17 @@ Core/Regulation/Regu_position.o: ../Core/Regulation/Regu_position.c \
  ../Core/Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Regulation/../../Drivers/Inc/Filters.h \
- ../Core/Regulation/../config.h \
  ../Core/Regulation/../Propulsion/Propulsion.h \
  ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h \
- ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h
+ ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Regulation/../Estimators/position.h \
+ ../Core/Regulation/../Estimators/orientation.h \
+ ../Core/Regulation/../Estimators/../Sensors/baro.h \
+ ../Core/Regulation/../Estimators/../Sensors/ms5611.h
 
 ../Core/Regulation/Regu_position.h:
+
+../Core/Regulation/../config.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -142,10 +147,16 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Regulation/../../Drivers/Inc/Filters.h:
 
-../Core/Regulation/../config.h:
-
 ../Core/Regulation/../Propulsion/Propulsion.h:
 
 ../Core/Regulation/../Propulsion/../../Drivers/Inc/Motors.h:
 
 ../Core/Regulation/../Propulsion/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Regulation/../Estimators/position.h:
+
+../Core/Regulation/../Estimators/orientation.h:
+
+../Core/Regulation/../Estimators/../Sensors/baro.h:
+
+../Core/Regulation/../Estimators/../Sensors/ms5611.h:

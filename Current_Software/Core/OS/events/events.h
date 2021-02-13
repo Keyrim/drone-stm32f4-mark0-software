@@ -35,6 +35,7 @@ typedef enum events_id_main_e{
 	EVENT_ON_THE_GROUND = EVENT_LOW_LVL_COUNT,
 	EVENT_MANUAL_ACCRO,
 	EVENT_MANUAL_ANGLE,
+	EVENT_MANUAL_ANGLE_ALTITUDE_AUTO,
 	EVENT_ARMING,
 	EVENT_GYRO_ACC_CALIBRATION,
 
@@ -73,6 +74,7 @@ void EVENT_process(bool_e test_all);
 //Set and clean flags
 void EVENT_Set_flag(Flags_e flag);
 void EVENT_Clean_flag(Flags_e flag);
+bool_e EVENT_Check_flag(Flags_e flag);
 
 
 

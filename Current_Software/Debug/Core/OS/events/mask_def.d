@@ -52,6 +52,7 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/OS/events/../../Estimators/position.h \
  ../Core/OS/events/../../Estimators/orientation.h \
+ ../Core/OS/events/../../Estimators/../Sensors/baro.h \
  ../Core/OS/events/../../Radio/controller.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
  ../Core/OS/events/../../Radio/../../Drivers/Inc/../../Core/OS/macro_types.h \
@@ -67,6 +68,7 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
  ../Core/OS/events/../../Regulation/Regu_position.h \
  ../Core/OS/events/../../Regulation/Regu_orientation.h \
  ../Core/OS/events/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/OS/events/../../Regulation/../Estimators/position.h \
  ../Core/OS/events/../../Telemetry/Telemetry.h \
  ../Core/OS/events/../../Ihm/Ihm.h \
  ../Core/OS/events/../../../Drivers/Inc/Ibus.h \
@@ -187,6 +189,8 @@ Core/OS/events/mask_def.o: ../Core/OS/events/mask_def.c \
 
 ../Core/OS/events/../../Estimators/orientation.h:
 
+../Core/OS/events/../../Estimators/../Sensors/baro.h:
+
 ../Core/OS/events/../../Radio/controller.h:
 
 ../Core/OS/events/../../Radio/../../Drivers/Inc/Ibus.h:
@@ -216,6 +220,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/OS/events/../../Regulation/Regu_orientation.h:
 
 ../Core/OS/events/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/OS/events/../../Regulation/../Estimators/position.h:
 
 ../Core/OS/events/../../Telemetry/Telemetry.h:
 

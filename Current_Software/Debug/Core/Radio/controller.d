@@ -57,6 +57,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/Radio/../OS/events/../../Estimators/position.h \
  ../Core/Radio/../OS/events/../../Estimators/orientation.h \
+ ../Core/Radio/../OS/events/../../Estimators/../Sensors/baro.h \
  ../Core/Radio/../OS/events/../../Radio/controller.h \
  ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h \
  ../Core/Radio/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
@@ -70,6 +71,7 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Radio/../OS/events/../../Regulation/../Estimators/position.h \
  ../Core/Radio/../OS/events/../../Telemetry/Telemetry.h \
  ../Core/Radio/../OS/events/../../Ihm/Ihm.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h \
@@ -194,6 +196,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../Estimators/orientation.h:
 
+../Core/Radio/../OS/events/../../Estimators/../Sensors/baro.h:
+
 ../Core/Radio/../OS/events/../../Radio/controller.h:
 
 ../Core/Radio/../OS/events/../../Propulsion/Propulsion.h:
@@ -219,6 +223,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Radio/../OS/events/../../Regulation/Regu_orientation.h:
 
 ../Core/Radio/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Radio/../OS/events/../../Regulation/../Estimators/position.h:
 
 ../Core/Radio/../OS/events/../../Telemetry/Telemetry.h:
 

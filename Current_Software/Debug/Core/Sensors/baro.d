@@ -54,6 +54,7 @@ Core/Sensors/baro.o: ../Core/Sensors/baro.c ../Core/Sensors/baro.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Estimators/position.h \
  ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
+ ../Core/Sensors/../OS/events/../../Estimators/../Sensors/baro.h \
  ../Core/Sensors/../OS/events/../../Radio/controller.h \
  ../Core/Sensors/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -69,6 +70,7 @@ Core/Sensors/baro.o: ../Core/Sensors/baro.c ../Core/Sensors/baro.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_position.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Sensors/../OS/events/../../Regulation/../Estimators/position.h \
  ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h \
  ../Core/Sensors/../OS/events/../../Ihm/Ihm.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h \
@@ -191,6 +193,8 @@ Core/Sensors/baro.o: ../Core/Sensors/baro.c ../Core/Sensors/baro.h \
 
 ../Core/Sensors/../OS/events/../../Estimators/orientation.h:
 
+../Core/Sensors/../OS/events/../../Estimators/../Sensors/baro.h:
+
 ../Core/Sensors/../OS/events/../../Radio/controller.h:
 
 ../Core/Sensors/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h:
@@ -220,6 +224,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h:
 
 ../Core/Sensors/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Sensors/../OS/events/../../Regulation/../Estimators/position.h:
 
 ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h:
 

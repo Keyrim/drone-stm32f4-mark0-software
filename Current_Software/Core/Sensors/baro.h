@@ -23,9 +23,12 @@ typedef enum baro_state_e{
 
 typedef struct baro_t{
 
-	//Ms5611 used
+	//MS5611 used
 	ms5611_t * ms5611 ;
 
+	float * altitude ;
+
+	uint8_t counter_pressure_mesure ;
 	baro_state_e state ;
 
 }baro_t;

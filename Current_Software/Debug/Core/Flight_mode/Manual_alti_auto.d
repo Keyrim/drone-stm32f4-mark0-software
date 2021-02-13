@@ -1,5 +1,6 @@
-Core/Flight_mode/Manual_angle.o: ../Core/Flight_mode/Manual_angle.c \
- ../Core/Flight_mode/Flight_mode.h ../Core/Flight_mode/../OS/system_d.h \
+Core/Flight_mode/Manual_alti_auto.o: \
+ ../Core/Flight_mode/Manual_alti_auto.c ../Core/Flight_mode/Flight_mode.h \
+ ../Core/Flight_mode/../OS/system_d.h \
  ../Core/Flight_mode/../OS/macro_types.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \

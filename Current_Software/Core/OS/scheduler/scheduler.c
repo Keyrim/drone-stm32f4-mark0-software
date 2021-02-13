@@ -53,7 +53,7 @@ void SCHEDULER_run(void){
 			case TASK_MODE_TIME :
 				if(current_time_us >= task->desired_next_start_us){
 					current_time_us = task_process(task, current_time_us);
-					task->desired_next_start_us = task->desired_period_us + current_time_us ;
+					task->desired_next_start_us = task->desired_period_us - (int32_t)task->lag_average + current_time_us ;
 					task_executed = TRUE ;
 				}
 				break;
@@ -113,6 +113,15 @@ static uint32_t task_process(task_t * task, uint32_t current_time_us){
 	task->real_period_us_average_array[task->average_index] = current_time_us - task->last_execution_us ;
 	task->real_period_us_average_sum += task->real_period_us_average_array[task->average_index] ;
 	task->real_period_us = task->real_period_us_average_sum / TASK_STAT_AVERAGE_OVER ;
+
+	//Lag compensation
+	if(task->mode == TASK_MODE_TIME){
+		if(task->real_period_us_average_array[task->average_index] > task->desired_period_us)
+			task->lag_average += (float)(task->real_period_us_average_array[task->average_index] - task->desired_period_us) * 0.5f ;
+		else
+			task->lag_average -= (float)(task->desired_period_us - task->real_period_us_average_array[task->average_index]) * 0.5f ;
+	}
+
 
 	task->last_execution_us = current_time_us ;
 	task->process(current_time_us);

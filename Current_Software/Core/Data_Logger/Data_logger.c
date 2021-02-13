@@ -36,6 +36,7 @@ static data_t data_list[DATA_ID_COUNT] ;
 static data_logger_state_e state = LOGGER_IDDLE;
 static bool_e config_not_sent = TRUE ;
 static bool_e start_flag = FALSE;
+static bool_e send_config_flag = FALSE ;
 static bool_e stop_flag = FALSE;
 static uint8_t tmp[20];
 static uint8_t tmp_len ;
@@ -60,6 +61,21 @@ static uint8_t name_yaw_acc[] = "Acc YAW";
 static uint8_t name_x_acc[] = "Acc X";
 static uint8_t name_y_acc[] = "Acc Y";
 static uint8_t name_z_acc[] = "Acc Z";
+
+static uint8_t name_x_speed[] = "Speed X";
+static uint8_t name_y_speed[] = "Speed Y";
+static uint8_t name_z_speed[] = "Speed Z";
+
+static uint8_t name_x_pos[] = "Pos X";
+static uint8_t name_y_pos[] = "Pos Y";
+static uint8_t name_z_pos[] = "Pos Z";
+
+static uint8_t name_consigne_pos_z[] = "Target Pos Z";
+
+static uint8_t name_pid_pos_z[] = "PID Pos Z";
+static uint8_t name_p_pos_z[] = "P Pos Z";
+static uint8_t name_i_pos_z[] = "I Pos Z";
+static uint8_t name_d_pos_z[] = "D Pos Z";
 
 static uint8_t name_target_roll_gyro[] = "Tar Gyro ROLL";
 static uint8_t name_target_pitch_gyro[] = "Tar Gyro PITCH";
@@ -114,14 +130,34 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 					FALSE);
 
 	//Acceleration
-	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc, 								TRUE);
-	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc, 							TRUE);
-	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_acc, 								FALSE);
+	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_acc, 							FALSE);
+	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_acc, 								FALSE);
 
 	//Acceleration dans le ref de la terre
-	DEFINE_DATA(DATA_ID_ACC_X, (uint8_t*)&sys->position.acceleration[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_3D, 	name_x_acc, 								TRUE);
-	DEFINE_DATA(DATA_ID_ACC_Y, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_3D, 	name_y_acc, 								TRUE);
-	DEFINE_DATA(DATA_ID_ACC_Z, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_3D, 	name_z_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_ACC_X, (uint8_t*)&sys->position.acceleration[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_3D, 	name_x_acc, 								FALSE);
+	DEFINE_DATA(DATA_ID_ACC_Y, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_3D, 	name_y_acc, 								FALSE);
+	DEFINE_DATA(DATA_ID_ACC_Z, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_3D, 	name_z_acc, 								FALSE);
+
+	//Vitesse dans le ref de la terre
+	DEFINE_DATA(DATA_ID_SPEED_X, (uint8_t*)&sys->position.velocity[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_2D, 	name_x_speed, 								FALSE);
+	DEFINE_DATA(DATA_ID_SPEED_Y, (uint8_t*)&sys->position.velocity[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_2D, 	name_y_speed, 								FALSE);
+	DEFINE_DATA(DATA_ID_SPEED_Z, (uint8_t*)&sys->position.velocity[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_2D, 	name_z_speed, 								FALSE);
+
+	//Position dans le ref de la terre
+	DEFINE_DATA(DATA_ID_POS_X, (uint8_t*)&sys->position.position[POSITION_AXE_X], 												DATA_FORMAT_16B_FLOAT_1D, 	name_x_pos, 								FALSE);
+	DEFINE_DATA(DATA_ID_POS_Y, (uint8_t*)&sys->position.position[POSITION_AXE_Y], 												DATA_FORMAT_16B_FLOAT_1D, 	name_y_pos, 								FALSE);
+	DEFINE_DATA(DATA_ID_POS_Z, (uint8_t*)&sys->position.position[POSITION_AXE_Z], 												DATA_FORMAT_16B_FLOAT_1D, 	name_z_pos, 								TRUE);
+
+	//Consigne position
+	DEFINE_DATA(DATA_ID_CONSIGNE_POS_Z, (uint8_t*)&sys->regulation.position.consigne_position[POSITION_AXE_Z], 					DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_pos_z, 						FALSE);
+
+	//Pid position
+	DEFINE_DATA(DATA_ID_PID_POS_Z, (uint8_t*)&sys->regulation.position.pid_velocity[POSITION_AXE_Z], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pid_pos_z, 							FALSE);
+	DEFINE_DATA(DATA_ID_PID_POS_Z_P, (uint8_t*)&sys->regulation.position.pid_velocity[POSITION_AXE_Z].P, 						DATA_FORMAT_16B_FLOAT_1D, 	name_p_pos_z, 								TRUE);
+	DEFINE_DATA(DATA_ID_PID_POS_Z_I, (uint8_t*)&sys->regulation.position.pid_velocity[POSITION_AXE_Z].I, 						DATA_FORMAT_16B_FLOAT_1D, 	name_i_pos_z, 								TRUE);
+	DEFINE_DATA(DATA_ID_PID_POS_Z_D, (uint8_t*)&sys->regulation.position.pid_velocity[POSITION_AXE_Z].D, 						DATA_FORMAT_16B_FLOAT_1D, 	name_d_pos_z, 								FALSE);
+
 
 	//Consignes angles rates
 	DEFINE_DATA(DATA_ID_CONSIGNE_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_speed[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_target_roll_gyro, 							FALSE);
@@ -136,12 +172,12 @@ void DATA_LOGGER_Init(system_t * sys_){
 	//Barometer
 	DEFINE_DATA(DATA_ID_PRESSURE, 		(uint8_t*)&sys->sensors.ms5611.pressure, 												DATA_FORMAT_16B_FLOAT_1D, 	name_pressure, 									FALSE);
 	DEFINE_DATA(DATA_ID_TEMPERATURE, 	(uint8_t*)&sys->sensors.ms5611.temperature, 											DATA_FORMAT_16B_FLOAT_1D, 	name_temperature, 								FALSE);
-	DEFINE_DATA(DATA_ID_ALTITUDE, 		(uint8_t*)&sys->sensors.ms5611.altitude, 												DATA_FORMAT_16B_FLOAT_1D, 	name_altitude, 									FALSE);
+	DEFINE_DATA(DATA_ID_ALTITUDE, 		(uint8_t*)&sys->sensors.ms5611.altitude, 												DATA_FORMAT_16B_FLOAT_1D, 	name_altitude, 									TRUE);
 
 	//Buttons
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 							FALSE);
-	DEFINE_DATA(DATA_ID_DISABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_disable_asser_orientation,  	TRUE);
-	DEFINE_DATA(DATA_ID_ENABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_enable_asser_orientation, 		TRUE);
+	DEFINE_DATA(DATA_ID_DISABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_disable_asser_orientation,  				TRUE);
+	DEFINE_DATA(DATA_ID_ENABLE_ASSER_ORIENTATION, NULL, 																		DATA_FORMAT_0B_BUTTON, 		name_enable_asser_orientation, 					TRUE);
 	DEFINE_DATA(DATA_ID_START_TRANSFER, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_start_transfer, 		 					TRUE);
 	DEFINE_DATA(DATA_ID_STOP_TRANSFER, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_stop_transfer, 							TRUE);
 
@@ -180,10 +216,11 @@ void DATA_LOGGER_Main(void){
 			TELEMETRY_Send_Data(tmp, tmp_len);
 
 			//Si on a reçu une requête pour envoyer la config, on y go
-			if(start_flag){
+			if(send_config_flag){
 				//Reset flags
 				start_flag = FALSE;
 				stop_flag = FALSE;
+				send_config_flag = FALSE;
 				//Change the state
 				if(config_not_sent){
 					id_init_counter = 0;
@@ -193,6 +230,12 @@ void DATA_LOGGER_Main(void){
 				}
 				else
 					state = LOGGER_LOG;
+			}
+			else if(start_flag)
+			{
+				start_flag = FALSE;
+				stop_flag = FALSE;
+				state = LOGGER_LOG;
 			}
 			break;
 		case LOGGER_TRANSMIT_CONFIG :
@@ -258,7 +301,7 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 				default:
 					break;
 				case DATA_ID_CONFIG_REQUEST:
-					start_flag = TRUE;
+					send_config_flag = TRUE;
 					break;
 				case DATA_ID_ENABLE_ASSER_ORIENTATION:
 					REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_ACCRO);

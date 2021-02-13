@@ -78,6 +78,8 @@ typedef struct task{
 	//Execution mode => defines what "starts" a task
 	task_mode_e mode ;
 
+	float lag_average ;
+
 	//stat
 	uint32_t duration_us ;
 	uint32_t duration_us_worst ;

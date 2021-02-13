@@ -133,9 +133,9 @@ int main(void)
   IBUS_init(&sys.radio.ibus, &huart3, CONTROLLER_Rx_Data_Rdy);
 
   ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_FREQUENCY);
-  POSITION_Init(&sys.position, &sys.orientation, &sys.sensors.acc, GYRO_FREQUENCY);
+  POSITION_Init(&sys.position, &sys.orientation, &sys.sensors.acc, &sys.sensors.baro, GYRO_FREQUENCY);
   REGULATION_ORIENTATION_Init(&sys.regulation.orientation, &sys.orientation, sys.propulsion.consigne);
-  REGULATION_POSITION_Init(&sys.regulation.position, &sys.regulation.orientation, sys.propulsion.consigne);
+  REGULATION_POSITION_Init(&sys.regulation.position, &sys.position, sys.propulsion.consigne);
   PROPULSION_Init(&sys.propulsion, &htim1);
 
   TELEMETRY_Init(&sys.radio.telemetry, &huart2);

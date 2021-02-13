@@ -51,6 +51,7 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/position.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/baro.h \
  ../Core/OS/scheduler/../tasks/../../Radio/controller.h \
  ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h \
  c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
@@ -66,6 +67,7 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_position.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/position.h \
  ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h \
  ../Core/OS/scheduler/../tasks/../../Ihm/Ihm.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Ibus.h \
@@ -182,6 +184,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h:
 
+../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/baro.h:
+
 ../Core/OS/scheduler/../tasks/../../Radio/controller.h:
 
 ../Core/OS/scheduler/../tasks/../../Radio/../../Drivers/Inc/Ibus.h:
@@ -211,6 +215,8 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/position.h:
 
 ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h:
 

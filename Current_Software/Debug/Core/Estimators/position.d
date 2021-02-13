@@ -39,7 +39,43 @@ Core/Estimators/position.o: ../Core/Estimators/position.c \
  ../Core/Estimators/../Sensors/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Estimators/../Sensors/mpu.h \
  ../Core/Estimators/../Sensors/../OS/macro_types.h \
- ../Core/Estimators/../Sensors/acc.h
+ ../Core/Estimators/../Sensors/acc.h ../Core/Estimators/../Sensors/baro.h \
+ ../Core/Estimators/../Sensors/ms5611.h \
+ ../Core/Estimators/../OS/events/events.h \
+ ../Core/Estimators/../OS/events/mask_def_enum.h \
+ ../Core/Estimators/../OS/events/mask.h \
+ ../Core/Estimators/../OS/events/../macro_types.h \
+ ../Core/Estimators/../OS/events/flags.h \
+ ../Core/Estimators/../OS/events/../system_d.h \
+ ../Core/Estimators/../OS/events/../macro_types.h \
+ ../Core/Estimators/../OS/events/../../Sensors/gyro.h \
+ ../Core/Estimators/../OS/events/../../Sensors/acc.h \
+ ../Core/Estimators/../OS/events/../../Sensors/ms5611.h \
+ ../Core/Estimators/../OS/events/../../Sensors/baro.h \
+ ../Core/Estimators/../OS/events/../../sensors/batterie.h \
+ ../Core/Estimators/../OS/events/../../Estimators/orientation.h \
+ ../Core/Estimators/../OS/events/../../Estimators/position.h \
+ ../Core/Estimators/../OS/events/../../Radio/controller.h \
+ ../Core/Estimators/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Estimators/../OS/events/../../Propulsion/Propulsion.h \
+ ../Core/Estimators/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Estimators/../OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../Estimators/orientation.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../config.h \
+ ../Core/Estimators/../OS/events/../../Regulation/Regu_position.h \
+ ../Core/Estimators/../OS/events/../../Regulation/Regu_orientation.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../Propulsion/Propulsion.h \
+ ../Core/Estimators/../OS/events/../../Regulation/../Estimators/position.h \
+ ../Core/Estimators/../OS/events/../../Telemetry/Telemetry.h \
+ ../Core/Estimators/../OS/events/../../Ihm/Ihm.h \
+ ../Core/Estimators/../OS/events/../../../Drivers/Inc/Ibus.h \
+ ../Core/Estimators/../OS/events/../../../Drivers/Inc/Motors.h \
+ ../Core/Estimators/../OS/events/../../config.h
 
 ../Core/Estimators/position.h:
 
@@ -124,3 +160,77 @@ Core/Estimators/position.o: ../Core/Estimators/position.c \
 ../Core/Estimators/../Sensors/../OS/macro_types.h:
 
 ../Core/Estimators/../Sensors/acc.h:
+
+../Core/Estimators/../Sensors/baro.h:
+
+../Core/Estimators/../Sensors/ms5611.h:
+
+../Core/Estimators/../OS/events/events.h:
+
+../Core/Estimators/../OS/events/mask_def_enum.h:
+
+../Core/Estimators/../OS/events/mask.h:
+
+../Core/Estimators/../OS/events/../macro_types.h:
+
+../Core/Estimators/../OS/events/flags.h:
+
+../Core/Estimators/../OS/events/../system_d.h:
+
+../Core/Estimators/../OS/events/../macro_types.h:
+
+../Core/Estimators/../OS/events/../../Sensors/gyro.h:
+
+../Core/Estimators/../OS/events/../../Sensors/acc.h:
+
+../Core/Estimators/../OS/events/../../Sensors/ms5611.h:
+
+../Core/Estimators/../OS/events/../../Sensors/baro.h:
+
+../Core/Estimators/../OS/events/../../sensors/batterie.h:
+
+../Core/Estimators/../OS/events/../../Estimators/orientation.h:
+
+../Core/Estimators/../OS/events/../../Estimators/position.h:
+
+../Core/Estimators/../OS/events/../../Radio/controller.h:
+
+../Core/Estimators/../OS/events/../../Radio/../../Drivers/Inc/Ibus.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Estimators/../OS/events/../../Propulsion/Propulsion.h:
+
+../Core/Estimators/../OS/events/../../Propulsion/../../Drivers/Inc/Motors.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Estimators/../OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../Estimators/orientation.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../../Drivers/Inc/Pid.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../../Drivers/Inc/Filters.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../config.h:
+
+../Core/Estimators/../OS/events/../../Regulation/Regu_position.h:
+
+../Core/Estimators/../OS/events/../../Regulation/Regu_orientation.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../Propulsion/Propulsion.h:
+
+../Core/Estimators/../OS/events/../../Regulation/../Estimators/position.h:
+
+../Core/Estimators/../OS/events/../../Telemetry/Telemetry.h:
+
+../Core/Estimators/../OS/events/../../Ihm/Ihm.h:
+
+../Core/Estimators/../OS/events/../../../Drivers/Inc/Ibus.h:
+
+../Core/Estimators/../OS/events/../../../Drivers/Inc/Motors.h:
+
+../Core/Estimators/../OS/events/../../config.h:
