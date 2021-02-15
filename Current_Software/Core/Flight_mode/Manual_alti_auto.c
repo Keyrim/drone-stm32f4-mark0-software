@@ -8,7 +8,7 @@
 #include "Flight_mode.h"
 
 void manual_alti_auto_entrance(system_t * sys){
-	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_OFF);
+	REGULATION_ORIENTATION_Set_Regulation_Mode(REGULATION_ORIENTATION_MODE_ANGLE);
 	REGULATION_POSITION_Set_Regulation_Mode(REGULATION_POSITION_MODE_STABILIZED);
 	IHM_Set_Sequences(LED_HIGH_LVL, SEQUENCE_LED_7, SEQUENCE_LED_OFF, SEQUENCE_LED_7);
 	sys->regulation.position.consigne_position[POSITION_AXE_Z] = sys->position.position[POSITION_AXE_Z];

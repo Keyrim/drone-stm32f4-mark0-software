@@ -11,11 +11,11 @@
 static regu_position_t * regu_position ;
 
 //	--------------------------------	Velocity pid settings	-------------------------------
-float pid_velocity_z_settings[PID_NB_SETTINGS] = {80.0f, 80.0f, 0.0f, REGU_POSITION_FREQUENCY, 500};
-float filter_pid_velocity_z[3] = {0.2f, 0.8f, 0.0f};
+float pid_velocity_z_settings[PID_NB_SETTINGS] = {50.0f, 50.0f, 0.0f, REGU_POSITION_FREQUENCY, 300};
+float filter_pid_velocity_z[3] = {0.04f, 1.6f, -0.64f};
 
-float pid_position_z_settings[PID_NB_SETTINGS] = {4.0f, 0.0f, 3.0f, REGU_POSITION_FREQUENCY, };
-float filter_pid_position_z[3] = {0.2f, 0.8f, 0.0f};
+float pid_position_z_settings[PID_NB_SETTINGS] = {0.0f, 0.0f, 0.0f, REGU_POSITION_FREQUENCY, 20};
+float filter_pid_position_z[3] = {0.04f, 1.6f, -0.64f};
 
 void REGULATION_POSITION_Init(regu_position_t * regu_position_, position_t * position, int16_t * outputs){
 	regu_position = regu_position_;
@@ -27,7 +27,7 @@ void REGULATION_POSITION_Init(regu_position_t * regu_position_, position_t * pos
 	PID_init(&regu_position->pid_velocity[POSITION_AXE_Z], pid_velocity_z_settings, FILTER_NO_FILTERING, filter_pid_velocity_z);
 
 	//Init pid position
-	PID_init(&regu_position->pid_position[POSITION_AXE_Z], pid_position_z_settings, FILTER_FIRST_ORDER, filter_pid_position_z);
+	PID_init(&regu_position->pid_position[POSITION_AXE_Z], pid_position_z_settings, FILTER_SECOND_ORDER, filter_pid_position_z);
 
 
 }
@@ -45,7 +45,7 @@ void REGULATION_POSITION_Process(void){
 			regu_position->outputs[PROP_CONSIGNE_THRUST] = regu_position->consigne;
 			break;
 		case REGULATION_POSITION_MODE_STABILIZED:
-			regu_position->consigne_velocity[POSITION_AXE_Z] = PID_compute(&regu_position->pid_position[POSITION_AXE_Z], regu_position->consigne_position[POSITION_AXE_Z],  regu_position->position->position[POSITION_AXE_Z]);
+			regu_position->consigne_velocity[POSITION_AXE_Z] = 0; //- PID_compute(&regu_position->pid_position[POSITION_AXE_Z], regu_position->consigne_position[POSITION_AXE_Z],  regu_position->position->position[POSITION_AXE_Z]);
 			regu_position->outputs[PROP_CONSIGNE_THRUST] = regu_position->consigne - PID_compute(&regu_position->pid_velocity[POSITION_AXE_Z], regu_position->consigne_velocity[POSITION_AXE_Z] , regu_position->position->velocity[POSITION_AXE_Z]);
 			break;
 	}
