@@ -26,10 +26,26 @@ typedef struct baro_t{
 	//MS5611 used
 	ms5611_t * ms5611 ;
 
-	float * altitude ;
+	//Variables from the comp used
+	int32_t * temperature ;
+	uint32_t * pressure_raw ;
+
+	//Filtered variables
+	Filter_t filter ;
+	float pressure ;
+
+
+	float altitude_offset ;
+	float altitude_raw ;
+	float altitude ;
+	Filter_t filter_altitude ;
+
 
 	uint8_t counter_pressure_mesure ;
 	baro_state_e state ;
+
+
+
 
 }baro_t;
 

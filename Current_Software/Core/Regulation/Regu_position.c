@@ -11,10 +11,10 @@
 static regu_position_t * regu_position ;
 
 //	--------------------------------	Velocity pid settings	-------------------------------
-float pid_velocity_z_settings[PID_NB_SETTINGS] = {50.0f, 50.0f, 0.0f, REGU_POSITION_FREQUENCY, 300};
+float pid_velocity_z_settings[PID_NB_SETTINGS] = {40.0f, 30.0f, 0.0f, REGU_POSITION_FREQUENCY, 300};
 float filter_pid_velocity_z[3] = {0.04f, 1.6f, -0.64f};
 
-float pid_position_z_settings[PID_NB_SETTINGS] = {0.0f, 0.0f, 0.0f, REGU_POSITION_FREQUENCY, 20};
+float pid_position_z_settings[PID_NB_SETTINGS] = {0.0f, 0.0f, 0.0f, REGU_POSITION_FREQUENCY, 30};
 float filter_pid_position_z[3] = {0.04f, 1.6f, -0.64f};
 
 void REGULATION_POSITION_Init(regu_position_t * regu_position_, position_t * position, int16_t * outputs){

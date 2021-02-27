@@ -47,6 +47,9 @@ static bool_e is_any_data_used = FALSE;
 static uint8_t name_roll_angle[] = "Angle ROLL";
 static uint8_t name_pitch_angle[] = "Angle PITCH";
 
+static uint8_t name_roll_angle_acc[] = "AnglAcc ROLL";
+static uint8_t name_pitch_angle_acc[] = "AnglACC PITCH";
+
 static uint8_t name_consigne_angle_roll[] = "Target ROLL";
 static uint8_t name_consigne_angle_pitch[] = "Target PITCH";
 
@@ -57,6 +60,11 @@ static uint8_t name_yaw_gyro[] = "Gyro YAW";
 static uint8_t name_roll_acc[] = "Acc ROLL";
 static uint8_t name_pitch_acc[] = "Acc PITCH";
 static uint8_t name_yaw_acc[] = "Acc YAW";
+
+static uint8_t name_roll_acc_raw[] = "Acc Raw ROLL";
+static uint8_t name_pitch_acc_raw[] = "Acc Raw PITCH";
+static uint8_t name_yaw_acc_raw[] = "Acc Raw YAW";
+
 
 static uint8_t name_x_acc[] = "Acc X";
 static uint8_t name_y_acc[] = "Acc Y";
@@ -94,13 +102,23 @@ static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
 
 static uint8_t name_pid_gyro_roll[] = "PID Gyro Roll";
 static uint8_t name_pid_gyro_roll_p[] = "PID Gyro Ro P";
+static uint8_t name_pid_gyro_roll_i[] = "PID Gyro Ro i";
 static uint8_t name_pid_gyro_roll_d[] = "PID Gyro Ro D";
 
+static uint8_t name_pid_gyro_pitch[] = "PID Gyro Pitch";
+static uint8_t name_pid_gyro_yaw[] = "PID Gyro Yaw";
+
 static uint8_t name_prop_thrust[] = "PROP Thrust";
+static uint8_t name_moteur_fl[] = "Moteur FL";
+static uint8_t name_moteur_fr[] = "Moteur FR";
+static uint8_t name_moteur_br[] = "Moteur BR";
+static uint8_t name_moteur_bl[] = "Moteur BL";
 
 static uint8_t name_temperature[] = "Temperature";
+static uint8_t name_pressure_raw[] = "Pressure Raw";
 static uint8_t name_pressure[] = "Pressure";
 static uint8_t name_altitude[] = "Altitude";
+static uint8_t name_altitude_raw[] = "Altitude Raw";
 
 static uint8_t name_config_request[] = "Send Config";
 static uint8_t name_enable_asser_orientation[] = "En Asser Ori";
@@ -121,6 +139,10 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle,							FALSE);
 	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							FALSE);
 
+	//Angles acc
+	DEFINE_DATA(DATA_ID_ROLL_ACC_ANGLE, (uint8_t*)&sys->orientation.acc_angles[ORIENTATION_ROLL], 								DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle_acc,						FALSE);
+	DEFINE_DATA(DATA_ID_PITCH_ACC_ANGLE, (uint8_t*)&sys->orientation.acc_angles[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle_acc,						FALSE);
+
 	//Consignes angles
 	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_ROLL, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_ROLL], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_roll,					FALSE);
 	DEFINE_DATA(DATA_ID_CONSIGNE_ANGLE_PITCH, (uint8_t*)&sys->regulation.orientation.consigne_angular_pos[ORIENTATION_PITCH], 	DATA_FORMAT_16B_FLOAT_1D, 	name_consigne_angle_pitch,					FALSE);
@@ -128,7 +150,12 @@ void DATA_LOGGER_Init(system_t * sys_){
 	//Pid gyro roll
 	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].output, 		DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll, 						FALSE);
 	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL_P, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].P, 			DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll_p, 						FALSE);
+	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL_I, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].I, 			DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll_i, 						FALSE);
 	DEFINE_DATA(DATA_ID_PID_GYRO_ROLL_D, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_ROLL].D, 			DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_roll_d, 						FALSE);
+
+	// Autres pid gyro
+	DEFINE_DATA(DATA_ID_PID_GYRO_PITCH, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_PITCH].output, 	DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_pitch, 						FALSE);
+	DEFINE_DATA(DATA_ID_PID_GYRO_YAW, (uint8_t*)&sys->regulation.orientation.pid_angular_speed[ORIENTATION_YAW].output, 		DATA_FORMAT_16B_FLOAT_1D, 	name_pid_gyro_yaw, 							FALSE);
 
 	//Angle rate
 	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							FALSE);
@@ -140,20 +167,25 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc, 							FALSE);
 	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc, 								FALSE);
 
+	//Acceleration
+	DEFINE_DATA(DATA_ID_ROLL_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc_raw, 							FALSE);
+	DEFINE_DATA(DATA_ID_PITCH_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_PITCH], 										DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc_raw, 						FALSE);
+	DEFINE_DATA(DATA_ID_YAW_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_YAW], 											DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc_raw, 							FALSE);
+
 	//Acceleration dans le ref de la terre
 	DEFINE_DATA(DATA_ID_ACC_X, (uint8_t*)&sys->position.acceleration[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_3D, 	name_x_acc, 								FALSE);
 	DEFINE_DATA(DATA_ID_ACC_Y, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_3D, 	name_y_acc, 								FALSE);
-	DEFINE_DATA(DATA_ID_ACC_Z, (uint8_t*)&sys->position.acceleration[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_3D, 	name_z_acc, 								TRUE);
+	DEFINE_DATA(DATA_ID_ACC_Z, (uint8_t*)&sys->position.acc_raw[POSITION_AXE_Z], 												DATA_FORMAT_16B_FLOAT_3D, 	name_z_acc, 								TRUE);
 
 	//Vitesse dans le ref de la terre
-	DEFINE_DATA(DATA_ID_SPEED_X, (uint8_t*)&sys->position.velocity[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_3D, 	name_x_speed, 								FALSE);
-	DEFINE_DATA(DATA_ID_SPEED_Y, (uint8_t*)&sys->position.velocity[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_3D, 	name_y_speed, 								FALSE);
-	DEFINE_DATA(DATA_ID_SPEED_Z, (uint8_t*)&sys->position.velocity[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_3D, 	name_z_speed, 								TRUE);
+	DEFINE_DATA(DATA_ID_SPEED_X, (uint8_t*)&sys->position.velocity[POSITION_AXE_X], 											DATA_FORMAT_16B_FLOAT_2D, 	name_x_speed, 								FALSE);
+	DEFINE_DATA(DATA_ID_SPEED_Y, (uint8_t*)&sys->position.velocity[POSITION_AXE_Y], 											DATA_FORMAT_16B_FLOAT_2D, 	name_y_speed, 								FALSE);
+	DEFINE_DATA(DATA_ID_SPEED_Z, (uint8_t*)&sys->position.velocity[POSITION_AXE_Z], 											DATA_FORMAT_16B_FLOAT_2D, 	name_z_speed, 								TRUE);
 
 	//Position dans le ref de la terre
 	DEFINE_DATA(DATA_ID_POS_X, (uint8_t*)&sys->position.position[POSITION_AXE_X], 												DATA_FORMAT_16B_FLOAT_3D, 	name_x_pos, 								FALSE);
 	DEFINE_DATA(DATA_ID_POS_Y, (uint8_t*)&sys->position.position[POSITION_AXE_Y], 												DATA_FORMAT_16B_FLOAT_3D, 	name_y_pos, 								FALSE);
-	DEFINE_DATA(DATA_ID_POS_Z, (uint8_t*)&sys->position.position[POSITION_AXE_Z], 												DATA_FORMAT_16B_FLOAT_3D, 	name_z_pos, 								TRUE);
+	DEFINE_DATA(DATA_ID_POS_Z, (uint8_t*)&sys->position.position[POSITION_AXE_Z], 												DATA_FORMAT_16B_FLOAT_3D, 	name_z_pos, 								FALSE);
 
 	//Consigne position
 	DEFINE_DATA(DATA_ID_CONSIGNE_POS_Z, (uint8_t*)&sys->regulation.position.consigne_position[POSITION_AXE_Z], 					DATA_FORMAT_16B_FLOAT_3D, 	name_consigne_pos_z, 						FALSE);
@@ -185,9 +217,11 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 								FALSE);
 
 	//Barometer
-	DEFINE_DATA(DATA_ID_PRESSURE, 		(uint8_t*)&sys->sensors.ms5611.pressure, 												DATA_FORMAT_16B_FLOAT_1D, 	name_pressure, 									FALSE);
-	DEFINE_DATA(DATA_ID_TEMPERATURE, 	(uint8_t*)&sys->sensors.ms5611.temperature, 											DATA_FORMAT_16B_FLOAT_1D, 	name_temperature, 								FALSE);
-	DEFINE_DATA(DATA_ID_ALTITUDE, 		(uint8_t*)&sys->sensors.ms5611.altitude, 												DATA_FORMAT_16B_FLOAT_3D, 	name_altitude, 									TRUE);
+	DEFINE_DATA(DATA_ID_PRESSURE_RAW, 		(uint8_t*)sys->sensors.baro.pressure_raw, 											DATA_FORMAT_16B_UINT16, 	name_pressure_raw, 								FALSE);
+	DEFINE_DATA(DATA_ID_PRESSURE, 		(uint8_t*)&sys->sensors.baro.pressure, 													DATA_FORMAT_16B_UINT16, 	name_pressure, 									FALSE);
+	DEFINE_DATA(DATA_ID_TEMPERATURE, 	(uint8_t*)&sys->sensors.ms5611.temperature, 											DATA_FORMAT_16B_INT16, 		name_temperature, 								FALSE);
+	DEFINE_DATA(DATA_ID_ALTITUDE, 		(uint8_t*)&sys->sensors.baro.altitude, 													DATA_FORMAT_16B_FLOAT_3D, 	name_altitude, 									TRUE);
+	DEFINE_DATA(DATA_ID_ALTITUDE_RAW, 		(uint8_t*)&sys->sensors.baro.altitude_raw, 											DATA_FORMAT_16B_FLOAT_3D, 	name_altitude_raw, 								FALSE);
 
 	//Buttons
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_config_request, 							FALSE);
@@ -197,7 +231,13 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_STOP_TRANSFER, NULL, 																					DATA_FORMAT_0B_BUTTON, 		name_stop_transfer, 							TRUE);
 
 	//Propulsion
-	DEFINE_DATA(DATA_ID_PROP_THRUST, (uint8_t*)&sys->propulsion.consigne[PROP_CONSIGNE_THRUST], 								DATA_FORMAT_16B_UINT16,  	name_prop_thrust, 								FALSE);
+	DEFINE_DATA(DATA_ID_PROP_THRUST, (uint8_t*)&sys->propulsion.consigne[PROP_CONSIGNE_THRUST], 								DATA_FORMAT_16B_UINT16,  	name_prop_thrust, 								TRUE);
+	DEFINE_DATA(DATA_ID_MOTOR_FL, 	(uint8_t*)&sys->propulsion.motors_outputs[MOTOR_FL], 										DATA_FORMAT_16B_UINT16,  	name_moteur_fl, 								FALSE);
+	DEFINE_DATA(DATA_ID_MOTOR_FR, 	(uint8_t*)&sys->propulsion.motors_outputs[MOTOR_FR], 										DATA_FORMAT_16B_UINT16,  	name_moteur_fr, 								FALSE);
+	DEFINE_DATA(DATA_ID_MOTOR_BR, 	(uint8_t*)&sys->propulsion.motors_outputs[MOTOR_BR], 										DATA_FORMAT_16B_UINT16,  	name_moteur_br, 								FALSE);
+	DEFINE_DATA(DATA_ID_MOTOR_BL, 	(uint8_t*)&sys->propulsion.motors_outputs[MOTOR_BL], 										DATA_FORMAT_16B_UINT16,  	name_moteur_bl, 								FALSE);
+
+
 
 
 	//Others

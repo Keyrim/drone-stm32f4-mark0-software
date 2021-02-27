@@ -74,6 +74,8 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
  ../Core/Sensors/../OS/events/../../Regulation/../Estimators/position.h \
  ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h \
  ../Core/Sensors/../OS/events/../../Ihm/Ihm.h \
+ ../Core/Sensors/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h \
  ../Core/Sensors/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Sensors/../OS/events/../../config.h
@@ -233,6 +235,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h:
 
 ../Core/Sensors/../OS/events/../../Ihm/Ihm.h:
+
+../Core/Sensors/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Sensors/../OS/events/../../../Drivers/Inc/Ibus.h:
 

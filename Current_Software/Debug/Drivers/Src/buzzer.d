@@ -1,4 +1,5 @@
-Core/Ihm/Ihm.o: ../Core/Ihm/Ihm.c ../Core/Ihm/Ihm.h \
+Drivers/Src/buzzer.o: ../Drivers/Src/buzzer.c \
+ ../Drivers/Src/../Inc/buzzer.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,10 +33,9 @@ Core/Ihm/Ihm.o: ../Core/Ihm/Ihm.c ../Core/Ihm/Ihm.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Ihm/../../Drivers/Inc/buzzer.h \
- ../Core/Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h
+ ../Drivers/Src/../Inc/../../Core/OS/macro_types.h
 
-../Core/Ihm/Ihm.h:
+../Drivers/Src/../Inc/buzzer.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -103,6 +103,4 @@ Core/Ihm/Ihm.o: ../Core/Ihm/Ihm.c ../Core/Ihm/Ihm.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Ihm/../../Drivers/Inc/buzzer.h:
-
-../Core/Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h:
+../Drivers/Src/../Inc/../../Core/OS/macro_types.h:

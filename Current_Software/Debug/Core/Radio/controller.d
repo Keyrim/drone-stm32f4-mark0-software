@@ -74,6 +74,8 @@ Core/Radio/controller.o: ../Core/Radio/controller.c \
  ../Core/Radio/../OS/events/../../Regulation/../Estimators/position.h \
  ../Core/Radio/../OS/events/../../Telemetry/Telemetry.h \
  ../Core/Radio/../OS/events/../../Ihm/Ihm.h \
+ ../Core/Radio/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h \
  ../Core/Radio/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Radio/../OS/events/../../config.h
@@ -229,6 +231,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Radio/../OS/events/../../Telemetry/Telemetry.h:
 
 ../Core/Radio/../OS/events/../../Ihm/Ihm.h:
+
+../Core/Radio/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Radio/../OS/events/../../../Drivers/Inc/Ibus.h:
 

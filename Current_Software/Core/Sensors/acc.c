@@ -11,8 +11,9 @@
 
 static void acc_data_callback(void);
 
-//float filter_config [3] = {0.04f, 1.6f, -0.64f};
-float filter_config [3] = {0.1f, 0.9f, 0.0f};
+float filter_config [3] = {0.04f, 1.6f, -0.64f};
+//float filter_config [3] = {0.002267573696f, 1.904761905f, -0.9070294785f};
+//float filter_config [3] = {0.1f, 0.9f, 0.0f};
 
 void ACC_init(acc_t * acc, mpu_t * mpu){
 
@@ -26,7 +27,7 @@ void ACC_init(acc_t * acc, mpu_t * mpu){
 
 	acc->offsets[0] = 0.0203813482 ;
 	acc->offsets[1] = -0.0299842935 ;
-	acc->offsets[2] = -0.137193844 ;
+	acc->offsets[2] = -0.16 ;
 
 	switch(MPU_init_acc(acc->mpu, MPU_ACC_4G, acc_data_callback)){
 		case SENSOR_REQUEST_OK:

@@ -126,6 +126,7 @@ int main(void)
 
   IHM_Set_Sequences(LED_HIGH_LVL, SEQUENCE_LED_OFF, SEQUENCE_LED_1, SEQUENCE_LED_OFF);
   IHM_Set_Sequences(LED_SENSORS, SEQUENCE_LED_OFF, SEQUENCE_LED_1, SEQUENCE_LED_OFF);
+  BUZZER_Init(&sys.ihm.buzzer, &htim2);
 
   BATTERIE_Init(&sys.sensors.batterie, &hadc2);
 

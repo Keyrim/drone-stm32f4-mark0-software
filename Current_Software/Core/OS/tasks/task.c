@@ -61,10 +61,8 @@ void process_print_f(uint32_t current_time_us){
 
 
 void process_led(uint32_t current_time_us){
-//	uint8_t data[2];
-//	uint8_t len = DATA_LOGGER_Get_Data(DATA_ID_ROLL_GYRO, data);
-//	TELEMETRY_Send_Data(&sys->radio.telemetry, data, len);
 	IHM_Update();
+	BUZZER_Update(&sys->ihm.buzzer);
 }
 
 void process_gyro_update(uint32_t current_time_us){

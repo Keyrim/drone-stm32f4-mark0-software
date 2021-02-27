@@ -9,7 +9,12 @@
 #include "../OS/events/events.h"
 
 //For 1 mesure of temp we do RATIO_PRESSURE_TEMP mesures of pressure
-#define RATIO_PRESSURE_TEMP 9
+#define RATIO_PRESSURE_TEMP 19
+
+float filter_baro_config [3] = {0.007092198582f, 1.70212766f, -0.7092198582f};
+//float filter_baro_config [3] = {0.05f, 0.95f, 0.0f};
+
+float filter_altitude_config[3] = {0.3f, 0.7f, 0.0f};
 
 static void ms5611_raw_temp_rdy();
 static void ms5611_raw_pressure_rdy();
@@ -23,7 +28,10 @@ static void ms5611_raw_pressure_rdy(){
 
 void BARO_init(baro_t * baro, ms5611_t * ms5611, I2C_HandleTypeDef * hi2c){
 	baro->ms5611 = ms5611 ;
-	baro->altitude = &ms5611->altitude;
+	baro->pressure_raw = &ms5611->pressure;
+
+	FILTER_init(&baro->filter, filter_baro_config, FILTER_NO_FILTERING);
+	FILTER_init(&baro->filter_altitude, filter_altitude_config, FILTER_NO_FILTERING);
 
 	switch(MS5611_init(baro->ms5611, hi2c, ms5611_raw_temp_rdy, ms5611_raw_pressure_rdy))
 	{
@@ -81,7 +89,18 @@ void BARO_compute_pressure(baro_t * baro){
 	MS5611_calculate_pressure(baro->ms5611);
 }
 void BARO_compute_altitude(baro_t * baro){
-	MS5611_calculate_altitude(baro->ms5611);
+	//Filter the pressure
+	baro->pressure = FILTER_process(&baro->filter, (float)*baro->pressure_raw);
+
+	baro->altitude_raw = 44330.0f * (1.0 - powf((float)(baro->pressure) * 0.00000986923f, 0.190294957f)) - baro->altitude_offset ;
+
+	baro->altitude = FILTER_process(&baro->filter_altitude, baro->altitude_raw);
+	//Si on a le shift en altitude qui est nul, on l'init
+	if(!baro->altitude_offset){
+		baro->altitude_offset = baro->altitude ;
+		baro->altitude = 0;
+	}
+
 }
 
 

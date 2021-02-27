@@ -12,11 +12,11 @@ static regu_orientation_t * regu_orientation ;
 static orientation_t * orientation ;
 
 //	------------------------------	Angular Speed Regulation settings	-----------------------------------------
-float filter_pid_velocity_roll_pitch[3] = {0.04f, 1.6f, -0.64f};
+float filter_pid_velocity_roll_pitch[3] = {0.02326917552f, 1.694915254f, -0.7181844298f};
 float filter_pid_velocity_yaw[3] = {1.0f, 0.0f, 0.0f};
 
-float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.6f, 0.2f, 0.008f, REGU_ORIENTATION_FREQUENCY, 300};
-float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.7f, 0.3f, 0.01f, REGU_ORIENTATION_FREQUENCY, 300};
+float pid_velocity_settings_roll[PID_NB_SETTINGS] = {0.4f, 0.02f, 0.008f, REGU_ORIENTATION_FREQUENCY, 300};
+float pid_velocity_settings_pitch[PID_NB_SETTINGS] = {0.5f, 0.05f, 0.01f, REGU_ORIENTATION_FREQUENCY, 300};
 float pid_velocity_settings_yaw[PID_NB_SETTINGS] = {1.5f, 0.3f, 0.0f, REGU_ORIENTATION_FREQUENCY, 300};
 
 

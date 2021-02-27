@@ -10,6 +10,7 @@
 
 
 #include "stm32f4xx_hal.h"
+#include "../../Drivers/Inc/buzzer.h"
 
 #define SEQUENCE_LED_1 		0b101000000000
 #define SEQUENCE_LED_2 		0b101010111100
@@ -54,11 +55,11 @@ typedef struct rgb_led_t{
 	uint16_t current_bit ;
 	led_output_logic_e output_logic ;
 
-
 }rgb_led_t;
 
 typedef struct Ihm_t{
 	rgb_led_t leds [LED_COUNT];
+	buzzer_t buzzer;
 }Ihm_t;
 
 void IHM_Init(Ihm_t * ihm_);

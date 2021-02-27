@@ -125,12 +125,13 @@ void MS5611_calculate_temperature(ms5611_t * ms5611){
 void MS5611_calculate_pressure(ms5611_t * ms5611){
 	 int64_t OFF = (int64_t)ms5611->calibration_values[1] * 65536 + (int64_t)ms5611->calibration_values[3] * ms5611->dT / 128 ;
 	 int64_t SENS = (int64_t)ms5611->calibration_values[0] * 32768 + (int64_t)ms5611->calibration_values[2] * ms5611->dT / 256 ;
-	 ms5611->pressure = (uint32_t)(ms5611->raw_pressure * SENS / 2097152 - OFF) / 32768 ;
+	 uint64_t pressure = (((uint64_t)ms5611->raw_pressure * SENS / (uint64_t)2097152) - OFF) / (uint64_t)32768 ;
+	 ms5611->pressure = (uint32_t)pressure ;
 }
 
 //Calcul de l'altitude
 void MS5611_calculate_altitude(ms5611_t * ms5611){
-	ms5611->altitude = 44330.0f * (1.0 - powf((float)ms5611->pressure * 0.00000986923f, 0.190294957f)) - ms5611->altitude_shift ;	// 260 µs lel
+	ms5611->altitude = 44330.0f * (1.0 - powf((float)ms5611->pressure * 0.00000986923f, 0.190294957f)) - ms5611->altitude_shift ;
 	//Si on a le shift en altitude qui est nul, on l'init
 	if(!ms5611->altitude_shift){
 		ms5611->altitude_shift = ms5611->altitude ;

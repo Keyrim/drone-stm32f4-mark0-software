@@ -70,6 +70,8 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/position.h \
  ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h \
  ../Core/OS/scheduler/../tasks/../../Ihm/Ihm.h \
+ ../Core/OS/scheduler/../tasks/../../Ihm/../../Drivers/Inc/buzzer.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Ibus.h \
  ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Motors.h \
  ../Core/OS/scheduler/../tasks/../../config.h \
@@ -221,6 +223,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h:
 
 ../Core/OS/scheduler/../tasks/../../Ihm/Ihm.h:
+
+../Core/OS/scheduler/../tasks/../../Ihm/../../Drivers/Inc/buzzer.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../../Drivers/Inc/Ibus.h:
 

@@ -73,8 +73,6 @@ void Error_Handler(void);
 #define PIN_USER_1_GPIO_Port GPIOC
 #define PIN_USER_2_Pin GPIO_PIN_3
 #define PIN_USER_2_GPIO_Port GPIOC
-#define PIN_USER_3_Pin GPIO_PIN_0
-#define PIN_USER_3_GPIO_Port GPIOA
 #define PIN_USER_4_Pin GPIO_PIN_1
 #define PIN_USER_4_GPIO_Port GPIOA
 #define PIN_CS_MICRO_SD_Pin GPIO_PIN_4

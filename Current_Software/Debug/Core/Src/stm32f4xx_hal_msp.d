@@ -67,6 +67,8 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
  ../Core/Inc/../OS/../Regulation/../Estimators/position.h \
  ../Core/Inc/../OS/../Telemetry/Telemetry.h \
  ../Core/Inc/../OS/../Ihm/Ihm.h \
+ ../Core/Inc/../OS/../Ihm/../../Drivers/Inc/buzzer.h \
+ ../Core/Inc/../OS/../Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h \
  ../Core/Inc/../OS/../../Drivers/Inc/Motors.h \
  ../Core/Inc/../OS/../config.h
@@ -212,6 +214,10 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Inc/../OS/../Telemetry/Telemetry.h:
 
 ../Core/Inc/../OS/../Ihm/Ihm.h:
+
+../Core/Inc/../OS/../Ihm/../../Drivers/Inc/buzzer.h:
+
+../Core/Inc/../OS/../Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Inc/../OS/../../Drivers/Inc/Ibus.h:
 

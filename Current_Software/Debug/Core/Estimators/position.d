@@ -73,6 +73,8 @@ Core/Estimators/position.o: ../Core/Estimators/position.c \
  ../Core/Estimators/../OS/events/../../Regulation/../Estimators/position.h \
  ../Core/Estimators/../OS/events/../../Telemetry/Telemetry.h \
  ../Core/Estimators/../OS/events/../../Ihm/Ihm.h \
+ ../Core/Estimators/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Estimators/../OS/events/../../../Drivers/Inc/Ibus.h \
  ../Core/Estimators/../OS/events/../../../Drivers/Inc/Motors.h \
  ../Core/Estimators/../OS/events/../../config.h
@@ -228,6 +230,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Estimators/../OS/events/../../Telemetry/Telemetry.h:
 
 ../Core/Estimators/../OS/events/../../Ihm/Ihm.h:
+
+../Core/Estimators/../OS/events/../../Ihm/../../Drivers/Inc/buzzer.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Estimators/../OS/events/../../../Drivers/Inc/Ibus.h:
 

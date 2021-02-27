@@ -70,6 +70,8 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/../Estimators/position.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Ihm/Ihm.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../Ihm/../../Drivers/Inc/buzzer.h \
+ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h \
  ../Core/Telemetry/../Data_Logger/../OS/../../Drivers/Inc/Ibus.h \
  ../Core/Telemetry/../Data_Logger/../OS/../../Drivers/Inc/Motors.h \
  ../Core/Telemetry/../Data_Logger/../OS/../config.h
@@ -215,6 +217,10 @@ c:\workspace\github\f4_flight_controller\current_software\drivers\inc\Filters.h:
 ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Ihm/Ihm.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../Ihm/../../Drivers/Inc/buzzer.h:
+
+c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../../Drivers/Inc/Ibus.h:
 

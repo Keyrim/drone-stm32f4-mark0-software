@@ -67,3 +67,4 @@
 "Drivers/Src/Led_rgb.o"
 "Drivers/Src/Motors.o"
 "Drivers/Src/Pid.o"
+"Drivers/Src/buzzer.o"

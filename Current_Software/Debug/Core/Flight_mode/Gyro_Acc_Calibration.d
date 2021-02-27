@@ -70,6 +70,8 @@ Core/Flight_mode/Gyro_Acc_Calibration.o: \
  ../Core/Flight_mode/../OS/../Regulation/../Estimators/position.h \
  ../Core/Flight_mode/../OS/../Telemetry/Telemetry.h \
  ../Core/Flight_mode/../OS/../Ihm/Ihm.h \
+ ../Core/Flight_mode/../OS/../Ihm/../../Drivers/Inc/buzzer.h \
+ ../Core/Flight_mode/../OS/../Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h \
  ../Core/Flight_mode/../OS/../../Drivers/Inc/Motors.h \
  ../Core/Flight_mode/../OS/../config.h \
@@ -222,6 +224,10 @@ c:\workspace\github\f4_flight_controller\current_software\core\os\macro_types.h:
 ../Core/Flight_mode/../OS/../Telemetry/Telemetry.h:
 
 ../Core/Flight_mode/../OS/../Ihm/Ihm.h:
+
+../Core/Flight_mode/../OS/../Ihm/../../Drivers/Inc/buzzer.h:
+
+../Core/Flight_mode/../OS/../Ihm/../../Drivers/Inc/../../Core/OS/macro_types.h:
 
 ../Core/Flight_mode/../OS/../../Drivers/Inc/Ibus.h:
 

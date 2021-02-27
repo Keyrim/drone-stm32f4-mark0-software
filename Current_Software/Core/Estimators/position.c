@@ -8,9 +8,9 @@
 #include "position.h"
 #include "../OS/events/events.h"
 
-#define ALPHA 0.08f
-#define BETA 0.001f
-#define GAMMA 0.5f
+#define ALPHA 0.5f
+#define BETA 0.1f
+#define GAMMA 0.0f
 
 void POSITION_Init(position_t * position, orientation_t * orientation, acc_t * acc, baro_t * baro, int32_t frequency){
 
@@ -52,14 +52,14 @@ void POSITION_Update(position_t * position){
 	// https://fr.wikipedia.org/wiki/Matrice_de_rotation
 	// https://photos.google.com/photo/AF1QipPC2YkgS1dSJ5Y0lUlfNZ84SxoZOmHYG-Z7rT-n
 
-	position->acceleration[POSITION_AXE_X] = acc_x * cos_beta + sin_beta * (sin_alpha * acc_y + cos_alpha * acc_z) ;
-	position->acceleration[POSITION_AXE_Y] = acc_y * sin_beta - acc_z * sin_alpha ;
-	position->acceleration[POSITION_AXE_Z] = ( cos_beta * (sin_alpha * acc_y + cos_alpha * acc_z) - acc_x * sin_beta ) - 1 ; //Minus to compensate the gravity
+	position->acc_raw[POSITION_AXE_X] = acc_x * cos_beta + sin_beta * (sin_alpha * acc_y + cos_alpha * acc_z) ;
+	position->acc_raw[POSITION_AXE_Y] = acc_y * sin_beta - acc_z * sin_alpha ;
+	position->acc_raw[POSITION_AXE_Z] = ( cos_beta * (sin_alpha * acc_y + cos_alpha * acc_z) - acc_x * sin_beta ) - 1 ; //Minus to compensate the gravity
 
 	//From acceleration in g to m/s²
-	position->acceleration[POSITION_AXE_X] *= 9.81 ;
-	position->acceleration[POSITION_AXE_Y] *= 9.81 ;
-	position->acceleration[POSITION_AXE_Z] *= 9.81 ;
+	position->acc_raw[POSITION_AXE_X] *= 9.81 ;
+	position->acc_raw[POSITION_AXE_Y] *= 9.81 ;
+	position->acc_raw[POSITION_AXE_Z] *= 9.81 ;
 
 	//If life was simple :
 //	position->velocity[POSITION_AXE_X] += position->acceleration[POSITION_AXE_X] * position->periode ;
@@ -77,7 +77,7 @@ void POSITION_Update(position_t * position){
 	if(!position->alti_is_init)
 	{
 		if(EVENT_Check_flag(FLAG_BARO_ALTITUDE_RDY)){
-			position->position[POSITION_AXE_Z] = *position->baro->altitude;
+			position->position[POSITION_AXE_Z] = position->baro->altitude;
 			position->alti_is_init = TRUE ;
 			EVENT_Clean_flag(FLAG_BARO_ALTITUDE_RDY);
 		}
@@ -89,21 +89,26 @@ void POSITION_Update(position_t * position){
 
 		//								----------------------- State update equation ---------------------
 		if(EVENT_Check_flag(FLAG_BARO_ALTITUDE_RDY)){
-			float measurement = *position->baro->altitude;
+			float measurement = position->baro->altitude;
 			EVENT_Clean_flag(FLAG_BARO_ALTITUDE_RDY);
-			position->position[POSITION_AXE_Z] = position->position_guess[POSITION_AXE_Z] + ALPHA * (measurement - position->position_guess[POSITION_AXE_Z]);
-			position->velocity[POSITION_AXE_Z] = position->velocity_guess[POSITION_AXE_Z] + BETA * ((measurement - position->position_guess[POSITION_AXE_Z])/0.01f);
+			float delta = measurement - position->position_guess[POSITION_AXE_Z] ;
+			position->position[POSITION_AXE_Z] = position->position_guess[POSITION_AXE_Z] + ALPHA * delta;
+			position->velocity[POSITION_AXE_Z] = position->velocity_guess[POSITION_AXE_Z] + BETA * (delta * 100.0f); //*100 <=> /0.01
+
+			position->acceleration[POSITION_AXE_Z] = position->acceleration_guess[POSITION_AXE_Z] + GAMMA * (delta * 5000.0f); //*5000 <=> /(2*0.01²)
+
+
+			//								----------------------- State extrapolation equation ---------------------
+			position->position_guess[POSITION_AXE_Z] = position->position[POSITION_AXE_Z] + (position->velocity[POSITION_AXE_Z]  + position->acceleration[POSITION_AXE_Z] * 0.5f * position->periode) * position->periode ;
+			position->velocity_guess[POSITION_AXE_Z] = position->velocity[POSITION_AXE_Z] + position->acceleration[POSITION_AXE_Z] * position->periode ;
 		}
 		else
 		{
-			position->position[POSITION_AXE_Z] = position->position_guess[POSITION_AXE_Z] ;
-			position->velocity[POSITION_AXE_Z] = position->velocity_guess[POSITION_AXE_Z] ;
+//			position->position[POSITION_AXE_Z] = position->position_guess[POSITION_AXE_Z] ;
+//			position->velocity[POSITION_AXE_Z] = position->velocity_guess[POSITION_AXE_Z] ;
 		}
-		position->acceleration[POSITION_AXE_Z] = position->acceleration_guess[POSITION_AXE_Z] + GAMMA * (position->acceleration[POSITION_AXE_Z] - position->acceleration_guess[POSITION_AXE_Z]);
 
-		//								----------------------- State extrapolation equation ---------------------
-		position->position_guess[POSITION_AXE_Z] = position->position[POSITION_AXE_Z] + (position->velocity[POSITION_AXE_Z]  + position->acceleration[POSITION_AXE_Z] * 0.5f * position->periode) * position->periode ;
-		position->velocity_guess[POSITION_AXE_Z] = position->velocity[POSITION_AXE_Z] + position->acceleration[POSITION_AXE_Z] * position->periode ;
+
 		position->acceleration_guess[POSITION_AXE_Z] = position->acceleration[POSITION_AXE_Z];
 
 	}

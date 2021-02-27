@@ -26,6 +26,7 @@ typedef struct position_t{
 	float acceleration [POSITION_AXES_COUNT];
 
 	float * acceleration_drone;
+	float acc_raw[POSITION_AXES_COUNT];
 
 	acc_t * acc ;
 	orientation_t * orientation ;
